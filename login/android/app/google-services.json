@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "373515688598",
+    "firebase_url": "https://spotbuddy-1fd1d.firebaseio.com",
+    "project_id": "spotbuddy-1fd1d",
+    "storage_bucket": "spotbuddy-1fd1d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:373515688598:android:2e012b38af842030",
+        "android_client_info": {
+          "package_name": "com.dudeswithsauce.SBlogin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "373515688598-kjtr0p7v0360scslt8v6ubbqm572npdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8Twm85xISoKq4LPfqhINjnA_LPE_rOpA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
