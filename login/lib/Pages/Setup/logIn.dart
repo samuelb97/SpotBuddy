@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign In'),
+        title: Text('Log In'),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -48,7 +48,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             RaisedButton(
               onPressed: signIn,
-              child: Text('Sign in'),
+              child: Text('Log In'),
 
             )
           ],
@@ -66,18 +66,52 @@ class _LoginPageState extends State<LoginPage> {
           email:_email, 
           password: _password,
         );
-        //String email = user.email;
-        //print('Pre Nav: $email');
-        Navigator.push(
-          context, 
-          MaterialPageRoute(
-            builder: (context) => Home(user: user)
-          )
-        );
+        if(user.isEmailVerified){
+            Navigator.push(
+            context, 
+            MaterialPageRoute(
+              builder: (context) => Home(user: user)
+            )
+          );
+        }
+        else {
+          _ShowEmailNotVerifiedAlert(user);
+        }
       }
       catch(e){
         print(e.message);
       }
     }
+  }
+
+  void _ShowEmailNotVerifiedAlert(FirebaseUser user){
+    showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Email not Verified'),
+          content: Text(
+            'Your email has not been verified'
+            'please click the verification link sent to'
+            '${user.email}'
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Resend Email'),
+              onPressed: () {
+                user.sendEmailVerification();
+              },
+            ),
+            FlatButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+    
   }
 }

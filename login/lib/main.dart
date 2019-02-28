@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login/Pages/Setup/logIn.dart';
-import 'package:login/Pages/home.dart';
 import 'package:login/Pages/Setup/welcomePage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(MyApp());
 

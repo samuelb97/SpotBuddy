@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Setup/logIn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  String _email, _password;
+  String _email, _password, _name;
   final GlobalKey<FormState> 
     _formkey = GlobalKey<FormState>();
   @override
@@ -23,6 +24,17 @@ class _SignUpPageState extends State<SignUpPage> {
         //TODO: implement key
         child: Column(
           children: <Widget>[
+            TextFormField(
+              validator: (input) {
+               if(input.isEmpty){
+                 return 'Enter Your Name';
+               } 
+              },
+              onSaved: (input) => _name = input,
+              decoration: InputDecoration(
+                labelText: 'Username'
+              ),
+            ),
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
@@ -62,13 +74,13 @@ class _SignUpPageState extends State<SignUpPage> {
     if(formState.validate()){
       formState.save();
       try{
-        FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email:_email, 
           password: _password,
         );
-        user.sendEmailVerification();
-        //Display to User email was sent
-        Navigator.of(context).pop();
+        //user.sendEmailVerification();
+        //TODO email verification
+        //Navigator.of(context).pop();
         Navigator.pushReplacement(
           context, 
           MaterialPageRoute(
