@@ -20,23 +20,10 @@ class UpdateProfilePage extends StatefulWidget {
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {  
   String _name, _age, _gender, _occupation, _mobile;
-  bool _validate = false;
   final GlobalKey<FormState> 
     _formkey = GlobalKey<FormState>();
-  final DocumentReference documentReference =
-      Firestore.instance.document("users/testing");   //need to link this to specific UID
-  
-  void _update() {    //need to call variables in line 22
-    Map<String, String> data = <String, String>{
-      "name": _name,
-      "occupation": "student",
-      "age" : "21"
-    };
-    documentReference.updateData(data).whenComplete(() {
-      print("Document Updated");
-    }).catchError((e) => print(e));
-  }
-  
+     //need to link this to specific UID
+  int genderBtnValue = 0;
   
   @override
   Widget build(BuildContext context) {
@@ -45,69 +32,108 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
         title: Text('Update Your Profile'),
         backgroundColor: Colors.lightGreen,
       ),
-      body: new SingleChildScrollView(
-          child: new Container(
-            margin: new EdgeInsets.all(15.0),
-            child: new Form(
-              key: _formkey,
-              autovalidate: _validate,
-              child: FormUI(),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(15.0),
+          child: Form(
+            key: _formkey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: InputDecoration(hintText: 'Full Name'),
+                  maxLength: 32,
+                  validator: validateName,
+                  onSaved: (input) => _name = input,
+                ),
+                TextFormField(
+                  decoration: InputDecoration(hintText: 'Age'),
+                  maxLength: 2,
+                  validator: validateAge,
+                  onSaved: (input) => _age = input,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Radio (
+                      value: 0,
+                      groupValue: genderBtnValue,
+                      onChanged: _handleGenderValueChange,
+                    ),
+                    Text('Male'),
+                    Radio (
+                      value: 1,
+                      groupValue: genderBtnValue,
+                      onChanged: _handleGenderValueChange,
+                    ),
+                    Text('Female'),
+                    Radio (
+                      value: 2,
+                      groupValue: genderBtnValue,
+                      onChanged: _handleGenderValueChange,
+                    ),
+                    Text('Other'),
+                  ]
+                ),
+                TextFormField(
+                  decoration: InputDecoration(hintText: 'Occupation'),
+                  maxLength: 32,
+                  validator: validateOccupation,
+                  onSaved: (input) => _occupation = input,
+                ),
+                TextFormField(
+                    decoration: InputDecoration(hintText: 'Mobile Number'),
+                    keyboardType: TextInputType.phone,
+                    maxLength: 10,
+                    validator: validateMobile,
+                    onSaved: (input) => _mobile = input,
+                ),
+                SizedBox(height: 15.0),
+                RaisedButton(
+                  onPressed: _update,
+                  child: Text('Update'),
+                )
+              ],
             ),
-          ),
-      ),
+          )
+        )
+      )
     );
   }
 
-  Widget FormUI() {
-    return new Column(
-      children: <Widget>[
-        new TextFormField(
-          decoration: new InputDecoration(hintText: 'Full Name'),
-          maxLength: 32,
-          validator: validateName,
-          onSaved: (String val) {
-            _name = val;
-          },
-        ),
-        new TextFormField(
-          decoration: new InputDecoration(hintText: 'Age'),
-          maxLength: 2,
-          validator: validateAge,
-          onSaved: (String val) {
-            _age = val;
-          },
-        ),
-        new TextFormField(
-          decoration: new InputDecoration(hintText: 'Gender'),
-          maxLength: 12,
-          validator: validateGender,
-          onSaved: (String val) {
-            _gender = val;
-          },
-        ),
-        new TextFormField(
-          decoration: new InputDecoration(hintText: 'Occupation'),
-          maxLength: 32,
-          validator: validateOccupation,
-          onSaved: (String val) {
-            _occupation = val;
-          },
-        ),
-        new TextFormField(
-            decoration: new InputDecoration(hintText: 'Mobile Number'),
-            keyboardType: TextInputType.phone,
-            maxLength: 10,
-            validator: validateMobile,
-            onSaved: (String val) {
-              _mobile = val;
-            }),
-        new SizedBox(height: 15.0),
-        new RaisedButton(
-          onPressed: _update,
-          child: new Text('Update'),
-        )
-      ],
-    );
+  Future<void> _update() async {
+    switch (genderBtnValue) {
+      case 0:
+        _gender = 'male';
+        break;
+      case 1:
+        _gender = 'female';
+        break;
+      case 2:
+        _gender = 'other';
+        break;
+      default:
+        _gender = 'male';
+        break;
+    }
+    final formState = _formkey.currentState;
+    final DocumentReference documentReference =
+      Firestore.instance.document("users/${widget.user.uid}");
+    if(formState.validate()){
+      formState.save();
+      print("name: $_name");
+      Map<String, String> data = <String, String>{
+      "name": _name,
+      "occupation": _occupation,
+      "age" : _age,
+      "mobile" :_mobile,
+      "gender" :_gender,
+    };
+    documentReference.updateData(data)
+      .whenComplete(() {
+        print("Document Updated");
+      }).catchError((e) => print(e));
+    }
   }
 
   String validateName(String value) {
@@ -127,16 +153,6 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       return "Age is Required";
     }else if (!regExp.hasMatch(value)) {
       return "Age must be digits";
-    }
-    return null;
-  }
-  String validateGender(String value) {
-    String patttern = r'(^[a-zA-Z ]*$)';
-    RegExp regExp = new RegExp(patttern);
-    if (value.length == 0) {
-      return "Gender is Required";
-    }else if (!regExp.hasMatch(value)) {
-      return "Gender must be a-z and A-Z";
     }
     return null;
   }
@@ -161,6 +177,12 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       return "Mobile Number must be digits";
     }
     return null;
+  }
+  void _handleGenderValueChange(int value) {
+    setState(() {
+      genderBtnValue = value;
+      print("GenderValue: $genderBtnValue");
+    });
   }
 /*
   _sendToServer() {

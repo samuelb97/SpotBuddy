@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:login/Pages/Setup/signUp.dart';
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 
 
 class WelcomePage extends StatefulWidget {

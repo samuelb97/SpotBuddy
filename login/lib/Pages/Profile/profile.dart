@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login/Pages/Setup/logIn.dart';
-import 'package:login/Pages/Setup/signUp.dart';
 import 'package:login/Pages/Profile/updateprofile.dart';
 
 
@@ -38,11 +36,11 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
-  void NavigateToUpdateProfile(){
+  void NavigateToUpdateProfile() {
     Navigator.push(
       context, 
       MaterialPageRoute(
-        builder: (context) => UpdateProfilePage(),
+        builder: (context) => UpdateProfilePage(user: widget.user),
         fullscreenDialog: true
       )
     );

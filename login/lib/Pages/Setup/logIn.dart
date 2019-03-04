@@ -66,6 +66,8 @@ class _LoginPageState extends State<LoginPage> {
           password: _password,
         );
         if(user.isEmailVerified){
+            //TODO: Add option to push to update profile page
+            //TODO: Create document in users collection with document title = user.uid
             Navigator.push(
             context, 
             MaterialPageRoute(
