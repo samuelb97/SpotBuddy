@@ -184,22 +184,4 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
       print("GenderValue: $genderBtnValue");
     });
   }
-/*
-  _sendToServer() {
-    if (_formkey.currentState.validate()) {
-      // No any error in validation
-      _formkey.currentState.save();
-      print("Name $_name");
-      print("Age $_age");
-      print("Gender $_gender");
-      print("Occupation $_occupation");
-      print("Mobile $_mobile");
-    } else {
-      // validation error
-      setState(() {
-        _validate = true;
-      });
-    }
-  }
-*/
 }

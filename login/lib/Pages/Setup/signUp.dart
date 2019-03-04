@@ -78,9 +78,10 @@ class _SignUpPageState extends State<SignUpPage> {
           email:_email, 
           password: _password,
         );
+        String uid = user.uid;
+        Firestore.instance.collection("users").document("$uid")
+          .setData({"email" : "$_email"});
         user.sendEmailVerification();
-        //TODO email verification
-        //Navigator.of(context).pop();
         Navigator.pushReplacement(
           context, 
           MaterialPageRoute(
