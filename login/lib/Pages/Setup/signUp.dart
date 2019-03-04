@@ -79,7 +79,8 @@ class _SignUpPageState extends State<SignUpPage> {
         );
         String uid = user.uid;
         Firestore.instance.collection("users").document("$uid")
-          .setData({"email" : "$_email"});
+          .setData({"email" : "$_email","name" : null,"age" : null,"gender" : null,
+              "occupation" : null,"mobile" : null,"username" : "$_name"});
         user.sendEmailVerification();
         Navigator.pushReplacement(
           context, 
