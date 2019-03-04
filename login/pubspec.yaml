@@ -28,6 +28,9 @@ dependencies:
   cloud_firestore: ^0.9.5+2
   bottom_navy_bar: ^2.2.0
 
+  firebase_core: any
+  firebase_database: ^2.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

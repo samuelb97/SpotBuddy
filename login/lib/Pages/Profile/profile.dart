@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:login/Pages/Setup/signUp.dart';
+import 'package:login/Pages/Profile/updateprofile.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -27,8 +27,8 @@ class _ProfilePageState extends State<ProfilePage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           RaisedButton(
-              onPressed: () {},
-              child: Text('Profile'),
+              onPressed: NavigateToUpdateProfile,
+              child: Text('Update Profile'),
           ),
           RaisedButton(
               onPressed: () {},
@@ -38,4 +38,14 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+  void NavigateToUpdateProfile(){
+    Navigator.push(
+      context, 
+      MaterialPageRoute(
+        builder: (context) => UpdateProfilePage(),
+        fullscreenDialog: true
+      )
+    );
+  }
+
 }
