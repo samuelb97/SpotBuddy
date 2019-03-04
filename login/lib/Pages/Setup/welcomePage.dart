@@ -16,21 +16,45 @@ class _WelcomePageState extends State<WelcomePage> {
         title: Text('SpotBuddy'),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          RaisedButton(
-              onPressed: NavigateToSignIn,
-              child: Text('Log In'),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/background.jpg"),
+            fit: BoxFit.fitWidth,
           ),
-          RaisedButton(
-              onPressed: NavigateToSignUp,
-              child: Text('Sign Up'),
+        ),
+        
+        child: Container(
+          /*this is a decoration for a box that encompasses the two buttons. wont work at same time as background image
+          height: 180,
+          width: 310,
+          decoration: BoxDecoration(
+            color: Colors.green,
+            border: Border.all(color: Colors.black, width: 3),
+            borderRadius: BorderRadius.all(Radius.circular(18))
+            ),
+          */
+          //child: IntrinsicWidth( only works in Center class not Container??
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                RaisedButton(
+                  onPressed: NavigateToSignIn,
+                  child: Text('Log In'),
+                ),
+                RaisedButton(
+                  onPressed: NavigateToSignUp,
+                  child: Text('     Sign Up     '),
+                ),
+              ],
+            ),
           ),
-        ],
-      ),
-    );
+          //),
+       ),
+     );
   }
 
   void NavigateToSignIn(){

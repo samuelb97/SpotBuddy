@@ -21,7 +21,6 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
       body: Form(
         key: _formkey,
-        //TODO: implement key
         child: Column(
           children: <Widget>[
             TextFormField(

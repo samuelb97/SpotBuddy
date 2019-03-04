@@ -20,7 +20,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Center(
+      child: IntrinsicWidth(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -33,6 +35,8 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Text(widget.user.email),
           ),
         ],
+      ),
+      ),
       ),
     );
   }
