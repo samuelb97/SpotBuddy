@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return 'Please type and email';
+                 return 'Please type your email';
                } 
               },
               onSaved: (input) => _email = input,
@@ -74,11 +74,11 @@ class _SignUpPageState extends State<SignUpPage> {
     if(formState.validate()){
       formState.save();
       try{
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        FirebaseUser user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email:_email, 
           password: _password,
         );
-        //user.sendEmailVerification();
+        user.sendEmailVerification();
         //TODO email verification
         //Navigator.of(context).pop();
         Navigator.pushReplacement(

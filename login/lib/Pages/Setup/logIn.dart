@@ -49,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
             RaisedButton(
               onPressed: signIn,
               child: Text('Log In'),
-
             )
           ],
         ),
@@ -63,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
       formState.save();
       try{
         FirebaseUser user = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email:_email, 
+          email: _email, 
           password: _password,
         );
         if(user.isEmailVerified){
@@ -91,8 +90,8 @@ class _LoginPageState extends State<LoginPage> {
         return AlertDialog(
           title: Text('Email not Verified'),
           content: Text(
-            'Your email has not been verified'
-            'please click the verification link sent to'
+            'Your email has not been verified '
+            'please click the verification link sent to '
             '${user.email}'
           ),
           actions: <Widget>[
