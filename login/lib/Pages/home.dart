@@ -6,6 +6,7 @@ import 'package:login/Pages/Profile/profile.dart';
 import 'package:login/Pages/Search/search.dart';
 import 'package:login/Pages/Buddies/buddies.dart';
 import 'package:login/Pages/Settings/settings.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class Home extends StatefulWidget {
   
