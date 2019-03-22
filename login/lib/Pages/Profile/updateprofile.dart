@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:login/Pages/home.dart';
+import 'package:login/prop-config.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -29,7 +30,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Update Your Profile'),
+        title: Text(prompts.updateYourProfile),
         backgroundColor: Colors.lightGreen,
       ),
       body: SingleChildScrollView(
@@ -60,19 +61,19 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                       groupValue: genderBtnValue,
                       onChanged: _handleGenderValueChange,
                     ),
-                    Text('Male'),
+                    Text(user_info.gender0),
                     Radio (
                       value: 1,
                       groupValue: genderBtnValue,
                       onChanged: _handleGenderValueChange,
                     ),
-                    Text('Female'),
+                    Text(user_info.gender1),
                     Radio (
                       value: 2,
                       groupValue: genderBtnValue,
                       onChanged: _handleGenderValueChange,
                     ),
-                    Text('Other'),
+                    Text(user_info.gender2),
                   ]
                 ),
                 TextFormField(
@@ -91,7 +92,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 SizedBox(height: 15.0),
                 RaisedButton(
                   onPressed: _update,
-                  child: Text('Update'),
+                  child: Text(user_info.update),
                 )
               ],
             ),
@@ -104,21 +105,21 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   Future<void> _update() async {
     switch (genderBtnValue) {
       case 0:
-        _gender = 'male';
+        _gender = user_info.gender0;
         break;
       case 1:
-        _gender = 'female';
+        _gender = user_info.gender1;
         break;
       case 2:
-        _gender = 'other';
+        _gender = user_info.gender2;
         break;
       default:
-        _gender = 'male';
+        _gender = user_info.gender0;
         break;
     }
     final formState = _formkey.currentState;
     final DocumentReference documentReference =
-      Firestore.instance.document("users/${widget.user.uid}");
+      Firestore.instance.document(path.user + widget.user.uid);
     if(formState.validate()){
       formState.save();
       print("name: $_name");
@@ -131,57 +132,57 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     };
     documentReference.updateData(data)
       .whenComplete(() {
-        print("Document Updated");
+        print(prompts.updateDoc);
       }).catchError((e) => print(e));
     }
   }
 
   String validateName(String value) {
-    String patttern = r'(^[a-zA-Z ]*$)';
+    Pattern patttern = r'(^[a-Z]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "Name is Required";
+      return requirements.name;
     } else if (!regExp.hasMatch(value)) {
-      return "Name must be a-z and A-Z";
+      return requirements.range;
     }
     return null;
   }
   String validateAge(String value) {
-    String patttern = r'(^[0-9]*$)';
+    Pattern patttern = r'(^[0-9]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "Age is Required";
+      return requirements.age;
     }else if (!regExp.hasMatch(value)) {
-      return "Age must be digits";
+      return requirements.age_valid;
     }
     return null;
   }
   String validateOccupation(String value) {
-    String patttern = r'(^[a-zA-Z ]*$)';
+    Pattern patttern = r'(^[a-Z]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "Occupation is Required";
+      return requirements.occupation;
     } else if (!regExp.hasMatch(value)) {
-      return "Occupation must be a-z and A-Z";
+      return requirements.occupation_valid;
     }
     return null;
   }
   String validateMobile(String value) {
-    String patttern = r'(^[0-9]*$)';
+    Pattern patttern = r'(^[0-9]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return "Mobile is Required";
+      return requirements.mobile;
     } else if(value.length != 10){
-      return "Mobile number must 10 digits";
+      return requirements.mobile_valid_1;
     }else if (!regExp.hasMatch(value)) {
-      return "Mobile Number must be digits";
+      return requirements.mobile_valid_2;
     }
     return null;
   }
   void _handleGenderValueChange(int value) {
     setState(() {
       genderBtnValue = value;
-      print("GenderValue: $genderBtnValue");
+      print(user_info.gender + " $genderBtnValue");
     });
   }
 }

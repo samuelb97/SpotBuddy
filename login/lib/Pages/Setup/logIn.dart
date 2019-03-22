@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/home.dart';
+import 'package:login/prop-config.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log In'),
+        title: Text(prompts.login),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -25,29 +26,29 @@ class _LoginPageState extends State<LoginPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return 'Please type an email';
+                 return prompts.type_email;
                } 
               },
               onSaved: (input) => _email = input,
               decoration: InputDecoration(
-                labelText: 'Email'
+                labelText: headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return 'Password must be longer than 6 characters';
+                 return prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _password = input,
               decoration: InputDecoration(
-                labelText: 'Password'
+                labelText: prompts.passwrd
               ),
               obscureText: true,
             ),
             RaisedButton(
               onPressed: signIn,
-              child: Text('Log In'),
+              child: Text(prompts.login),
             )
           ],
         ),
@@ -89,21 +90,21 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
-          title: Text('Email not Verified'),
+          title: Text(prompts.email_verif),
           content: Text(
-            'Your email has not been verified '
-            'please click the verification link sent to '
+            prompts.email_err_1 +
+            prompts.email_err_2 +
             '${user.email}'
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text('Resend Email'),
+              child: Text(headers.resend),
               onPressed: () {
                 user.sendEmailVerification();
               },
             ),
             FlatButton(
-              child: Text('Close'),
+              child: Text(headers.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

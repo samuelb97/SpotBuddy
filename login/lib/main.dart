@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'dart:async';
+import 'package:login/prop-config.dart';
 
 void main() => runApp(MyApp());
   // This widget is the root of your application.
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
-      title: 'SpotBuddy Login',
+      title: headers.spotBuddy + prompts.login,
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),

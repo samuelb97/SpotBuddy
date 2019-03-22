@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:login/Pages/Setup/signUp.dart';
-
+import 'package:login/prop-config.dart';
 
 class WelcomePage extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('SpotBuddy'),
+        title: Text(headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: Container(
@@ -21,7 +21,7 @@ class _WelcomePageState extends State<WelcomePage> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/background.jpg"),
+            image: AssetImage(assets.image),
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -43,11 +43,11 @@ class _WelcomePageState extends State<WelcomePage> {
               children: <Widget>[
                 RaisedButton(
                   onPressed: NavigateToSignIn,
-                  child: Text('Log In'),
+                  child: Text(prompts.login),
                 ),
                 RaisedButton(
                   onPressed: NavigateToSignUp,
-                  child: Text('     Sign Up     '),
+                  child: Text('     ' + prompts.signup + '     '),
                 ),
               ],
             ),
