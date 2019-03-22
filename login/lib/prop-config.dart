@@ -25,6 +25,8 @@ class headers{
   static const String resend = 'Resend link';
   static const String search = 'Search';
   static const String settings = 'Settings';
+
+  static const String welcomePage = 'Welcome Page';
 }
 
 class path{

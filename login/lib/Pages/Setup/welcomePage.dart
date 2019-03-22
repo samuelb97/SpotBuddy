@@ -2,13 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:login/Pages/Setup/signUp.dart';
 import 'package:login/prop-config.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
+
 
 class WelcomePage extends StatefulWidget {
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
+  WelcomePage({this.analytics, this.observer});
+
   @override
   _WelcomePageState createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage> {
+  
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +56,17 @@ class _WelcomePageState extends State<WelcomePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 RaisedButton(
-                  onPressed: NavigateToSignIn,
+                  onPressed: (){
+                    _sendAnalytics1();
+                    NavigateToSignIn();
+                  },
                   child: Text(prompts.login),
                 ),
                 RaisedButton(
-                  onPressed: NavigateToSignUp,
+                  onPressed: (){
+                    _sendAnalytics2();
+                    NavigateToSignUp();
+                  },
                   child: Text('     ' + prompts.signup + '     '),
                 ),
               ],
@@ -57,17 +77,41 @@ class _WelcomePageState extends State<WelcomePage> {
      );
   }
 
+  Future<Null> _currentScreen() async{
+    await widget.analytics.setCurrentScreen(
+      screenName: 'welcome_page',
+      screenClassOverride: 'WelcomePageOver'
+    );
+  }
+
+  Future<Null> _sendAnalytics1() async{
+    await widget.analytics.logEvent(
+      name: 'login',
+      parameters: <String,dynamic>{}
+    );
+  }
+
+  Future<Null> _sendAnalytics2() async{
+     await widget.analytics.logEvent(
+      name: 'sign_up',
+      parameters: <String,dynamic>{}
+    );
+  }
+
   void NavigateToSignIn(){
+    _currentScreen();
     Navigator.push(
       context, 
       MaterialPageRoute(
-        builder: (context) => LoginPage(),
+        builder: (context) => LoginPage(analytics: analytics, observer: observer),
         fullscreenDialog: true
       )
+
     );
   }
 
   void NavigateToSignUp(){
+    _currentScreen();
     Navigator.push(
       context, 
       MaterialPageRoute(
@@ -75,6 +119,7 @@ class _WelcomePageState extends State<WelcomePage> {
         fullscreenDialog: true
       )
     );
+   
   }
 
 }

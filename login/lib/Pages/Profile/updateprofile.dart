@@ -3,14 +3,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:login/Pages/home.dart';
 import 'package:login/prop-config.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UpdateProfilePage extends StatefulWidget {
 
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
   UpdateProfilePage({
     Key key,
-    @required this.user
+    @required this.user,
+    this.analytics, 
+    this.observer
   }) : super(key: key);
 
   final FirebaseUser user;
@@ -19,15 +26,20 @@ class UpdateProfilePage extends StatefulWidget {
   _UpdateProfilePageState createState() => _UpdateProfilePageState();
 }
 
-class _UpdateProfilePageState extends State<UpdateProfilePage> {  
+class _UpdateProfilePageState extends State<UpdateProfilePage> { 
+    static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics); 
   String _name, _age, _gender, _occupation, _mobile;
   final GlobalKey<FormState> 
     _formkey = GlobalKey<FormState>();
      //need to link this to specific UID
   int genderBtnValue = 0;
-  
+
   @override
   Widget build(BuildContext context) {
+    _currentScreen();
+    Firestore.instance.collection('users').document(widget.user.uid).snapshots();
     return Scaffold(
       appBar: AppBar(
         title: Text(prompts.updateYourProfile),
@@ -40,8 +52,9 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             key: _formkey,
             child: Column(
               children: <Widget>[
+                
                 TextFormField(
-                  decoration: InputDecoration(hintText: user_info.fullName),
+                  decoration: InputDecoration(hintText: widget.user.uid),
                   maxLength: 32,
                   validator: validateName,
                   onSaved: (input) => _name = input,
@@ -91,7 +104,10 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 ),
                 SizedBox(height: 15.0),
                 RaisedButton(
-                  onPressed: _update,
+                  onPressed: (){
+                    _sendAnalytics1();
+                    _update();
+                  },
                   child: Text(user_info.update),
                 )
               ],
@@ -99,6 +115,20 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
           )
         )
       )
+    );
+  }
+
+  Future<Null> _currentScreen() async{
+    await widget.analytics.setCurrentScreen(
+      screenName: 'update_profile_page',
+      screenClassOverride: 'UpdateProfilePageOver'
+    );
+  }
+
+  Future<Null> _sendAnalytics1() async{
+    await widget.analytics.logEvent(
+      name: 'profile_update_successful',
+      parameters: <String,dynamic>{}
     );
   }
 

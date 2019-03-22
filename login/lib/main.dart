@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),
-      home: WelcomePage(),
+      navigatorObservers: <NavigatorObserver>[observer],
+      home: WelcomePage(analytics: analytics, observer: observer),
     );
     return materialApp;
   }

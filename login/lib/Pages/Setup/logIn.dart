@@ -2,13 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/home.dart';
 import 'package:login/prop-config.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class LoginPage extends StatefulWidget {
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
+  LoginPage({this.analytics, this.observer});
+
+  //  static FirebaseAnalytics analytics2 = FirebaseAnalytics();
+  //static FirebaseAnalyticsObserver observer2 =
+  //    FirebaseAnalyticsObserver(analytics: analytics2);
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {  
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   String _email, _password;
   final GlobalKey<FormState> 
     _formkey = GlobalKey<FormState>();
@@ -47,7 +63,10 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: true,
             ),
             RaisedButton(
-              onPressed: signIn,
+              onPressed: (){
+                _currentScreen();
+                signIn();
+              },
               child: Text(prompts.login),
             )
           ],
@@ -55,6 +74,28 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  Future<Null> _currentScreen() async{
+    await widget.analytics.setCurrentScreen(
+      screenName: 'login_page',
+      screenClassOverride: 'Log_inPageOver'
+    );
+  }
+
+  Future<Null> _sendAnalytics1() async{
+    await widget.analytics.logEvent(
+      name: 'login_successful',
+      parameters: <String,dynamic>{}
+    );
+  }
+
+  Future<Null> _sendAnalytics2() async{
+    await widget.analytics.logEvent(
+      name: 'email_verification_needed',
+      parameters: <String,dynamic>{}
+    );
+  }
+
 
   Future<void> signIn() async {
     final formState = _formkey.currentState;
@@ -66,16 +107,18 @@ class _LoginPageState extends State<LoginPage> {
           password: _password,
         );
         if(user.isEmailVerified){
+            _sendAnalytics1();
             //TODO: Add option to push to update profile page
             //TODO: Create document in users collection with document title = user.uid
             Navigator.push(
             context, 
             MaterialPageRoute(
-              builder: (context) => Home(user: user)
+              builder: (context) => Home(user: user, analytics: analytics, observer: observer)
             )
           );
         }
         else {
+          _sendAnalytics2();
           _ShowEmailNotVerifiedAlert(user);
         }
       }

@@ -3,13 +3,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/prop-config.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class SignUpPage extends StatefulWidget {
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
+  SignUpPage({this.analytics, this.observer});
+
+  
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+    static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
   String _email, _password, _name;
   final GlobalKey<FormState> 
     _formkey = GlobalKey<FormState>();
@@ -59,13 +72,30 @@ class _SignUpPageState extends State<SignUpPage> {
               obscureText: true,
             ),
             RaisedButton(
-              onPressed: signUp,
+              onPressed: (){
+                _sendAnalytics1();
+                signUp();
+              },
               child: Text(prompts.signup),
 
             )
           ],
         ),
       ),
+    );
+  }
+
+  Future<Null> _currentScreen() async{
+    await widget.analytics.setCurrentScreen(
+      screenName: 'sign_up',
+      screenClassOverride: 'SignUpOver'
+    );
+  }
+
+  Future<Null> _sendAnalytics1() async{
+    await widget.analytics.logEvent(
+      name: 'new_sign_up',
+      parameters: <String,dynamic>{}
     );
   }
 
@@ -83,10 +113,11 @@ class _SignUpPageState extends State<SignUpPage> {
           .setData({"email" : "$_email","name" : null,"age" : null,"gender" : null,
               "occupation" : null,"mobile" : null,"username" : "$_name"});
         user.sendEmailVerification();
+        _currentScreen();
         Navigator.pushReplacement(
           context, 
           MaterialPageRoute(
-            builder: (context) => LoginPage()
+            builder: (context) => LoginPage(analytics: analytics, observer: observer)
           )
         );
       }

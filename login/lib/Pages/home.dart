@@ -8,12 +8,19 @@ import 'package:login/Pages/Buddies/buddies.dart';
 import 'package:login/Pages/Settings/settings.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:login/prop-config.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+
 
 class Home extends StatefulWidget {
   
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
+
   Home({
     Key key,
-    @required this.user
+    @required this.user,
+    this.analytics,
+    this.observer
   }) : super(key: key);
 
   final FirebaseUser user;
@@ -25,6 +32,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int _index = 0;
   TabController _controller;
+
+    static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+      FirebaseAnalyticsObserver(analytics: analytics);
+
+
 
 
   List<String> pages = [
@@ -56,23 +69,27 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         children: pages.map((title) {
           switch (title) {
             case headers.profile:
-              return ProfilePage(user: widget.user);
+              _sendAnalytics1();
+              return ProfilePage(user: widget.user,analytics: analytics, observer: observer);
               break;
             
             case headers.search:
-              return SearchPage(user: widget.user);
+              _sendAnalytics2();
+              return SearchPage(user: widget.user,analytics: analytics, observer: observer);
               break;
 
             case headers.buddies:
-              return BuddiesPage(user: widget.user);
+              _sendAnalytics3();
+              return BuddiesPage(user: widget.user,analytics: analytics, observer: observer);
               break;
 
             case headers.settings:
-              return SettingsPage(user: widget.user);
+              _sendAnalytics4();
+              return SettingsPage(user: widget.user,analytics: analytics, observer: observer);
               break;
 
             default:
-              return ProfilePage(user: widget.user);
+              return ProfilePage(user: widget.user,analytics: analytics, observer: observer);
               break;
           }
         }).toList(),
@@ -105,6 +122,34 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
         ],
       )
+    );
+  }
+
+  Future<Null> _sendAnalytics1() async{
+    await widget.analytics.logEvent(
+      name: 'nav_to_profile',
+      parameters: <String,dynamic>{}
+    );
+  }
+
+  Future<Null> _sendAnalytics2() async{
+     await widget.analytics.logEvent(
+      name: 'nav_to_search',
+      parameters: <String,dynamic>{}
+    );
+  }
+
+  Future<Null> _sendAnalytics3() async{
+    await widget.analytics.logEvent(
+      name: 'nav_to_buddies',
+      parameters: <String,dynamic>{}
+    );
+  }
+
+  Future<Null> _sendAnalytics4() async{
+     await widget.analytics.logEvent(
+      name: 'nav_to_settings',
+      parameters: <String,dynamic>{}
     );
   }
 }
