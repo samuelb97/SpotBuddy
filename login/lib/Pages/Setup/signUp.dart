@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:login/prop-config.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text(prompts.signup),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -26,40 +27,40 @@ class _SignUpPageState extends State<SignUpPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return 'Enter Your Name';
+                 return prompts.name;
                } 
               },
               onSaved: (input) => _name = input,
               decoration: InputDecoration(
-                labelText: 'Username'
+                labelText: headers.username
               ),
             ),
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return 'Please type your email';
+                 return prompts.type_email;
                } 
               },
               onSaved: (input) => _email = input,
               decoration: InputDecoration(
-                labelText: 'Email'
+                labelText: headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return 'Password must be longer than 6 characters';
+                 return prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _password = input,
               decoration: InputDecoration(
-                labelText: 'Password'
+                labelText: prompts.passwrd
               ),
               obscureText: true,
             ),
             RaisedButton(
               onPressed: signUp,
-              child: Text('Sign Up'),
+              child: Text(prompts.signup),
 
             )
           ],

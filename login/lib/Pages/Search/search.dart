@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:login/Pages/Setup/signUp.dart';
+import 'package:login/prop-config.dart';
 
 
 class SearchPage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text('Search'),
+              child: Text(headers.search),
           ),
           RaisedButton(
               onPressed: () {},

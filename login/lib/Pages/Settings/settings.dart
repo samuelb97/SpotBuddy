@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Setup/logIn.dart';
 import 'package:login/Pages/Setup/signUp.dart';
+import 'package:login/prop-config.dart';
 
 
 class SettingsPage extends StatefulWidget {
@@ -28,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text('Settings'),
+              child: Text(headers.settings),
           ),
           RaisedButton(
               onPressed: () {},

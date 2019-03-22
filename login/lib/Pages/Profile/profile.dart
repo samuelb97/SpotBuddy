@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/Profile/updateprofile.dart';
-
+import 'package:login/prop-config.dart';
 
 class ProfilePage extends StatefulWidget {
 
@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePage> {
         children: <Widget>[
           RaisedButton(
               onPressed: NavigateToUpdateProfile,
-              child: Text('Update Profile'),
+              child: Text(prompts.updateProfile),
           ),
           RaisedButton(
               onPressed: () {},
