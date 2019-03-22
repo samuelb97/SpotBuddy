@@ -41,13 +41,13 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'Full Name'),
+                  decoration: InputDecoration(hintText: user_info.fullName),
                   maxLength: 32,
                   validator: validateName,
                   onSaved: (input) => _name = input,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'Age'),
+                  decoration: InputDecoration(hintText: user_info.age),
                   maxLength: 2,
                   validator: validateAge,
                   onSaved: (input) => _age = input,
@@ -77,13 +77,13 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                   ]
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: 'Occupation'),
+                  decoration: InputDecoration(hintText: user_info.occupation),
                   maxLength: 32,
                   validator: validateOccupation,
                   onSaved: (input) => _occupation = input,
                 ),
                 TextFormField(
-                    decoration: InputDecoration(hintText: 'Mobile Number'),
+                    decoration: InputDecoration(hintText: user_info.mobileNumber),
                     keyboardType: TextInputType.phone,
                     maxLength: 10,
                     validator: validateMobile,

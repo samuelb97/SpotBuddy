@@ -18,6 +18,7 @@ class prompts{
 class headers{
   static const String spotBuddy = 'SpotBuddy ';
   static const String buddies = 'Buddies';
+  static const String profile = 'Profile';
   static const String username = 'Username';
   static const String email = 'Email';
   static const String close = 'Close';

@@ -7,6 +7,7 @@ import 'package:login/Pages/Search/search.dart';
 import 'package:login/Pages/Buddies/buddies.dart';
 import 'package:login/Pages/Settings/settings.dart';
 import 'package:firebase_analytics/observer.dart';
+import 'package:login/prop-config.dart';
 
 class Home extends StatefulWidget {
   
@@ -27,10 +28,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
   List<String> pages = [
-    'Profile',
-    'Search',
-    'Buddies',
-    'Settings',
+    headers.profile,
+    headers.search,
+    headers.buddies,
+    headers.settings,
   ];
 
   @override
@@ -47,26 +48,26 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('SpotBuddy'),
+        title: Text(headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: TabBarView(
         controller: _controller,
         children: pages.map((title) {
           switch (title) {
-            case 'Profile':
+            case headers.profile:
               return ProfilePage(user: widget.user);
               break;
             
-            case 'Search':
+            case headers.search:
               return SearchPage(user: widget.user);
               break;
 
-            case 'Buddies':
+            case headers.buddies:
               return BuddiesPage(user: widget.user);
               break;
 
-            case 'Settings':
+            case headers.settings:
               return SettingsPage(user: widget.user);
               break;
 
@@ -84,22 +85,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.portrait),
-            title: Text('Profile'),
+            title: Text(headers.profile),
             activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text('Search'),
+              title: Text(headers.search),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.people),
-              title: Text('Buddies'),
+              title: Text(headers.buddies),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.settings),
-              title: Text('Settings'),
+              title: Text(headers.settings),
               activeColor: Colors.green,
           ),
         ],
