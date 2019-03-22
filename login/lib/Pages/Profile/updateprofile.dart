@@ -138,7 +138,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   }
 
   String validateName(String value) {
-    Pattern patttern = r'(^[a-Z]*$)';
+    Pattern patttern = r'(^[a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return requirements.name;
@@ -158,7 +158,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     return null;
   }
   String validateOccupation(String value) {
-    Pattern patttern = r'(^[a-Z]*$)';
+    Pattern patttern = r'(^[a-zA-Z ]*$)';
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return requirements.occupation;
