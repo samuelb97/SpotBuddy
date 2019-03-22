@@ -115,7 +115,7 @@ class _WelcomePageState extends State<WelcomePage> {
     Navigator.push(
       context, 
       MaterialPageRoute(
-        builder: (context) => SignUpPage(),
+        builder: (context) => SignUpPage(analytics: analytics, observer: observer),
         fullscreenDialog: true
       )
     );
