@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/prop-config.dart';
-import 'package:login/Pages/Setup/logIn.dart';
-import 'package:login/Pages/Setup/signUp.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
@@ -41,7 +38,7 @@ class _BuddiesPageState extends State<BuddiesPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text(headers.buddies),
+              child: Text(Headers.buddies),
           ),
           RaisedButton(
               onPressed: () {

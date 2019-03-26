@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login/Pages/Setup/logIn.dart';
-import 'package:login/Pages/Setup/signUp.dart';
 import 'package:login/prop-config.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
@@ -44,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
               onPressed: () {
                 _sendAnalytics1();
               },
-              child: Text(headers.search),
+              child: Text(Headers.search),
           ),
           RaisedButton(
               onPressed: () {},

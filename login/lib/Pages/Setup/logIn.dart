@@ -32,45 +32,65 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(prompts.login),
+        title: Text(Prompts.login),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Form(
+      body: Container(
+        padding: EdgeInsets.all(25),
+        child: Form(
         key: _formkey,
         child: Column(
           children: <Widget>[
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.type_email;
+                 return Prompts.type_email;
                } 
               },
               onSaved: (input) => _email = input,
               decoration: InputDecoration(
-                labelText: headers.email
+                labelText: Headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return prompts.passwrd_valid;
+                 return Prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _password = input,
               decoration: InputDecoration(
-                labelText: prompts.passwrd
+                labelText: Prompts.passwrd
               ),
               obscureText: true,
             ),
-            RaisedButton(
+            ButtonTheme( 
+              minWidth: 250,
+            child: RaisedButton(
+              color: Colors.green[800],
+              splashColor: Colors.green[300],
+              textTheme: ButtonTextTheme.primary,
+              padding: EdgeInsets.all(20.0),
+              elevation: 6,
+              shape: BeveledRectangleBorder(
+                side: BorderSide(
+                  width: 2.0, 
+                  color: Colors.grey[400],
+                ), 
+                borderRadius: BorderRadius.circular(10), 
+              ),
+              //shape: OutlineInputBorder(),  //add this to shape above
+              //shape: Border.all(width: 2.0, color: Colors.grey[400]),
               onPressed: (){
                 _currentScreen();
                 signIn();
               },
-              child: Text(prompts.login),
+              child: Text(Prompts.login),
             )
+           ),
           ],
         ),
+      ),
       ),
     );
   }
@@ -119,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
         }
         else {
           _sendAnalytics2();
-          _ShowEmailNotVerifiedAlert(user);
+          _showEmailNotVerifiedAlert(user);
         }
       }
       catch(e){
@@ -128,26 +148,26 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _ShowEmailNotVerifiedAlert(FirebaseUser user){
+  void _showEmailNotVerifiedAlert(FirebaseUser user){
     showDialog(
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
-          title: Text(prompts.email_verif),
+          title: Text(Prompts.email_verif),
           content: Text(
-            prompts.email_err_1 +
-            prompts.email_err_2 +
+            Prompts.email_err_1 +
+            Prompts.email_err_2 +
             '${user.email}'
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text(headers.resend),
+              child: Text(Headers.resend),
               onPressed: () {
                 user.sendEmailVerification();
               },
             ),
             FlatButton(
-              child: Text(headers.close),
+              child: Text(Headers.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

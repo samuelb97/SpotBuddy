@@ -30,57 +30,74 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(prompts.signup),
+        title: Text(Prompts.signup),
         backgroundColor: Colors.lightGreen,
       ),
-      body: Form(
+      body: Container(
+        padding: EdgeInsets.all(25),
+        child:Form(
         key: _formkey,
         child: Column(
           children: <Widget>[
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.name;
+                 return Prompts.name;
                } 
               },
               onSaved: (input) => _name = input,
               decoration: InputDecoration(
-                labelText: headers.username
+                labelText: Headers.username
               ),
             ),
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.type_email;
+                 return Prompts.type_email;
                } 
               },
               onSaved: (input) => _email = input,
               decoration: InputDecoration(
-                labelText: headers.email
+                labelText: Headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return prompts.passwrd_valid;
+                 return Prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _password = input,
               decoration: InputDecoration(
-                labelText: prompts.passwrd
+                labelText: Prompts.passwrd
               ),
               obscureText: true,
             ),
-            RaisedButton(
-              onPressed: (){
-                _sendAnalytics1();
-                signUp();
-              },
-              child: Text(prompts.signup),
-
+            ButtonTheme( 
+              minWidth: 250,
+              child: RaisedButton(
+                color: Colors.green[800],
+                splashColor: Colors.green[300],
+                textTheme: ButtonTextTheme.primary,
+                padding: EdgeInsets.all(20.0),
+                elevation: 6,
+                shape: BeveledRectangleBorder(
+                  side: BorderSide(
+                    width: 2.0, 
+                    color: Colors.grey[400],
+                  ), 
+                borderRadius: BorderRadius.circular(10), 
+                ),
+                onPressed: (){
+                  _sendAnalytics1();
+                  signUp();
+                },
+                child: Text(Prompts.signup),
+              ),
             )
           ],
         ),
+      ),
       ),
     );
   }
