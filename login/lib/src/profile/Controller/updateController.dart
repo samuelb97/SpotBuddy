@@ -5,7 +5,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Controller extends ControllerMVC {
-  factory Controller() {
+  factory Controller() { 
     if (_this == null) _this = Controller._();
     return _this;
   }
