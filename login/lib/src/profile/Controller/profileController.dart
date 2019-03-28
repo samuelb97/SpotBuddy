@@ -5,6 +5,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/src/profile/View/updateView.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -17,10 +18,12 @@ class Controller extends ControllerMVC {
 
   static Controller get con => _this;
 
+  
+
   Future NavigateToUpdateProfile(
     BuildContext context, 
     analyticsController analControl,
-    FirebaseUser user) async {
+    userController user) async {
     return Navigator.push(
         context, 
         MaterialPageRoute(

@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:login/src/buddies/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';
 import 'package:login/src/search/search.dart';
 import 'package:login/src/settings/settings.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class Home extends StatefulWidget {
 
   Home({
     Key key,
     this.analControl,
-    @required this.user
+    @required this.user,
   }) : super(key: key);
 
   final FirebaseUser user;
   final analyticsController analControl;
   
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(user.uid);
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  _HomeState(this.uid){
+    user_data = userController();
+    user_data.set_uid = this.uid;
+    user_data.load_data_from_firebase();
+  }
+  String uid;
+  userController user_data;
+
   int _index = 0;
   TabController _controller;
-
 
   List<String> pages = [
     headers.profile,
@@ -60,7 +66,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           switch (title) {
             case headers.profile:
               widget.analControl.sendAnalytics('nav_to_profile');
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
+              return ProfilePage(user: user_data, analControl: widget.analControl);
               break;
             
             case headers.search:
@@ -79,7 +85,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               break;
 
             default:
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
+              return ProfilePage(user: user_data, analControl: widget.analControl);
               break;
           }
         }).toList(),

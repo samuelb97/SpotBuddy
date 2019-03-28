@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:login/userController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -44,7 +45,7 @@ class Controller extends ControllerMVC {
   static Controller get con => _this;
   
   
-  Future<void> update(FirebaseUser user) async {
+  Future<void> update(userController user) async {
     switch (_genderBtnValue) {
       case 0:
         gender = user_info.gender0;

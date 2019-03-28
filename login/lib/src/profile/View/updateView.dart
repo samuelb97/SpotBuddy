@@ -4,6 +4,7 @@ import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/profile/Controller/updateController.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class UpdateProfilePage extends StatefulWidget {
 
@@ -13,7 +14,7 @@ class UpdateProfilePage extends StatefulWidget {
     @required this.user
   }) : super(key: key);
 
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
 
   @override
