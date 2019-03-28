@@ -38,18 +38,18 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   // }
   String firstName = "";
   String lastName = "";
-  void getInfo() async {
-    var user = await FirebaseAuth.instance.currentUser();
-    var userQuery = Firestore.instance
-        .collection(Database.users)
-        .document(widget.user.uid)
-        .get();
-  }
+  // void getInfo() async {
+  //   var user = await FirebaseAuth.instance.currentUser();
+  //   var userQuery = Firestore.instance
+  //       .collection(Database.users)
+  //       .document(widget.user.uid)
+  //       .get();
+  // }
 
   @override
   void initState() {
     super.initState();
-    getInfo();
+    //getInfo();
   }
 
   @override

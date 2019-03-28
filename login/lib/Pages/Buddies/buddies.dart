@@ -80,13 +80,11 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
                     ),
                     Column(
                       children: <Widget>[
-                        // ButtonTheme(
-                        //     minWidth: 20, 
                             RaisedButton(
                               color: Colors.blue[800],
                               splashColor: Colors.green[300],
                               textTheme: ButtonTextTheme.primary,
-                              padding: EdgeInsets.all(10.0),
+                              padding: EdgeInsets.all(5.0),
                               elevation: 6,
                               shape: BeveledRectangleBorder(
                                 side: BorderSide(
@@ -102,25 +100,7 @@ Widget _buildListItem(BuildContext context, DocumentSnapshot document) {
                             ),
                             
 
-                            RaisedButton(
-                              color: Colors.blue[800],
-                              splashColor: Colors.green[300],
-                              textTheme: ButtonTextTheme.primary,
-                              padding: EdgeInsets.all(10.0),
-                              elevation: 6,
-                              shape: BeveledRectangleBorder(
-                                side: BorderSide(
-                                  width: 2.0,
-                                  color: Colors.grey[400],
-                                ),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              onPressed: () {
-                                //ADD: go to user's display info
-                              },
-                              child: Text(Buttons.moreinfo),
-                            //)
-                            ),
+                            
                       ],
                     )
                   ]),
