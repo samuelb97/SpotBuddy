@@ -54,14 +54,14 @@ class _SearchPageState extends State<SearchPage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: screens.search,
-      screenClassOverride: screens.searchOver
+      screenName: Screens.search,
+      screenClassOverride: Screens.searchOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: events.searching,
+      name: Events.searching,
       parameters: <String,dynamic>{}
     );
   }

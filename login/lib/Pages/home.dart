@@ -126,28 +126,28 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: events.profile,
+      name: Events.profile,
       parameters: <String,dynamic>{}
     );
   }
 
   Future<Null> _sendAnalytics2() async{
      await widget.analytics.logEvent(
-      name: events.search,
+      name: Events.search,
       parameters: <String,dynamic>{}
     );
   }
 
   Future<Null> _sendAnalytics3() async{
     await widget.analytics.logEvent(
-      name: events.buddies,
+      name: Events.buddies,
       parameters: <String,dynamic>{}
     );
   }
 
   Future<Null> _sendAnalytics4() async{
      await widget.analytics.logEvent(
-      name: events.settings,
+      name: Events.settings,
       parameters: <String,dynamic>{}
     );
   }
