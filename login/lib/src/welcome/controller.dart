@@ -19,7 +19,7 @@ class Controller extends ControllerMVC {
           fullscreenDialog: true
         )
       );
-    }
+    } 
 
   static void NavigateToSignUp(
     BuildContext context,

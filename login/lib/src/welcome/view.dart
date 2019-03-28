@@ -24,7 +24,7 @@ class _WelcomePageState extends StateMVC<WelcomePage> {
       appBar: AppBar(
         title: Text(Headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
-      ),
+      ), 
       body: Container(
         height: double.infinity,
         width: double.infinity,
