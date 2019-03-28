@@ -13,6 +13,8 @@ class Controller extends ControllerMVC {
   static Controller _this;
 
   Controller._();
+  
+  static Controller get con => _this;
 
   GlobalKey<FormState> get formkey => _formkey;
 
@@ -31,8 +33,6 @@ class Controller extends ControllerMVC {
     name = _name;
   }
 
-
-  static Controller get con => _this;
   
   static Future<void> signUp(BuildContext context, analyticsController analControl) async {
     final formState = _formkey.currentState;
