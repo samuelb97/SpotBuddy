@@ -22,7 +22,7 @@ class _WelcomePageState extends StateMVC<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(headers.spotBuddy),
+        title: Text(Headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: Container(
@@ -52,19 +52,19 @@ class _WelcomePageState extends StateMVC<WelcomePage> {
               children: <Widget>[
                 RaisedButton(
                   onPressed: () {
-                    widget.thisAnalyticsController.sendAnalytics('login');
-                    widget.thisAnalyticsController.currentScreen('welcome_page', 'WelcomePageOver');
+                    widget.thisAnalyticsController.sendAnalytics(Events.login);
+                    widget.thisAnalyticsController.currentScreen(Screens.welcome, Screens.welcomeOver);
                     Controller.NavigateToSignIn(context, widget.thisAnalyticsController);
                   },
-                  child: Text(prompts.login),
+                  child: Text(Prompts.login),
                 ),
                 RaisedButton(
                   onPressed: () {
-                    widget.thisAnalyticsController.sendAnalytics('sign_up');
-                    widget.thisAnalyticsController.currentScreen('welcome_page', 'WelcomePageOver');
+                    widget.thisAnalyticsController.sendAnalytics(Events.signup);
+                    widget.thisAnalyticsController.currentScreen(Screens.welcome, Screens.welcomeOver);
                     Controller.NavigateToSignUp(context, widget.thisAnalyticsController);
                   },
-                  child: Text('     ' + prompts.signup + '     '),
+                  child: Text('     ' + Prompts.signup + '     '),
                 ),
               ],
             ),

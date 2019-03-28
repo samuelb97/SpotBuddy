@@ -29,7 +29,7 @@ class _BuddiesPageState extends State<BuddiesPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text(headers.buddies),
+              child: Text(Headers.buddies),
           ),
           RaisedButton(
               onPressed: () {},

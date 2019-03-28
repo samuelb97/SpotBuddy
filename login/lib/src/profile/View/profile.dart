@@ -29,7 +29,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    widget.analControl.currentScreen('profile_page', 'ProfilePageOver');
+    widget.analControl.currentScreen(Screens.profile, Screens.profileOver);
     return Scaffold(
       body: Center(
       child: IntrinsicWidth(
@@ -52,10 +52,10 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
           ),
           RaisedButton(
               onPressed: (){
-                widget.analControl.sendAnalytics('to_update_profile');
+                widget.analControl.sendAnalytics(Events.update);
                 _con.NavigateToUpdateProfile(context, widget.analControl, widget.user);
               },
-              child: Text(prompts.updateProfile),
+              child: Text(Prompts.updateProfile),
           ),
         ],
       ),

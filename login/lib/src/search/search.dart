@@ -22,6 +22,7 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
+    widget.analControl.currentScreen(Screens.search, Screens.searchOver);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +30,7 @@ class _SearchPageState extends State<SearchPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text(headers.search),
+              child: Text(Headers.search),
           ),
           RaisedButton(
               onPressed: () {},

@@ -31,10 +31,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
   List<String> pages = [
-    headers.profile,
-    headers.search,
-    headers.buddies,
-    headers.settings,
+    Headers.profile,
+    Headers.search,
+    Headers.buddies,
+    Headers.settings,
   ];
 
   @override
@@ -51,30 +51,30 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(headers.spotBuddy),
+        title: Text(Headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: TabBarView(
         controller: _controller,
         children: pages.map((title) {
           switch (title) {
-            case headers.profile:
-              widget.analControl.sendAnalytics('nav_to_profile');
+            case Headers.profile:
+              widget.analControl.sendAnalytics(Events.profile);
               return ProfilePage(user: widget.user, analControl: widget.analControl);
               break;
             
-            case headers.search:
-              widget.analControl.sendAnalytics('nav_to_search');
+            case Headers.search:
+              widget.analControl.sendAnalytics(Events.search);
               return SearchPage(user: widget.user, analControl: widget.analControl);
               break;
 
-            case headers.buddies:
-              widget.analControl.sendAnalytics('nav_to_buddies');
+            case Headers.buddies:
+              widget.analControl.sendAnalytics(Events.buddies);
               return BuddiesPage(user: widget.user, analControl: widget.analControl);
               break;
 
-            case headers.settings:
-              widget.analControl.sendAnalytics('nav_to_settings');
+            case Headers.settings:
+              widget.analControl.sendAnalytics(Events.settings);
               return SettingsPage(user: widget.user, analControl: widget.analControl);
               break;
 
@@ -92,22 +92,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.portrait),
-            title: Text(headers.profile),
+            title: Text(Headers.profile),
             activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text(headers.search),
+              title: Text(Headers.search),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.people),
-              title: Text(headers.buddies),
+              title: Text(Headers.buddies),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.settings),
-              title: Text(headers.settings),
+              title: Text(Headers.settings),
               activeColor: Colors.green,
           ),
         ],
