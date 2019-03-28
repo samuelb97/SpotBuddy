@@ -7,11 +7,15 @@ class Buddy {
     @required this.name,
     @required this.email,
     @required this.location,
+    @required this.age,
+    @required this.occupation,
   });
 
   final String avatar;
+  final String age;
   final String name;
   final String email;
+  final String occupation;
   final String location;
 
   static List<Buddy> allFromResponse(String response) {
@@ -31,6 +35,8 @@ class Buddy {
       avatar: map['picture']['large'],
       name: '${_capitalize(name['first'])} ${_capitalize(name['last'])}',
       email: map['email'],
+      age: map['age'],
+      occupation: map['occupation'],
       location: _capitalize(map['location']['state']),
     );
   }

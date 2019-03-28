@@ -33,7 +33,7 @@ class BuddyDetailHeader extends StatelessWidget {
       tag: avatarTag,
       child: new CircleAvatar(
         backgroundImage: new NetworkImage(buddy.avatar),
-        radius: 50.0,
+        radius: 60.0,
       ),
     );
   }
@@ -47,13 +47,13 @@ class BuddyDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Text('90 Following', style: followerStyle),
+          new Text('', style: followerStyle),
           new Text(
-            ' | ',
+            '  ',
             style: followerStyle.copyWith(
                 fontSize: 24.0, fontWeight: FontWeight.normal),
           ),
-          new Text('100 Followers', style: followerStyle),
+          new Text('', style: followerStyle),
         ],
       ),
     );
@@ -70,8 +70,8 @@ class BuddyDetailHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           _createPillButton(
-            'HIRE ME',
-            backgroundColor: theme.accentColor,
+            'MESSAGE',
+            backgroundColor: Colors.green[500],
           ),
           new DecoratedBox(
             decoration: new BoxDecoration(
@@ -79,7 +79,7 @@ class BuddyDetailHeader extends StatelessWidget {
               borderRadius: new BorderRadius.circular(30.0),
             ),
             child: _createPillButton(
-              'FOLLOW',
+              'ADD TO LIST',
               textColor: Colors.white70,
             ),
           ),

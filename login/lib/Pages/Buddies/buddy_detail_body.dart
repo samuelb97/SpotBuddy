@@ -58,9 +58,9 @@ class BuddyDetailBody extends StatelessWidget {
         new Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: new Text(
-            'Lorem Ipsum is simply dummy text of the printing and typesetting '
-                'industry. Lorem Ipsum has been the industry\'s standard dummy '
-                'text ever since the 1500s.',
+            'This is a sample bio written by a handsome man...'
+                'Speaking of handsome men, how are we doing Lokesh? '
+                'lemme get uhhhhhh one more sentence in this bio',
             style:
                 textTheme.body1.copyWith(color: Colors.white70, fontSize: 16.0),
           ),
