@@ -55,6 +55,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   @override
   Widget build(BuildContext context) {
     _currentScreen();
+    Firestore.instance.collection("users").document(widget.user.uid).snapshots();
     String userid = widget.user.uid;
     //Firestore.instance.collection('users').document(userid).snapshots();
     //String testname = DocumentSnapshot.fullName;
@@ -191,13 +192,16 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
 
   Future<Null> _currentScreen() async {
     await widget.analytics.setCurrentScreen(
-        screenName: 'update_profile_page',
-        screenClassOverride: 'UpdateProfilePageOver');
+      screenName: Screens.updateProfile,
+      screenClassOverride: Screens.updateOver
+    );
   }
 
   Future<Null> _sendAnalytics1() async {
     await widget.analytics.logEvent(
-        name: 'profile_update_successful', parameters: <String, dynamic>{});
+      name: Events.profileUpdated,
+      parameters: <String,dynamic>{}
+    );
   }
 
   Future<void> _update() async {

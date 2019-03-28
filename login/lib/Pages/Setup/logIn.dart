@@ -97,21 +97,21 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: 'login_page',
-      screenClassOverride: 'Log_inPageOver'
+      screenName: Screens.login,
+      screenClassOverride: Screens.loginOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: 'login_successful',
+      name: Events.login_success,
       parameters: <String,dynamic>{}
     );
   }
 
   Future<Null> _sendAnalytics2() async{
     await widget.analytics.logEvent(
-      name: 'email_verification_needed',
+      name: Events.emailverif,
       parameters: <String,dynamic>{}
     );
   }

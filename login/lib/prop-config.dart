@@ -31,6 +31,7 @@ class Headers{
   static const String settings = 'Settings';
   static const String welcomePage = 'Welcome Page';
 }
+
 class Path{
   static const String user = 'users/';
 }
@@ -65,10 +66,57 @@ class Requirements{
   static const String mobile = 'Mobile is Required';
   static const String mobile_valid_1 = 'Mobile numbermust be 10 digits';
   static const String mobile_valid_2 = 'Mobile number must be digits';
+
+
+
+
 }
-class Database{
-  static const String location = 'Location';
-  static const String match = 'Match';
-  static const String message = 'message';
-  static const String users = 'users';
+
+class Events{
+  static const String login = 'login';
+  static const String signup = 'signup';
+
+  static const String update = 'toUpdateProfile';
+  static const String profileUpdated = 'profile_updated';
+
+  static const String profile = 'nav_to_proflie';
+  static const String search = 'nav_to_search';
+  static const String buddies = 'nav_to_buddies';
+  static const String settings = 'nav_to_settings';
+
+  static const String emailverif = 'email_verification';
+  static const String login_success = 'login_successful';
+
+  static const String new_signup = 'new_sign_up';
+
+  static const String searching = 'searching';
+  static const String to_settings = 'to_settings';
+
+  static const String to_buddies = 'to_buddies';
+}
+
+class Screens{
+  static const String welcome = 'welcome_page';
+  static const String welcomeOver = 'WelcomePage';
+
+  static const String profile = 'profile_page';
+  static const String profileOver = 'ProfileOver';
+
+  static const String updateProfile = 'update_profile_page';
+  static const String updateOver = 'UpdateProfileOver';
+
+  static const String login = 'login_page';
+  static const String loginOver = 'Login_Over';
+
+  static const String signup = 'signup_page';
+  static const String signupOver = 'Signup_Over';
+
+  static const String search = 'search_page';
+  static const String searchOver = 'SearchOver';
+
+  static const String buddies = 'buddies_page';
+  static const String buddiesOver = 'BuddiesOver';
+
+  static const String settings = 'settings_page';
+  static const String settingsOver = 'SettingsOver';
 }

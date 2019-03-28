@@ -79,21 +79,21 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: 'welcome_page',
-      screenClassOverride: 'WelcomePageOver'
+      screenName: Screens.welcome,
+      screenClassOverride: Screens.welcomeOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: 'login',
+      name: Events.login,
       parameters: <String,dynamic>{}
     );
   }
 
   Future<Null> _sendAnalytics2() async{
      await widget.analytics.logEvent(
-      name: 'sign_up',
+      name: Events.signup,
       parameters: <String,dynamic>{}
     );
   }
