@@ -15,6 +15,10 @@ class Prompts{
   static const String occupation = 'Enter your occupation';
   static const String mobileNumber = 'Enter your mobile number';
 }
+class Buttons{
+  static const String moreinfo = 'more info';
+  static const String chat = 'chat';
+}
 class Headers{
   static const String spotBuddy = 'SpotBuddy ';
   static const String buddies = 'Buddies';
