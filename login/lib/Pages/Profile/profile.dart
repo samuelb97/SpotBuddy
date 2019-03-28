@@ -57,14 +57,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: 'profile_page',
-      screenClassOverride: 'Pro_filePageOver'
+      screenName: screens.profile,
+      screenClassOverride: screens.profileOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: 'to_update_profile',
+      name: events.update,
       parameters: {}
     );
   }

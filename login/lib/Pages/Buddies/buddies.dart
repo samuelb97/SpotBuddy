@@ -56,14 +56,14 @@ class _BuddiesPageState extends State<BuddiesPage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: 'buddies_page',
-      screenClassOverride: 'BuddiesPageOver'
+      screenName: screens.buddies,
+      screenClassOverride: screens.buddiesOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: 'to_buddies',
+      name: events.to_buddies,
       parameters: <String,dynamic>{}
     );
   }

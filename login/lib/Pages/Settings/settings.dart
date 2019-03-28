@@ -56,14 +56,14 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: 'settings_page',
-      screenClassOverride: 'SettingsPageOver'
+      screenName: screens.settings,
+      screenClassOverride: screens.settingsOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: 'to_settings',
+      name: events.to_settings,
       parameters: <String,dynamic>{}
     );
   }

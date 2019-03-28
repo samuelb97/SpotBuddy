@@ -87,14 +87,14 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Future<Null> _currentScreen() async{
     await widget.analytics.setCurrentScreen(
-      screenName: 'sign_up',
-      screenClassOverride: 'SignUpOver'
+      screenName: screens.signup,
+      screenClassOverride: screens.signupOver
     );
   }
 
   Future<Null> _sendAnalytics1() async{
     await widget.analytics.logEvent(
-      name: 'new_sign_up',
+      name: events.new_signup,
       parameters: <String,dynamic>{}
     );
   }
