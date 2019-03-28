@@ -40,9 +40,9 @@ class _ProfilePageState extends State<ProfilePage> {
           RaisedButton(
               onPressed: (){
                 _sendAnalytics1();
-                NavigateToUpdateProfile();
+                navigateToUpdateProfile();
               },
-              child: Text(prompts.updateProfile),
+              child: Text(Prompts.updateProfile),
           ),
           RaisedButton(
               onPressed: () {},
@@ -69,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  void NavigateToUpdateProfile() {
+  void navigateToUpdateProfile() {
     Navigator.push(
       context, 
       MaterialPageRoute(

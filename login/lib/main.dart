@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:login/Pages/Setup/welcomePage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
-import 'dart:async';
+//import 'dart:async';
 import 'package:login/prop-config.dart';
 
 void main() => runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
-      title: headers.spotBuddy + prompts.login,
+      title: Headers.spotBuddy + Prompts.login,
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:login/Pages/Profile/profile.dart';
 import 'package:login/Pages/Search/search.dart';
@@ -41,10 +40,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
 
   List<String> pages = [
-    headers.profile,
-    headers.search,
-    headers.buddies,
-    headers.settings,
+    Headers.profile,
+    Headers.search,
+    Headers.buddies,
+    Headers.settings,
   ];
 
   @override
@@ -61,29 +60,29 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(headers.spotBuddy),
+        title: Text(Headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: TabBarView(
         controller: _controller,
         children: pages.map((title) {
           switch (title) {
-            case headers.profile:
+            case Headers.profile:
               _sendAnalytics1();
               return ProfilePage(user: widget.user,analytics: analytics, observer: observer);
               break;
             
-            case headers.search:
+            case Headers.search:
               _sendAnalytics2();
               return SearchPage(user: widget.user,analytics: analytics, observer: observer);
               break;
 
-            case headers.buddies:
+            case Headers.buddies:
               _sendAnalytics3();
               return BuddiesPage(user: widget.user,analytics: analytics, observer: observer);
               break;
 
-            case headers.settings:
+            case Headers.settings:
               _sendAnalytics4();
               return SettingsPage(user: widget.user,analytics: analytics, observer: observer);
               break;
@@ -102,22 +101,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.portrait),
-            title: Text(headers.profile),
+            title: Text(Headers.profile),
             activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text(headers.search),
+              title: Text(Headers.search),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.people),
-              title: Text(headers.buddies),
+              title: Text(Headers.buddies),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.settings),
-              title: Text(headers.settings),
+              title: Text(Headers.settings),
               activeColor: Colors.green,
           ),
         ],

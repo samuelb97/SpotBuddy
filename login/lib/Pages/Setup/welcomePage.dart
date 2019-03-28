@@ -27,7 +27,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(headers.spotBuddy),
+        title: Text(Headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: Container(
@@ -35,7 +35,7 @@ class _WelcomePageState extends State<WelcomePage> {
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(assets.image),
+            image: AssetImage(Assets.image),
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -58,16 +58,16 @@ class _WelcomePageState extends State<WelcomePage> {
                 RaisedButton(
                   onPressed: (){
                     _sendAnalytics1();
-                    NavigateToSignIn();
+                    navigateToSignIn();
                   },
-                  child: Text(prompts.login),
+                  child: Text(Prompts.login),
                 ),
                 RaisedButton(
                   onPressed: (){
                     _sendAnalytics2();
-                    NavigateToSignUp();
+                    navigateToSignUp();
                   },
-                  child: Text('     ' + prompts.signup + '     '),
+                  child: Text('     ' + Prompts.signup + '     '),
                 ),
               ],
             ),
@@ -98,7 +98,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  void NavigateToSignIn(){
+  void navigateToSignIn(){
     _currentScreen();
     Navigator.push(
       context, 
@@ -110,7 +110,7 @@ class _WelcomePageState extends State<WelcomePage> {
     );
   }
 
-  void NavigateToSignUp(){
+  void navigateToSignUp(){
     _currentScreen();
     Navigator.push(
       context, 
