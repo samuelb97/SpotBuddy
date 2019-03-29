@@ -41,6 +41,7 @@ dependencies:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   location: ^2.3.2
 =======
   cached_network_image:
@@ -60,6 +61,9 @@ dependencies:
 >>>>>>> parent of f123d33... UserController
 =======
 >>>>>>> parent of f123d33... UserController
+=======
+  location: ^2.3.2
+>>>>>>> parent of 1529e1e... Try
   
 
 dev_dependencies:

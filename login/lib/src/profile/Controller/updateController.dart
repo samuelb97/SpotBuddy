@@ -5,7 +5,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Controller extends ControllerMVC {
-  factory Controller() { 
+  factory Controller() {
     if (_this == null) _this = Controller._();
     return _this;
   }
@@ -47,21 +47,21 @@ class Controller extends ControllerMVC {
   Future<void> update(FirebaseUser user) async {
     switch (_genderBtnValue) {
       case 0:
-        gender = Userinfo.gender0;
+        gender = user_info.gender0;
         break;
       case 1:
-        gender = Userinfo.gender1;
+        gender = user_info.gender1;
         break;
       case 2:
-        gender = Userinfo.gender2;
+        gender = user_info.gender2;
         break;
       default:
-        gender = Userinfo.gender0;
+        gender = user_info.gender0;
         break;
     }
     final formState = _formkey.currentState;
     final DocumentReference documentReference =
-      Firestore.instance.document(Path.user + user.uid);
+      Firestore.instance.document(path.user + user.uid);
     if(formState.validate()){
       formState.save();
       print("name: $name");
@@ -74,46 +74,50 @@ class Controller extends ControllerMVC {
     };
     documentReference.updateData(data)
       .whenComplete(() {
-        print(Prompts.updateDoc);
+        print(prompts.updateDoc);
       }).catchError((e) => print(e));
     }
   }
 
   String validateName(String value) {
-    RegExp regExp = new RegExp(Pattern.characters);
+    Pattern patttern = r'(^[a-zA-Z ]*$)';
+    RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return Requirements.name;
+      return requirements.name;
     } else if (!regExp.hasMatch(value)) {
-      return Requirements.range;
+      return requirements.range;
     }
     return null;
   }
   String validateAge(String value) {
-    RegExp regExp = new RegExp(Pattern.integers);
+    Pattern patttern = r'(^[0-9]*$)';
+    RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return Requirements.age;
+      return requirements.age;
     }else if (!regExp.hasMatch(value)) {
-      return Requirements.age_valid;
+      return requirements.age_valid;
     }
     return null;
   }
   String validateOccupation(String value) {
-    RegExp regExp = new RegExp(Pattern.characters);
+    Pattern patttern = r'(^[a-zA-Z ]*$)';
+    RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return Requirements.occupation;
+      return requirements.occupation;
     } else if (!regExp.hasMatch(value)) {
-      return Requirements.occupation_valid;
+      return requirements.occupation_valid;
     }
     return null;
   }
   String validateMobile(String value) {
-    RegExp regExp = new RegExp(Pattern.integers);
+    Pattern patttern = r'(^[0-9]*$)';
+    RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
-      return Requirements.mobile;
+      return requirements.mobile;
     } else if(value.length != 10){
-      return Requirements.mobile_valid_1;
+      return requirements.mobile_valid_1;
     }else if (!regExp.hasMatch(value)) {
-      return Requirements.mobile_valid_2;
+      return requirements.mobile_valid_2;
     }
     return null;
   }

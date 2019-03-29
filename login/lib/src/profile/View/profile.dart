@@ -29,7 +29,6 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     widget.analControl.currentScreen('profile_page', 'ProfilePageOver');
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -49,9 +48,6 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
       ),
     );
 
-=======
-    widget.analControl.currentScreen(Screens.profile, Screens.profileOver);
->>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
     return Scaffold(
       body: Center(
         child: Container(
@@ -71,7 +67,6 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                   ),
                 ),
               ),
-<<<<<<< HEAD
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
                 padding: EdgeInsets.all(10.0),
@@ -111,6 +106,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 ),
               ),
             ],
+<<<<<<< HEAD
 =======
 =======
     return Scaffold(
@@ -236,6 +232,8 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
 >>>>>>> parent of f123d33... UserController
 =======
 >>>>>>> parent of f123d33... UserController
+=======
+>>>>>>> parent of 1529e1e... Try
           ),
           RaisedButton(
               onPressed: (){
