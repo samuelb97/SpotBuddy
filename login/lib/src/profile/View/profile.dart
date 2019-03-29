@@ -5,16 +5,13 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/profile/Controller/profileController.dart';
+import 'package:login/userController.dart';
 
 class ProfilePage extends StatefulWidget {
+  ProfilePage({Key key, this.analControl, @required this.user})
+      : super(key: key);
 
-  ProfilePage({
-    Key key,
-    this.analControl,
-    @required this.user
-  }) : super(key: key);
-
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
 
   @override
@@ -22,19 +19,14 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends StateMVC<ProfilePage> {
-  _ProfilePageState() : super(Controller()){
+  _ProfilePageState() : super(Controller()) {
     _con = Controller.con;
   }
   Controller _con;
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     widget.analControl.currentScreen('profile_page', 'ProfilePageOver');
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     var linearGradient = const BoxDecoration(
       gradient: const LinearGradient(
@@ -47,9 +39,6 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
       ),
     );
 
-=======
-    widget.analControl.currentScreen(Screens.profile, Screens.profileOver);
->>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
     return Scaffold(
       body: Center(
         child: Container(
@@ -69,7 +58,6 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                   ),
                 ),
               ),
-<<<<<<< HEAD
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
                 padding: EdgeInsets.all(10.0),
@@ -109,123 +97,9 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 ),
               ),
             ],
-=======
-=======
-    return Scaffold(
-      body: Center(
-      child: IntrinsicWidth(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * .7,
-            width: MediaQuery.of(context).size.width *.7,
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(37.4219999, -122.0862462),
-                zoom: 8
-              ),
->>>>>>> parent of f123d33... UserController
-=======
-    return Scaffold(
-      body: Center(
-      child: IntrinsicWidth(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * .7,
-            width: MediaQuery.of(context).size.width *.7,
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(37.4219999, -122.0862462),
-                zoom: 8
-              ),
->>>>>>> parent of f123d33... UserController
-=======
-    return Scaffold(
-      body: Center(
-      child: IntrinsicWidth(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * .7,
-            width: MediaQuery.of(context).size.width *.7,
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(37.4219999, -122.0862462),
-                zoom: 8
-              ),
->>>>>>> parent of f123d33... UserController
-=======
-    return Scaffold(
-      body: Center(
-      child: IntrinsicWidth(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height * .7,
-            width: MediaQuery.of(context).size.width *.7,
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(
-                target: LatLng(37.4219999, -122.0862462),
-                zoom: 8
-              ),
->>>>>>> parent of f123d33... UserController
-              onMapCreated: (GoogleMapController controller) {
-                
-              },
-            ),
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
           ),
-          RaisedButton(
-              onPressed: (){
-                widget.analControl.sendAnalytics(Events.update);
-                _con.NavigateToUpdateProfile(context, widget.analControl, widget.user);
-              },
-              child: Text(Prompts.updateProfile),
->>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
-=======
->>>>>>> parent of f123d33... UserController
-=======
->>>>>>> parent of f123d33... UserController
-          ),
-          RaisedButton(
-              onPressed: (){
-=======
-          ),
-          RaisedButton(
-              onPressed: (){
->>>>>>> parent of f123d33... UserController
-                widget.analControl.sendAnalytics('to_update_profile');
-                _con.NavigateToUpdateProfile(context, widget.analControl, widget.user);
-              },
-              child: Text(prompts.updateProfile),
-          ),
-=======
-          ),
-          RaisedButton(
-              onPressed: (){
-                widget.analControl.sendAnalytics('to_update_profile');
-                _con.NavigateToUpdateProfile(context, widget.analControl, widget.user);
-              },
-              child: Text(prompts.updateProfile),
-          ),
->>>>>>> parent of f123d33... UserController
-        ],
-      ),
-      ),
+        ),
       ),
     );
   }
 }
-
