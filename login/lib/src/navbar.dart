@@ -62,12 +62,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             case headers.profile:
               widget.analControl.sendAnalytics('nav_to_profile');
 <<<<<<< HEAD
+<<<<<<< HEAD
               return ProfilePage(user: user_data, analControl: widget.analControl);
 =======
             case Headers.profile:
               widget.analControl.sendAnalytics(Events.profile);
               return ProfilePage(user: widget.user, analControl: widget.analControl);
 >>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
+=======
+              return ProfilePage(user: widget.user, analControl: widget.analControl);
+>>>>>>> parent of f123d33... UserController
 =======
               return ProfilePage(user: widget.user, analControl: widget.analControl);
 >>>>>>> parent of f123d33... UserController

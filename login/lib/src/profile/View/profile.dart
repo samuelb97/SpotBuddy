@@ -32,6 +32,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
 <<<<<<< HEAD
     widget.analControl.currentScreen('profile_page', 'ProfilePageOver');
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     var linearGradient = const BoxDecoration(
       gradient: const LinearGradient(
@@ -124,10 +125,28 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 zoom: 8
               ),
 >>>>>>> parent of f123d33... UserController
+=======
+    return Scaffold(
+      body: Center(
+      child: IntrinsicWidth(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height * .7,
+            width: MediaQuery.of(context).size.width *.7,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(37.4219999, -122.0862462),
+                zoom: 8
+              ),
+>>>>>>> parent of f123d33... UserController
               onMapCreated: (GoogleMapController controller) {
                 
               },
             ),
+<<<<<<< HEAD
 <<<<<<< HEAD
           ),
           RaisedButton(
@@ -137,6 +156,8 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
               },
               child: Text(Prompts.updateProfile),
 >>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
+=======
+>>>>>>> parent of f123d33... UserController
 =======
 >>>>>>> parent of f123d33... UserController
           ),
