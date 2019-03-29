@@ -42,13 +42,13 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                         decoration:
                             InputDecoration(hintText: user_info.fullName),
                         maxLength: 32,
-                        validator: _con.validateName,
+                        //validator: _con.validateName,
                         onSaved: (input) => _con.set_name = input,
                       ),
                       TextFormField(
                         decoration: InputDecoration(hintText: user_info.age),
                         maxLength: 2,
-                        validator: _con.validateAge,
+                        //validator: _con.validateAge,
                         onSaved: (input) => _con.set_age = input,
                       ),
                       Row(
@@ -78,7 +78,7 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                         decoration:
                             InputDecoration(hintText: user_info.occupation),
                         maxLength: 32,
-                        validator: _con.validateOccupation,
+                        //validator: _con.validateOccupation,
                         onSaved: (input) => _con.set_occupation = input,
                       ),
                       TextFormField(
@@ -86,17 +86,31 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                             InputDecoration(hintText: user_info.mobileNumber),
                         keyboardType: TextInputType.phone,
                         maxLength: 10,
-                        validator: _con.validateMobile,
+                        //validator: _con.validateMobile,
                         onSaved: (input) => _con.set_mobile = input,
                       ),
                       SizedBox(height: 15.0),
-                      RaisedButton(
-                        onPressed: () {
-                          widget.analControl.sendAnalytics('profileUpdate');
-                          _con.update(widget.user);
-                        },
-                        child: Text(user_info.update),
-                      )
+                      ButtonTheme(
+                          minWidth: 250,
+                          child: RaisedButton(
+                            color: Colors.green[800],
+                            splashColor: Colors.green[300],
+                            textTheme: ButtonTextTheme.primary,
+                            padding: EdgeInsets.all(20.0),
+                            elevation: 6,
+                            shape: BeveledRectangleBorder(
+                              side: BorderSide(
+                                width: 2.0,
+                                color: Colors.grey[400],
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            onPressed: () {
+                              widget.analControl.sendAnalytics('profileUpdate');
+                              _con.update(widget.user);
+                            },
+                            child: Text(user_info.update),
+                          )),
                     ],
                   ),
                 ))));
