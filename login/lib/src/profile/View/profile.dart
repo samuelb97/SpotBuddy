@@ -35,6 +35,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     var linearGradient = const BoxDecoration(
       gradient: const LinearGradient(
@@ -178,10 +179,28 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 zoom: 8
               ),
 >>>>>>> parent of f123d33... UserController
+=======
+    return Scaffold(
+      body: Center(
+      child: IntrinsicWidth(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height * .7,
+            width: MediaQuery.of(context).size.width *.7,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(37.4219999, -122.0862462),
+                zoom: 8
+              ),
+>>>>>>> parent of f123d33... UserController
               onMapCreated: (GoogleMapController controller) {
                 
               },
             ),
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -212,6 +231,8 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
               child: Text(prompts.updateProfile),
           ),
 =======
+=======
+>>>>>>> parent of f123d33... UserController
           ),
           RaisedButton(
               onPressed: (){
@@ -220,6 +241,9 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
               },
               child: Text(prompts.updateProfile),
           ),
+<<<<<<< HEAD
+>>>>>>> parent of f123d33... UserController
+=======
 >>>>>>> parent of f123d33... UserController
         ],
       ),
