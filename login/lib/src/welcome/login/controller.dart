@@ -40,7 +40,7 @@ class Controller extends ControllerMVC {
           password: password,
         );
         if(user.isEmailVerified){
-          analControl.sendAnalytics(Events.login_success);
+          analControl.sendAnalytics('login_successful');
             //TODO: Add option to push to update profile page
             //TODO: Create document in users collection with document title = user.uid
             Navigator.push(
@@ -51,7 +51,6 @@ class Controller extends ControllerMVC {
           );
         }
         else {
-          analControl.sendAnalytics(Events.emailverif);
           _ShowEmailNotVerifiedAlert(context, user);
         }
       }
@@ -66,21 +65,21 @@ class Controller extends ControllerMVC {
       context: context,
       builder: (BuildContext context){
         return AlertDialog(
-          title: Text(Prompts.email_verif),
+          title: Text(prompts.email_verif),
           content: Text(
-            Prompts.email_err_1 +
-            Prompts.email_err_2 +
+            prompts.email_err_1 +
+            prompts.email_err_2 +
             '${user.email}'
           ),
           actions: <Widget>[
             FlatButton(
-              child: Text(Headers.resend),
+              child: Text(headers.resend),
               onPressed: () {
                 user.sendEmailVerification();
               },
             ),
             FlatButton(
-              child: Text(Headers.close),
+              child: Text(headers.close),
               onPressed: () {
                 Navigator.of(context).pop();
               },

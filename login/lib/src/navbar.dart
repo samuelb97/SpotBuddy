@@ -1,40 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:login/src/buddies/Controller/buddies.dart';
+import 'package:login/src/buddies/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';
 import 'package:login/src/search/search.dart';
 import 'package:login/src/settings/settings.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class Home extends StatefulWidget {
 
   Home({
     Key key,
     this.analControl,
-    @required this.user
+    @required this.user,
   }) : super(key: key);
 
   final FirebaseUser user;
   final analyticsController analControl;
   
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(user.uid);
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  _HomeState(this.uid){
+    user_data = userController();
+    user_data.set_uid = this.uid;
+    user_data.load_data_from_firebase();
+  }
+  String uid;
+  userController user_data;
+
   int _index = 0;
   TabController _controller;
 
-
   List<String> pages = [
-    Headers.profile,
-    Headers.search,
-    Headers.buddies,
-    Headers.settings,
+    headers.profile,
+    headers.search,
+    headers.buddies,
+    headers.settings,
   ];
 
   @override
@@ -51,51 +57,35 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(Headers.spotBuddy),
+        title: Text(headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: TabBarView(
         controller: _controller,
         children: pages.map((title) {
           switch (title) {
-
             case headers.profile:
               widget.analControl.sendAnalytics('nav_to_profile');
-
               return ProfilePage(user: user_data, analControl: widget.analControl);
-
-            case Headers.profile:
-              widget.analControl.sendAnalytics(Events.profile);
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
-
-
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
-
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
-
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
-
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
-
               break;
             
-            case Headers.search:
-              widget.analControl.sendAnalytics(Events.search);
+            case headers.search:
+              widget.analControl.sendAnalytics('nav_to_search');
               return SearchPage(user: widget.user, analControl: widget.analControl);
               break;
 
-            case Headers.buddies:
-              widget.analControl.sendAnalytics(Events.buddies);
+            case headers.buddies:
+              widget.analControl.sendAnalytics('nav_to_buddies');
               return BuddiesPage(user: widget.user, analControl: widget.analControl);
               break;
 
-            case Headers.settings:
-              widget.analControl.sendAnalytics(Events.settings);
+            case headers.settings:
+              widget.analControl.sendAnalytics('nav_to_settings');
               return SettingsPage(user: widget.user, analControl: widget.analControl);
               break;
 
             default:
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
+              return ProfilePage(user: user_data, analControl: widget.analControl);
               break;
           }
         }).toList(),
@@ -108,22 +98,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.portrait),
-            title: Text(Headers.profile),
+            title: Text(headers.profile),
             activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text(Headers.search),
+              title: Text(headers.search),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.people),
-              title: Text(Headers.buddies),
+              title: Text(headers.buddies),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.settings),
-              title: Text(Headers.settings),
+              title: Text(headers.settings),
               activeColor: Colors.green,
           ),
         ],

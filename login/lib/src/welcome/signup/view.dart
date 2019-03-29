@@ -24,7 +24,7 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(Prompts.signup),
+        title: Text(prompts.signup),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -34,44 +34,44 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return Prompts.name;
+                 return prompts.name;
                } 
               },
               onSaved: (input) => _con.set_name = input,
               decoration: InputDecoration(
-                labelText: Headers.username
+                labelText: headers.username
               ),
             ),
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return Prompts.type_email;
+                 return prompts.type_email;
                } 
               },
               onSaved: (input) => _con.set_email = input,
               decoration: InputDecoration(
-                labelText: Headers.email
+                labelText: headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return Prompts.passwrd_valid;
+                 return prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _con.set_password = input,
               decoration: InputDecoration(
-                labelText: Prompts.passwrd
+                labelText: prompts.passwrd
               ),
               obscureText: true,
             ),
             RaisedButton(
               onPressed: () {
-                widget.analControl.sendAnalytics(Events.new_signup);
-                widget.analControl.currentScreen(Screens.signup, Screens.signupOver);
+                widget.analControl.sendAnalytics('new_sign_up');
+                widget.analControl.currentScreen('sign_up', 'SignUpOver');
                 Controller.signUp(context, widget.analControl);
               },
-              child: Text(Prompts.signup),
+              child: Text(prompts.signup),
             )
           ],
         ),

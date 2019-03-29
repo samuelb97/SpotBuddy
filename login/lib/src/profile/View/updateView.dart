@@ -4,6 +4,7 @@ import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/profile/Controller/updateController.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class UpdateProfilePage extends StatefulWidget {
 
@@ -13,7 +14,7 @@ class UpdateProfilePage extends StatefulWidget {
     @required this.user
   }) : super(key: key);
 
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
 
   @override
@@ -28,10 +29,10 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
   
   @override
   Widget build(BuildContext context) {
-    widget.analControl.currentScreen(Screens.updateProfile, Screens.updateOver);
+    widget.analControl.currentScreen('update_profile', 'updateProfileOver');
     return Scaffold(
       appBar: AppBar(
-        title: Text(Prompts.updateYourProfile),
+        title: Text(prompts.updateYourProfile),
         backgroundColor: Colors.lightGreen,
       ),
       body: SingleChildScrollView(
@@ -42,13 +43,13 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(hintText: Userinfo.fullName),
+                  decoration: InputDecoration(hintText: user_info.fullName),
                   maxLength: 32,
                   validator: _con.validateName,
                   onSaved: (input) => _con.set_name = input,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: Userinfo.age),
+                  decoration: InputDecoration(hintText: user_info.age),
                   maxLength: 2,
                   validator: _con.validateAge,
                   onSaved: (input) => _con.set_age = input,
@@ -62,29 +63,29 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                       groupValue: _con.genderBtnValue,
                       onChanged: handleGenderValueChange,
                     ),
-                    Text(Userinfo.gender0),
+                    Text(user_info.gender0),
                     Radio (
                       value: 1,
                       groupValue: _con.genderBtnValue,
                       onChanged: handleGenderValueChange,
                     ),
-                    Text(Userinfo.gender1),
+                    Text(user_info.gender1),
                     Radio (
                       value: 2,
                       groupValue: _con.genderBtnValue,
                       onChanged: handleGenderValueChange,
                     ),
-                    Text(Userinfo.gender2),
+                    Text(user_info.gender2),
                   ]
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: Userinfo.occupation),
+                  decoration: InputDecoration(hintText: user_info.occupation),
                   maxLength: 32,
                   validator: _con.validateOccupation,
                   onSaved: (input) => _con.set_occupation = input,
                 ),
                 TextFormField(
-                    decoration: InputDecoration(hintText: Userinfo.mobileNumber),
+                    decoration: InputDecoration(hintText: user_info.mobileNumber),
                     keyboardType: TextInputType.phone,
                     maxLength: 10,
                     validator: _con.validateMobile,
@@ -93,10 +94,10 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                 SizedBox(height: 15.0),
                 RaisedButton(
                   onPressed: () {
-                    widget.analControl.sendAnalytics(Events.profileUpdated);
+                    widget.analControl.sendAnalytics('profileUpdate');
                     _con.update(widget.user);
                   },
-                  child: Text(Userinfo.update),
+                  child: Text(user_info.update),
                 )
               ],
             ),
@@ -108,7 +109,7 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
   void handleGenderValueChange(int value) {
     setState(() {
       _con.set_gender = value;
-      print(Userinfo.gender + " ${_con.genderBtnValue}");
+      print(user_info.gender + " ${_con.genderBtnValue}");
     });
   }
 }
