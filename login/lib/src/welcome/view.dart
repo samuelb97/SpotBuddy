@@ -7,7 +7,6 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:login/analtyicsController.dart';
 
 class WelcomePage extends StatefulWidget {
-
   final analyticsController thisAnalyticsController;
 
   WelcomePage({this.thisAnalyticsController});
@@ -34,7 +33,6 @@ class _WelcomePageState extends StateMVC<WelcomePage> {
             fit: BoxFit.fitHeight,
           ),
         ),
-        
         child: Container(
           /*this is a decoration for a box that encompasses the two buttons. wont work at same time as background image
           height: 180,
@@ -46,31 +44,62 @@ class _WelcomePageState extends StateMVC<WelcomePage> {
             ),
           */
           //child: IntrinsicWidth( only works in Center class not Container??
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                RaisedButton(
-                  onPressed: () {
-                    widget.thisAnalyticsController.sendAnalytics('login');
-                    widget.thisAnalyticsController.currentScreen('welcome_page', 'WelcomePageOver');
-                    Controller.NavigateToSignIn(context, widget.thisAnalyticsController);
-                  },
-                  child: Text(prompts.login),
-                ),
-                RaisedButton(
-                  onPressed: () {
-                    widget.thisAnalyticsController.sendAnalytics('sign_up');
-                    widget.thisAnalyticsController.currentScreen('welcome_page', 'WelcomePageOver');
-                    Controller.NavigateToSignUp(context, widget.thisAnalyticsController);
-                  },
-                  child: Text('     ' + prompts.signup + '     '),
-                ),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              ButtonTheme(
+                  minWidth: 250,
+                  child: RaisedButton(
+                    color: Colors.green[800],
+                    splashColor: Colors.green[300],
+                    textTheme: ButtonTextTheme.primary,
+                    padding: EdgeInsets.all(20.0),
+                    elevation: 6,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                        width: 2.0,
+                        color: Colors.grey[400],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
+                      widget.thisAnalyticsController.sendAnalytics('login');
+                      widget.thisAnalyticsController
+                          .currentScreen('welcome_page', 'WelcomePageOver');
+                      Controller.NavigateToSignIn(
+                          context, widget.thisAnalyticsController);
+                    },
+                    child: Text(prompts.login),
+                  )),
+              ButtonTheme(
+                  minWidth: 250,
+                  child: RaisedButton(
+                    color: Colors.green[800],
+                    splashColor: Colors.green[300],
+                    textTheme: ButtonTextTheme.primary,
+                    padding: EdgeInsets.all(20.0),
+                    elevation: 6,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                        width: 2.0,
+                        color: Colors.grey[400],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
+                      widget.thisAnalyticsController.sendAnalytics('sign_up');
+                      widget.thisAnalyticsController
+                          .currentScreen('welcome_page', 'WelcomePageOver');
+                      Controller.NavigateToSignUp(
+                          context, widget.thisAnalyticsController);
+                    },
+                    child: Text('     ' + prompts.signup + '     '),
+                  ))
+            ],
           ),
-          //),
-       ),
-     );
+        ),
+      ),
+    );
   }
 }

@@ -7,7 +7,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 
 class LoginPage extends StatefulWidget {
-
   final analyticsController analControl;
 
   LoginPage({this.analControl});
@@ -17,7 +16,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends StateMVC<LoginPage> {
-  _LoginPageState() : super(Controller()){
+  _LoginPageState() : super(Controller()) {
     _con = Controller.con;
   }
   Controller _con;
@@ -25,49 +24,60 @@ class _LoginPageState extends StateMVC<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(prompts.login),
-        backgroundColor: Colors.lightGreen,
-      ),
-      body: Form(
-        key: _con.formkey,
-        child: Column(
-          children: <Widget>[
-            TextFormField(
-              validator: (input) {
-               if(input.isEmpty){
-                 return prompts.type_email;
-               } 
-              },
-              onSaved: (input) => _con.set_email = input,
-              decoration: InputDecoration(
-                labelText: headers.email
-              ),
-            ),
-             TextFormField(
-              validator: (input) {
-               if(input.length < 6){
-                 return prompts.passwrd_valid;
-               } 
-              },
-              onSaved: (input) => _con.set_password = input,
-              decoration: InputDecoration(
-                labelText: prompts.passwrd
-              ),
-              obscureText: true,
-            ),
-            RaisedButton(
-              onPressed: () {
-                widget.analControl.currentScreen(
-                  'login_page', 
-                  'Log_inPageOver');
-                Controller.signIn(context, widget.analControl);
-              },
-              child: Text(prompts.login),
-            )
-          ],
+        appBar: AppBar(
+          title: Text(prompts.login),
+          backgroundColor: Colors.lightGreen,
         ),
-      ),
-    );
+        body: Container(
+          margin: EdgeInsets.all(15.0),
+          child: Form(
+            key: _con.formkey,
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  validator: (input) {
+                    if (input.isEmpty) {
+                      return prompts.type_email;
+                    }
+                  },
+                  onSaved: (input) => _con.set_email = input,
+                  decoration: InputDecoration(labelText: headers.email),
+                ),
+                TextFormField(
+                  validator: (input) {
+                    if (input.length < 6) {
+                      return prompts.passwrd_valid;
+                    }
+                  },
+                  onSaved: (input) => _con.set_password = input,
+                  decoration: InputDecoration(labelText: prompts.passwrd),
+                  obscureText: true,
+                ),
+                ButtonTheme(
+                    minWidth: 250,
+                    child: RaisedButton(
+                      color: Colors.green[800],
+                      splashColor: Colors.green[300],
+                      textTheme: ButtonTextTheme.primary,
+                      padding: EdgeInsets.all(20.0),
+                      elevation: 6,
+                      shape: BeveledRectangleBorder(
+                        side: BorderSide(
+                          width: 2.0,
+                          color: Colors.grey[400],
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      onPressed: () {
+                        widget.analControl
+                            .currentScreen('login_page', 'Log_inPageOver');
+                        Controller.signIn(context, widget.analControl);
+                      },
+                      child: Text(prompts.login),
+                    )),
+              ],
+            ),
+          ),
+        ));
   }
 }
