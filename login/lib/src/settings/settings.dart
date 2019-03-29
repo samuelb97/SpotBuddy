@@ -28,7 +28,7 @@ class _SettingsPageState extends State<SettingsPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text(headers.settings),
+              child: Text(Headers.settings),
           ),
           RaisedButton(
               onPressed: () {},

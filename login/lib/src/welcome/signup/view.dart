@@ -24,7 +24,7 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(prompts.signup),
+        title: Text(Prompts.signup),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -34,34 +34,34 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.name;
+                 return Prompts.name;
                } 
               },
               onSaved: (input) => _con.set_name = input,
               decoration: InputDecoration(
-                labelText: headers.username
+                labelText: Headers.username
               ),
             ),
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.type_email;
+                 return Prompts.type_email;
                } 
               },
               onSaved: (input) => _con.set_email = input,
               decoration: InputDecoration(
-                labelText: headers.email
+                labelText: Headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return prompts.passwrd_valid;
+                 return Prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _con.set_password = input,
               decoration: InputDecoration(
-                labelText: prompts.passwrd
+                labelText: Prompts.passwrd
               ),
               obscureText: true,
             ),
@@ -71,7 +71,7 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
                 widget.analControl.currentScreen('sign_up', 'SignUpOver');
                 Controller.signUp(context, widget.analControl);
               },
-              child: Text(prompts.signup),
+              child: Text(Prompts.signup),
             )
           ],
         ),

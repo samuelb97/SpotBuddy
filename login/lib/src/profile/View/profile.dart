@@ -6,6 +6,7 @@ import 'package:login/analtyicsController.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/profile/Controller/profileController.dart';
 import 'package:login/userController.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key, this.analControl, @required this.user})
@@ -26,6 +27,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    widget.user.load_data_from_firebase();
     widget.analControl.currentScreen('profile_page', 'ProfilePageOver');
 
     var linearGradient = const BoxDecoration(
@@ -93,7 +95,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                     _con.NavigateToUpdateProfile(
                         context, widget.analControl, widget.user);
                   },
-                  child: Text(prompts.updateProfile),
+                  child: Text(Prompts.updateProfile),
                 ),
               ),
             ],

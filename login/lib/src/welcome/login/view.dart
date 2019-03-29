@@ -26,7 +26,7 @@ class _LoginPageState extends StateMVC<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(prompts.login),
+        title: Text(Prompts.login),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -36,23 +36,23 @@ class _LoginPageState extends StateMVC<LoginPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.type_email;
+                 return Prompts.type_email;
                } 
               },
               onSaved: (input) => _con.set_email = input,
               decoration: InputDecoration(
-                labelText: headers.email
+                labelText: Headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return prompts.passwrd_valid;
+                 return Prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _con.set_password = input,
               decoration: InputDecoration(
-                labelText: prompts.passwrd
+                labelText: Prompts.passwrd
               ),
               obscureText: true,
             ),
@@ -63,7 +63,7 @@ class _LoginPageState extends StateMVC<LoginPage> {
                   'Log_inPageOver');
                 Controller.signIn(context, widget.analControl);
               },
-              child: Text(prompts.login),
+              child: Text(Prompts.login),
             )
           ],
         ),

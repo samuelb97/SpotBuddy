@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:login/src/buddies/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';
-import 'package:login/src/search/search.dart';
+import 'package:login/src/messages/messages.dart';
 import 'package:login/src/settings/settings.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
@@ -37,10 +37,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   TabController _controller;
 
   List<String> pages = [
-    headers.profile,
-    headers.search,
-    headers.buddies,
-    headers.settings,
+    Headers.profile,
+    Headers.messages,
+    Headers.findBuddies,
+    Headers.settings,
   ];
 
   @override
@@ -57,29 +57,29 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text(headers.spotBuddy),
+        title: Text(Headers.spotBuddy),
         backgroundColor: Colors.lightGreen,
       ),
       body: TabBarView(
         controller: _controller,
         children: pages.map((title) {
           switch (title) {
-            case headers.profile:
+            case Headers.profile:
               widget.analControl.sendAnalytics('nav_to_profile');
               return ProfilePage(user: user_data, analControl: widget.analControl);
               break;
             
-            case headers.search:
+            case Headers.messages:
               widget.analControl.sendAnalytics('nav_to_search');
-              return SearchPage(user: widget.user, analControl: widget.analControl);
+              return MessagesPage(user: user_data, analControl: widget.analControl);
               break;
 
-            case headers.buddies:
+            case Headers.findBuddies:
               widget.analControl.sendAnalytics('nav_to_buddies');
               return BuddiesPage(user: widget.user, analControl: widget.analControl);
               break;
 
-            case headers.settings:
+            case Headers.settings:
               widget.analControl.sendAnalytics('nav_to_settings');
               return SettingsPage(user: widget.user, analControl: widget.analControl);
               break;
@@ -98,22 +98,22 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         items: [
           BottomNavyBarItem(
             icon: Icon(Icons.portrait),
-            title: Text(headers.profile),
+            title: Text(Headers.profile),
             activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.search),
-              title: Text(headers.search),
+              title: Text(Headers.messages),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.people),
-              title: Text(headers.buddies),
+              title: Text(Headers.findBuddies),
               activeColor: Colors.green,
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.settings),
-              title: Text(headers.settings),
+              title: Text(Headers.settings),
               activeColor: Colors.green,
           ),
         ],
