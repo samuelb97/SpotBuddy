@@ -5,13 +5,16 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/profile/Controller/profileController.dart';
-import 'package:login/userController.dart';
 
 class ProfilePage extends StatefulWidget {
-  ProfilePage({Key key, this.analControl, @required this.user})
-      : super(key: key);
 
-  final userController user;
+  ProfilePage({
+    Key key,
+    this.analControl,
+    @required this.user
+  }) : super(key: key);
+
+  final FirebaseUser user;
   final analyticsController analControl;
 
   @override
@@ -19,7 +22,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends StateMVC<ProfilePage> {
-  _ProfilePageState() : super(Controller()) {
+  _ProfilePageState() : super(Controller()){
     _con = Controller.con;
   }
   Controller _con;
@@ -28,6 +31,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
   Widget build(BuildContext context) {
 <<<<<<< HEAD
     widget.analControl.currentScreen('profile_page', 'ProfilePageOver');
+<<<<<<< HEAD
 
     var linearGradient = const BoxDecoration(
       gradient: const LinearGradient(
@@ -103,10 +107,28 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
               ),
             ],
 =======
+=======
+    return Scaffold(
+      body: Center(
+      child: IntrinsicWidth(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height * .7,
+            width: MediaQuery.of(context).size.width *.7,
+            child: GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(37.4219999, -122.0862462),
+                zoom: 8
+              ),
+>>>>>>> parent of f123d33... UserController
               onMapCreated: (GoogleMapController controller) {
                 
               },
             ),
+<<<<<<< HEAD
           ),
           RaisedButton(
               onPressed: (){
@@ -115,9 +137,21 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
               },
               child: Text(Prompts.updateProfile),
 >>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
+=======
+>>>>>>> parent of f123d33... UserController
           ),
-        ),
+          RaisedButton(
+              onPressed: (){
+                widget.analControl.sendAnalytics('to_update_profile');
+                _con.NavigateToUpdateProfile(context, widget.analControl, widget.user);
+              },
+              child: Text(prompts.updateProfile),
+          ),
+        ],
+      ),
+      ),
       ),
     );
   }
 }
+

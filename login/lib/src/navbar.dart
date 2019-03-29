@@ -1,40 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:login/src/buddies/Controller/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';
 import 'package:login/src/search/search.dart';
 import 'package:login/src/settings/settings.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:login/userController.dart';
 
 class Home extends StatefulWidget {
 
   Home({
     Key key,
     this.analControl,
-    @required this.user,
+    @required this.user
   }) : super(key: key);
 
   final FirebaseUser user;
   final analyticsController analControl;
   
   @override
-  _HomeState createState() => _HomeState(user.uid);
+  _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  _HomeState(this.uid){
-    user_data = userController();
-    user_data.set_uid = this.uid;
-    user_data.load_data_from_firebase();
-  }
-  String uid;
-  userController user_data;
-
   int _index = 0;
   TabController _controller;
+
 
   List<String> pages = [
     Headers.profile,
@@ -67,12 +61,16 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 <<<<<<< HEAD
             case headers.profile:
               widget.analControl.sendAnalytics('nav_to_profile');
+<<<<<<< HEAD
               return ProfilePage(user: user_data, analControl: widget.analControl);
 =======
             case Headers.profile:
               widget.analControl.sendAnalytics(Events.profile);
               return ProfilePage(user: widget.user, analControl: widget.analControl);
 >>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
+=======
+              return ProfilePage(user: widget.user, analControl: widget.analControl);
+>>>>>>> parent of f123d33... UserController
               break;
             
             case Headers.search:
@@ -91,7 +89,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               break;
 
             default:
-              return ProfilePage(user: user_data, analControl: widget.analControl);
+              return ProfilePage(user: widget.user, analControl: widget.analControl);
               break;
           }
         }).toList(),
