@@ -3,7 +3,7 @@ import 'package:login/src/buddies/Model/buddy.dart';
 
 class BuddyDetailBody extends StatelessWidget {
   BuddyDetailBody(this.buddy);
-  final Buddy buddy;
+  final Buddy buddy; 
 
   Widget _buildLocationInfo(TextTheme textTheme) {
     return new Row(

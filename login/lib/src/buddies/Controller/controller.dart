@@ -9,6 +9,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:login/src/buddies/View/details_page.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -45,7 +46,7 @@ class Controller extends ControllerMVC {
       onTap: () => _navigateToBuddyDetails(buddy, index),
       leading: new Hero(
         tag: index,
-        child: new CircleAvatar(
+        child: new CircleAvatar( 
           backgroundImage: new NetworkImage(buddy.avatar),
         ),
       ),
@@ -55,10 +56,11 @@ class Controller extends ControllerMVC {
   }
 
   void _navigateToBuddyDetails(
-    BuildContext context, 
-    analyticsController analControl,
-    FirebaseUser user) async {
-  //  Buddy buddy, Object avatarTag) {
+      Buddy buddy, Object avatarTag) 
+      async {
+    BuildContext context;
+    Buddy buddy; 
+    Object avatarTag;
     Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (c) {

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:login/src/buddies/View/detail_footer.dart';
 import 'package:login/src/buddies/View/detail_header.dart';
 import 'package:login/src/buddies/Controller/detail_body.dart';
-import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:login/src/buddies/View/profilefeatures/articles_showcase.dart';
 import 'package:login/src/buddies/View/profilefeatures/portfolio_showcase.dart';
 import 'package:login/src/buddies/View/profilefeatures/skills_showcase.dart';
+import 'package:login/src/buddies/Model/buddy.dart';
 
 import 'package:meta/meta.dart';
 
@@ -54,7 +54,7 @@ class _BuddyDetailsPageState extends State<BuddyDetailsPage> {
               new BuddyShowcase(widget.buddy),
             ],
           ),
-        ),
+        ), 
       ),
     );
   }

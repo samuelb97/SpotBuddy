@@ -25,8 +25,54 @@ class BuddiesPage extends StatefulWidget {
 }
 
 class _BuddiesPageState extends StateMVC<BuddiesPage> {
+  List<Buddy> _buddies;
+
 
   @override
+  void initState() {
+    super.initState();
+    _loadBuddys();
+  }
+
+  Future<void> _loadBuddys() async {
+    http.Response response =
+        await http.get('https://randomuser.me/api/?results=25');
+
+    setState(() {
+      _buddies = Buddy.allFromResponse(response.body);
+    });
+  }
+
+  Widget _buildBuddyListTile(BuildContext context, int index) {
+    var buddy = _buddies[index];
+
+    return new ListTile(
+      onTap: () => _navigateToBuddyDetails(buddy, index),
+      leading: new Hero(
+        tag: index,
+        child: new CircleAvatar(
+          backgroundImage: new NetworkImage(buddy.avatar),
+        ),
+      ),
+      title: new Text(buddy.name),
+      subtitle: new Text(buddy.email),
+    );
+  }
+
+  void _navigateToBuddyDetails(Buddy buddy, Object avatarTag) {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (c) {
+          return new BuddyDetailsPage(buddy, avatarTag: avatarTag);
+        },
+      ),
+    );
+  }
+
+
+
+
+  @override 
   Widget build(BuildContext context) {
     Widget content;
 
