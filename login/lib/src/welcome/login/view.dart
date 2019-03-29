@@ -26,7 +26,7 @@ class _LoginPageState extends StateMVC<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(prompts.login),
+        title: Text(Prompts.login),
         backgroundColor: Colors.lightGreen,
       ),
       body: Form(
@@ -36,35 +36,50 @@ class _LoginPageState extends StateMVC<LoginPage> {
             TextFormField(
               validator: (input) {
                if(input.isEmpty){
-                 return prompts.type_email;
+                 return Prompts.type_email;
                } 
               },
               onSaved: (input) => _con.set_email = input,
               decoration: InputDecoration(
-                labelText: headers.email
+                labelText: Headers.email
               ),
             ),
              TextFormField(
               validator: (input) {
                if(input.length < 6){
-                 return prompts.passwrd_valid;
+                 return Prompts.passwrd_valid;
                } 
               },
               onSaved: (input) => _con.set_password = input,
               decoration: InputDecoration(
-                labelText: prompts.passwrd
+                labelText: Prompts.passwrd
               ),
               obscureText: true,
             ),
-            RaisedButton(
+            ButtonTheme( 
+              minWidth: 250,
+            child: RaisedButton(
+              color: Colors.green[800],
+              splashColor: Colors.green[300],
+              textTheme: ButtonTextTheme.primary,
+              padding: EdgeInsets.all(20.0),
+              elevation: 6,
+              shape: BeveledRectangleBorder(
+                side: BorderSide(
+                  width: 2.0, 
+                  color: Colors.grey[400],
+                ), 
+                borderRadius: BorderRadius.circular(10), 
+              ),
               onPressed: () {
                 widget.analControl.currentScreen(
-                  'login_page', 
-                  'Log_inPageOver');
+                  Screens.login, 
+                  Screens.loginOver);
                 Controller.signIn(context, widget.analControl);
               },
-              child: Text(prompts.login),
+              child: Text(Prompts.login),
             )
+            ),
           ],
         ),
       ),

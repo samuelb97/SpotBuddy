@@ -21,6 +21,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
+    widget.analControl.currentScreen(Screens.settings, Screens.settingsOver);
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
         children: <Widget>[
           RaisedButton(
               onPressed: () {},
-              child: Text(headers.settings),
+              child: Text(Headers.settings),
           ),
           RaisedButton(
               onPressed: () {},

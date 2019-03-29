@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var materialApp = MaterialApp(
-      title: headers.spotBuddy + prompts.login,
+      title: Headers.spotBuddy + Prompts.login,
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
       ),

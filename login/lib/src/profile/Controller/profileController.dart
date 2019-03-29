@@ -11,7 +11,7 @@ class Controller extends ControllerMVC {
   factory Controller() {
     if (_this == null) _this = Controller._();
     return _this;
-  }
+  } 
   static Controller _this;
 
   Controller._();

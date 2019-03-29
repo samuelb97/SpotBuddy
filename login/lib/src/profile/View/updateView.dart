@@ -29,10 +29,10 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
   
   @override
   Widget build(BuildContext context) {
-    widget.analControl.currentScreen('update_profile', 'updateProfileOver');
+    widget.analControl.currentScreen(Screens.updateProfile, Screens.updateOver);
     return Scaffold(
       appBar: AppBar(
-        title: Text(prompts.updateYourProfile),
+        title: Text(Prompts.updateYourProfile),
         backgroundColor: Colors.lightGreen,
       ),
       body: SingleChildScrollView(
@@ -43,13 +43,13 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(hintText: user_info.fullName),
+                  decoration: InputDecoration(hintText: Userinfo.fullName),
                   maxLength: 32,
                   validator: _con.validateName,
                   onSaved: (input) => _con.set_name = input,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: user_info.age),
+                  decoration: InputDecoration(hintText: Userinfo.age),
                   maxLength: 2,
                   validator: _con.validateAge,
                   onSaved: (input) => _con.set_age = input,
@@ -63,29 +63,29 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                       groupValue: _con.genderBtnValue,
                       onChanged: handleGenderValueChange,
                     ),
-                    Text(user_info.gender0),
+                    Text(Userinfo.gender0),
                     Radio (
                       value: 1,
                       groupValue: _con.genderBtnValue,
                       onChanged: handleGenderValueChange,
                     ),
-                    Text(user_info.gender1),
+                    Text(Userinfo.gender1),
                     Radio (
                       value: 2,
                       groupValue: _con.genderBtnValue,
                       onChanged: handleGenderValueChange,
                     ),
-                    Text(user_info.gender2),
+                    Text(Userinfo.gender2),
                   ]
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: user_info.occupation),
+                  decoration: InputDecoration(hintText: Userinfo.occupation),
                   maxLength: 32,
                   validator: _con.validateOccupation,
                   onSaved: (input) => _con.set_occupation = input,
                 ),
                 TextFormField(
-                    decoration: InputDecoration(hintText: user_info.mobileNumber),
+                    decoration: InputDecoration(hintText: Userinfo.mobileNumber),
                     keyboardType: TextInputType.phone,
                     maxLength: 10,
                     validator: _con.validateMobile,
@@ -94,10 +94,10 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                 SizedBox(height: 15.0),
                 RaisedButton(
                   onPressed: () {
-                    widget.analControl.sendAnalytics('profileUpdate');
+                    widget.analControl.sendAnalytics(Events.profileUpdated);
                     _con.update(widget.user);
                   },
-                  child: Text(user_info.update),
+                  child: Text(Userinfo.update),
                 )
               ],
             ),
@@ -109,7 +109,7 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
   void handleGenderValueChange(int value) {
     setState(() {
       _con.set_gender = value;
-      print(user_info.gender + " ${_con.genderBtnValue}");
+      print(Userinfo.gender + " ${_con.genderBtnValue}");
     });
   }
 }

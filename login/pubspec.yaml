@@ -33,7 +33,12 @@ dependencies:
   mvc_pattern: ^3.2.3
   google_maps_flutter: ^0.4.0
   permission_handler: ^2.2.0
+<<<<<<< HEAD
   location: ^2.3.2
+=======
+  cached_network_image:
+  http: ^0.12.0+1
+>>>>>>> 293d74ebd7b329e349a82df90d0226ffcf25624f
   
 
 dev_dependencies:
