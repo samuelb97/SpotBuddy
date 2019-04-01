@@ -43,13 +43,19 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
             child: Column(
               children: <Widget>[
                 TextFormField(
-                  decoration: InputDecoration(hintText: Userinfo.fullName),
+                  decoration: InputDecoration(
+                    hintText: Userinfo.fullName,
+                    labelText: widget.user.name
+                  ),
                   maxLength: 32,
                   validator: _con.validateName,
                   onSaved: (input) => _con.set_name = input,
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: Userinfo.age),
+                  decoration: InputDecoration(
+                    hintText: Userinfo.age,
+                    labelText: widget.user.age
+                  ),
                   maxLength: 2,
                   validator: _con.validateAge,
                   onSaved: (input) => _con.set_age = input,
@@ -79,13 +85,19 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                   ]
                 ),
                 TextFormField(
-                  decoration: InputDecoration(hintText: Userinfo.occupation),
+                  decoration: InputDecoration(
+                    hintText: Userinfo.occupation,
+                    labelText: widget.user.occupation
+                  ),
                   maxLength: 32,
                   validator: _con.validateOccupation,
                   onSaved: (input) => _con.set_occupation = input,
                 ),
                 TextFormField(
-                    decoration: InputDecoration(hintText: Userinfo.mobileNumber),
+                    decoration: InputDecoration(
+                      hintText: Userinfo.mobileNumber,
+                      labelText: widget.user.mobile
+                    ),
                     keyboardType: TextInputType.phone,
                     maxLength: 10,
                     validator: _con.validateMobile,

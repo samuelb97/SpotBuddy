@@ -12,7 +12,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   Future <Map<PermissionGroup, PermissionStatus>> permissions = 
     PermissionHandler().
-      requestPermissions([PermissionGroup.location]);
+      requestPermissions([PermissionGroup.location, PermissionGroup.mediaLibrary]);
   
   Function() {
     print(PermissionStatus.values);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class BuddiesPage extends StatefulWidget {
 
@@ -12,7 +12,7 @@ class BuddiesPage extends StatefulWidget {
     @required this.user
   }) : super(key: key);
 
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
 
   @override
@@ -33,7 +33,7 @@ class _BuddiesPageState extends State<BuddiesPage> {
           ),
           RaisedButton(
               onPressed: () {},
-              child: Text(widget.user.email),
+              child: Text(widget.user.name),
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,18 +11,21 @@ import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:login/src/messages/chat/view/view.dart';
+import 'dart:async';
+import 'dart:io';
 
-Widget buildLoading(bool isLoading) {
-  print('\n\nBuildLoading\n\n');
-  return Positioned(
-    child: isLoading
-        ? Container(
-            child: Center(
-              child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.lightGreen)),
-            ),
-            color: Colors.white.withOpacity(0.8),
-          )
-        : Container(),
-  );
+class MsgController extends ControllerMVC {
+  factory MsgController() {
+    if (_this == null) _this = MsgController._();
+    return _this;
+  }
+  static MsgController _this;
+  MsgController._();
+  static MsgController get con => _this;
+
+  bool _isLoading = false;
+
+  bool get isLoading => _isLoading;
+
 }

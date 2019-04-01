@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login/src/messages/chat/chatController.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,29 +12,19 @@ import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
- Widget buildInput() {
+ Widget buildInput(ChatController chatController) {
+   print('\n\nBuildInput\n\n');
     return Container(
       child: Row(
         children: <Widget>[
           // Button send image
           Material(
-            child: new Container(
-              margin: new EdgeInsets.symmetric(horizontal: 1.0),
-              child: new IconButton(
-                icon: new Icon(Icons.image),
-                onPressed: getImage,
-                color: primaryColor,
-              ),
-            ),
-            color: Colors.white,
-          ),
-          Material(
-            child: new Container(
-              margin: new EdgeInsets.symmetric(horizontal: 1.0),
-              child: new IconButton(
-                icon: new Icon(Icons.face),
-                onPressed: getSticker,
-                color: primaryColor,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 1.0),
+              child: IconButton(
+                icon: Icon(Icons.image),
+                onPressed: chatController.getImage,
+                color: Colors.lightGreen,
               ),
             ),
             color: Colors.white,
@@ -43,25 +34,28 @@ import 'package:fluttertoast/fluttertoast.dart';
           Flexible(
             child: Container(
               child: TextField(
-                style: TextStyle(color: primaryColor, fontSize: 15.0),
-                controller: textEditingController,
+                style: TextStyle(color: Colors.lightGreen, fontSize: 15.0),
+                controller: chatController.textEditingController,
                 decoration: InputDecoration.collapsed(
                   hintText: 'Type your message...',
-                  hintStyle: TextStyle(color: greyColor),
+                  hintStyle: TextStyle(color: Colors.grey),
                 ),
-                focusNode: focusNode,
+                focusNode: chatController.focusNode,
               ),
             ),
           ),
 
           // Button send message
           Material(
-            child: new Container(
-              margin: new EdgeInsets.symmetric(horizontal: 8.0),
-              child: new IconButton(
-                icon: new Icon(Icons.send),
-                onPressed: () => onSendMessage(textEditingController.text, 0),
-                color: primaryColor,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 8.0),
+              child: IconButton(
+                icon: Icon(Icons.send),
+                onPressed: () => chatController.onSendMessage(
+                  chatController.textEditingController.text, 
+                  0
+                ),
+                color: Colors.lightGreen,
               ),
             ),
             color: Colors.white,
@@ -70,7 +64,11 @@ import 'package:fluttertoast/fluttertoast.dart';
       ),
       width: double.infinity,
       height: 50.0,
-      decoration: new BoxDecoration(
-          border: new Border(top: new BorderSide(color: greyColor2, width: 0.5)), color: Colors.white),
+      decoration: BoxDecoration(
+          border: Border(top: BorderSide(
+            color: Colors.grey[700], 
+            width: 0.5)
+            ), 
+          color: Colors.white),
     );
   }

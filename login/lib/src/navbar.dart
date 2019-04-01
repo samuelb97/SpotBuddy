@@ -17,21 +17,14 @@ class Home extends StatefulWidget {
     @required this.user,
   }) : super(key: key);
 
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
   
   @override
-  _HomeState createState() => _HomeState(user.uid);
+  _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  _HomeState(this.uid){
-    user_data = userController();
-    user_data.set_uid = this.uid;
-    user_data.load_data_from_firebase();
-  }
-  String uid;
-  userController user_data;
 
   int _index = 0;
   TabController _controller;
@@ -66,12 +59,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           switch (title) {
             case Headers.profile:
               widget.analControl.sendAnalytics('nav_to_profile');
-              return ProfilePage(user: user_data, analControl: widget.analControl);
+              return ProfilePage(user: widget.user, analControl: widget.analControl);
               break;
             
             case Headers.messages:
               widget.analControl.sendAnalytics('nav_to_search');
-              return MessagesPage(user: user_data, analControl: widget.analControl);
+              return MessagePage(user: widget.user, analControl: widget.analControl);
               break;
 
             case Headers.findBuddies:
@@ -85,7 +78,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
               break;
 
             default:
-              return ProfilePage(user: user_data, analControl: widget.analControl);
+              return ProfilePage(user: widget.user, analControl: widget.analControl);
               break;
           }
         }).toList(),

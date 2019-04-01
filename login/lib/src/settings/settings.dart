@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
 class SettingsPage extends StatefulWidget {
 
@@ -11,7 +12,7 @@ class SettingsPage extends StatefulWidget {
     @required this.user
   }) : super(key: key);
 
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
 
   @override
@@ -32,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           RaisedButton(
               onPressed: () {},
-              child: Text(widget.user.email),
+              child: Text(widget.user.name),
           ),
         ],
       ),
