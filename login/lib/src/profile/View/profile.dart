@@ -35,7 +35,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
         begin: FractionalOffset.centerRight,
         end: FractionalOffset.bottomLeft,
         colors: <Color>[
-          const Color(0xFF413280),
+          const Color(0xFF413070),
           const Color(0xFF2B264A),
         ],
       ),
@@ -46,31 +46,64 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
         child: Container(
           decoration: linearGradient,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Hero(
-                    tag: "avatarTag",
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/dog.jpg"),
-                      radius: 50.0,
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                padding: EdgeInsets.only(top: 10.0),
+                child: Row(
+                  children: <Widget>[
+                    Hero(
+                      tag: "avatarTag",
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage("assets/dog.jpg"),
+                        radius: 50.0,
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 30.0),
-                    padding: EdgeInsets.all(10.0),
-                    child: Text(
-                      '${widget.user.name}\n${widget.user.age}\n${widget.user.occupation}',
-                      style: Theme.of(context)
-                          .textTheme
-                          .body1
-                          .merge(TextStyle(color: Colors.white)),
-                      textAlign: TextAlign.center,
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 30.0),
+                      padding: EdgeInsets.all(10.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            '${widget.user.name}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .title
+                                .merge(TextStyle(color: Colors.white)),
+                            textAlign: TextAlign.center,
+                          ),
+                          // Padding(
+                          //   padding: EdgeInsets.all(2.0)
+                          // ),
+                          Container(
+                            height: 2,
+                            width: 100,
+                            color: Colors.green
+                          ),
+                          Text(
+                            'Age: ${widget.user.age}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .body1
+                                .merge(TextStyle(color: Colors.white)),
+                            // textAlign: TextAlign.left,
+                          ),
+                          Text(
+                            'Occupation: ${widget.user.occupation}',
+                            style: Theme.of(context)
+                                .textTheme
+                                .body1
+                                .merge(TextStyle(color: Colors.white)),
+                            textAlign: TextAlign.right,
+                          ),
+                        ],
+                      )
                     ),
-                  ),
-                ]
+                  ]
+                ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
