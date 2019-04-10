@@ -19,10 +19,12 @@ class queryController{
   Future get_buddies_near(userController user) async{
     var users = Firestore.instance.collection('users');
     GeoFirePoint center = geo.point(latitude: user.latitude, longitude: user.longitude); //User's geolocation
-
-    var usersRef = users.where("interests", arrayContains: user.interests);
-    
-    Stream<List<DocumentSnapshot>> stream = geo.collection(collectionRef: usersRef).within(center: center, radius: user.range, field: 'location');
-    
+    for(var interest in user.interests){
+      var usersRef = users.where("interests", arrayContains: interest);
+      
+    }
+    var radius = 50.0;
+    Stream<List<DocumentSnapshot>> stream = geo.collection(collectionRef: usersRef).within(center: center, radius: radius, field: 'location');
+    return stream;
   }
 }
