@@ -49,27 +49,39 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 120.0),
-                height: MediaQuery.of(context).size.height * .25,
-                child: Hero(
-                  tag: "avatarTag",
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("assets/dog.jpg"),
-                    radius: 50.0,
+              Row(
+                children: <Widget>[
+                  Hero(
+                    tag: "avatarTag",
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/dog.jpg"),
+                      radius: 50.0,
+                    ),
                   ),
-                ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 30.0),
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      '${widget.user.name}\n${widget.user.age}\n${widget.user.occupation}',
+                      style: Theme.of(context)
+                          .textTheme
+                          .body1
+                          .merge(TextStyle(color: Colors.white)),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ]
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
                 padding: EdgeInsets.all(10.0),
-                child:Text(
-                  '${widget.user.name}\n${widget.user.age}\n${widget.user.occupation}',
-                  style: Theme.of(context).textTheme.body1
-                    .merge(TextStyle(
-                      color: Colors.white)
-                    ),
-                  textAlign:TextAlign.center,
+                child: Text(
+                  'Interest: ${widget.user.interests.toString().replaceAll('[', '').replaceAll(']', '')}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .body1
+                      .merge(TextStyle(color: Colors.white)),
+                  textAlign: TextAlign.center,
                 ),
               ),
               Container(

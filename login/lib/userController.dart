@@ -21,6 +21,7 @@ class userController{
   static String _mobile;
   static String _name;
   static String _occupation;
+  static List _interests;
   static var _latitude;
   static var _longitude;
 
@@ -34,6 +35,7 @@ class userController{
   String get gender => _gender;
   String get mobile => _mobile;
   String get occupation => _occupation;
+  List get interests => _interests;
   
 
   Future load_data_from_firebase() async {
@@ -46,6 +48,8 @@ class userController{
         _mobile = DocumentSnapshot.data['mobile'].toString();
         _name = DocumentSnapshot.data['name'].toString();
         _occupation = DocumentSnapshot.data['occupation'].toString();
+        _interests = DocumentSnapshot.data['interests'];
+        print('Interests After Load: ${_interests[0]}');
       }
     );
   }
