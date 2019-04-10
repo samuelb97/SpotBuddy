@@ -21,10 +21,12 @@ class userController{
   static String _mobile;
   static String _name;
   static String _occupation;
+
   static List _interests;
   static double _latitude;
   static double _longitude;
  
+
   set set_uid(String uid){
     _uid = uid;
   }
@@ -35,11 +37,13 @@ class userController{
   String get gender => _gender;
   String get mobile => _mobile;
   String get occupation => _occupation;
+
   List get interests => _interests;
   LocationData get location => _location;
   double get latitude => _latitude;
   double get longitude => longitude;
   LatLng get latlng => LatLng(_latitude, _longitude);
+
   
 
   Future load_data_from_firebase() async {

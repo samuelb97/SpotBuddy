@@ -137,6 +137,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.3"
+  geoflutterfire:
+    dependency: "direct main"
+    description:
+      name: geoflutterfire
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3+2"
   google_maps_flutter:
     dependency: "direct main"
     description:
@@ -227,7 +234,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.0"
   permission_handler:
     dependency: "direct main"
     description:
@@ -249,6 +256,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.20.0"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -267,7 +281,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.5.4"
+    version: "1.5.5"
   sqflite:
     dependency: transitive
     description:
@@ -339,5 +353,5 @@ packages:
     source: hosted
     version: "2.0.8"
 sdks:
-  dart: ">=2.1.0 <3.0.0"
+  dart: ">=2.1.1-dev.0.0 <3.0.0"
   flutter: ">=1.2.1 <2.0.0"
