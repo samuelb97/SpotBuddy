@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:login/src/buddies/buddies.dart';
+import 'package:login/src/buddies/View/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';
-//import 'package:login/src/messages/messages.dart';
+import 'package:login/src/messages/messages.dart';
 import 'package:login/src/settings/settings.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';

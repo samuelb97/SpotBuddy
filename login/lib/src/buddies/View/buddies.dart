@@ -8,16 +8,18 @@ import 'package:login/src/buddies/View/details_page.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/userController.dart';
 
-class BuddiesPage extends StatefulWidget { 
+class BuddiesPage extends StatefulWidget {  
   BuddiesPage({
     Key key,
-    @required this.user, 
-    this.analControl
+    this.analControl,
+    @required this.user 
+    
   })
       : super(key: key);
 
-  final FirebaseUser user;
+  final userController user;
   final analyticsController analControl;
 
   @override
