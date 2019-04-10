@@ -4,20 +4,20 @@ import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:meta/meta.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:login/userController.dart';
+import 'package:login/src/messages/chat/chat.dart';
+import 'package:login/src/buddies/View/interests.dart';
 
 class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
-  BuddyDetailHeader(this.document,{
-    Key key,
-    //this.document, 
-  }
-  );
+  BuddyDetailHeader(this.document,{Key key});
 
   final DocumentSnapshot document;
 
   Widget _buildDiagonalImageBackground(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
+    var screenHeight = MediaQuery.of(context).size.height;
 
     return new DiagonallyCutColoredImage(
       new Image.asset(
@@ -45,7 +45,7 @@ class BuddyDetailHeader extends StatelessWidget {
         textTheme.subhead.copyWith(color: const Color(0xBBFFFFFF));
 
     return new Padding(
-      padding: const EdgeInsets.only(top: 16.0),
+      padding: const EdgeInsets.only(top: 14.0),
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -61,7 +61,7 @@ class BuddyDetailHeader extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButtons(ThemeData theme) {
+  Widget _buildActionButtons(ThemeData theme, BuildContext context) {
     return new Padding(
       padding: const EdgeInsets.only(
         top: 16.0,
@@ -71,7 +71,7 @@ class BuddyDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _createPillButton(
+          _createPillButton(context,
             'MESSAGE',
             backgroundColor: Colors.green[500],
           ),
@@ -80,10 +80,21 @@ class BuddyDetailHeader extends StatelessWidget {
               border: new Border.all(color: Colors.white30),
               borderRadius: new BorderRadius.circular(30.0),
             ),
-            child: _createPillButton(
-              'ADD TO LIST',
-              textColor: Colors.white70,
-            ),
+            child: new MaterialButton(
+        minWidth: 140.0,
+        color: Colors.deepPurple,
+        textColor: Colors.white,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => InterestPage (
+                        
+                      ),
+                  fullscreenDialog: true));
+        },
+        child: new Text('INTERESTS'),
+      )
           ),
         ],
       ),
@@ -91,7 +102,7 @@ class BuddyDetailHeader extends StatelessWidget {
   }
 
   Widget _createPillButton(
-    String text, {
+    BuildContext context, String text, {
     Color backgroundColor = Colors.transparent,
     Color textColor = Colors.white70,
   }) {
@@ -101,7 +112,19 @@ class BuddyDetailHeader extends StatelessWidget {
         minWidth: 140.0,
         color: backgroundColor,
         textColor: textColor,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Chat(
+                        peerId: document.documentID,
+                        peerName: document['name'],
+                        peerAvatar: document['photoUrl'],
+                        //analControl: analControl,
+                        //user: user,
+                      ),
+                  fullscreenDialog: true));
+        },
         child: new Text(text),
       ),
     );
@@ -122,7 +145,7 @@ class BuddyDetailHeader extends StatelessWidget {
             children: <Widget>[
               _buildAvatar(),
               _buildFollowerInfo(textTheme),
-              _buildActionButtons(theme),
+              _buildActionButtons(theme, context),
             ],
           ),
         ),

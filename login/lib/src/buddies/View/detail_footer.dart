@@ -49,19 +49,19 @@ class _BuddyShowcaseState extends State<BuddyShowcase>
   @override
   Widget build(BuildContext context) {
     return new Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(12.0),
       child: new Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          new TabBar(
-            controller: _controller,
-            tabs: _tabs,
-            indicatorColor: Colors.white,
+          new Text(
+            'About me...',
+            style: TextStyle(color: Colors.white, fontSize: 18.0),
           ),
           new SizedBox.fromSize(
             size: const Size.fromHeight(300.0),
-            child: new TabBarView(
-              controller: _controller,
-              children: _pages,
+            child: new Text(
+              '${widget.document['aboutMe']}',
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
             ),
           ),
         ],

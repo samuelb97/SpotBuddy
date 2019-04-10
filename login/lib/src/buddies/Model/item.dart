@@ -51,7 +51,15 @@ Widget buildItem(
                     ),
                     Container(
                       child: Text(
-                        'About me: ${document['aboutMe']}',
+                        '${document['occupation']}',
+                        style: TextStyle(color: Colors.lightGreen),
+                      ),
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
+                    ),
+                    Container(
+                      child: Text(
+                        'Distance:   ',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
                       alignment: Alignment.centerLeft,
