@@ -32,7 +32,7 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
-                margin: EdgeInsets.all(15.0),
+                margin: EdgeInsets.all(25.0),
                 child: Form(
                   key: _con.formkey,
                   child: Column(
@@ -119,12 +119,10 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
                             shape: BeveledRectangleBorder(
                               side: BorderSide(
                                 width: 2.0,
-                                color: Colors.grey[400],
+                                color: Colors.deepPurple[800],
                               ),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            //shape: OutlineInputBorder(),  //add this to shape above
-                            //shape: Border.all(width: 2.0, color: Colors.grey[400]),
                             onPressed: () {
                               widget.analControl.sendAnalytics('profileUpdate');
                               widget.analControl.sendAnalytics('new_sign_up');

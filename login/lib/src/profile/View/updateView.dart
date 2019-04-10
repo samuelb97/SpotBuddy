@@ -48,7 +48,7 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                     labelText: widget.user.name
                   ),
                   maxLength: 32,
-                  validator: _con.validateName,
+                  //validator: _con.validateName,
                   onSaved: (input) => _con.set_name = input,
                 ),
                 TextFormField(
