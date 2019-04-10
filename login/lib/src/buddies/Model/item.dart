@@ -7,12 +7,10 @@ import 'package:login/userController.dart';
 import 'package:login/src/messages/chat/chat.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:login/src/buddies/Controller/controller.dart';
-
-
-
-
+import 'package:login/src/buddies/View/details_page.dart';
 
 Controller buddyController;
+String photo;
 Widget buildItem(
     BuildContext context, DocumentSnapshot document, userController user, analyticsController analControl) {
   if (document.documentID == user.uid) {
@@ -33,7 +31,7 @@ Widget buildItem(
                       height: 50.0,
                       padding: EdgeInsets.all(15.0),
                     ),
-                imageUrl: 'assets/dog.jpg',
+                imageUrl:'${document.data['photoUrl']}',
                 width: 50.0,
                 height: 50.0,
                 fit: BoxFit.cover,
@@ -55,7 +53,7 @@ Widget buildItem(
                     ),
                     Container(
                       child: Text(
-                        'About me: ${document['aboutMe'] ?? 'Not available'}',
+                        'About me: ${document['age']}',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
                       alignment: Alignment.centerLeft,
@@ -68,25 +66,9 @@ Widget buildItem(
             ),
           ],
         ),
-        onPressed: () => buddyController.NavigateToBuddiesPagetwo(context, analControl, user, Buddy(name: document['name'],
-                                                email: document['email'],
-                                                avatar: document['photoUrl'],
-                                                location: document['location'],
-                                                age:document['age'],
-                                                occupation: document['occupation'])),
-      /*    Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Chat(
-                        peerId: document.documentID,
-                        peerName: document['name'],
-                        peerAvatar: document['photoUrl'],
-                        analControl: analControl,
-                        user: user,
-                      ),
-                  fullscreenDialog: true));
-        },
-    */
+          onPressed: () => buddyController._navigateToBuddyDetails(document),
+        
+    
         color: Colors.grey[700],
         padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),
         shape:
@@ -96,3 +78,17 @@ Widget buildItem(
     );
   }
 }
+/*
+Future _navigateToBuddyDetails(
+      DocumentSnapshot document) 
+      async {
+    BuildContext context;
+    return Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BuddyDetailsPage(document),
+        fullscreenDialog: true
+      )
+    );
+}
+*/

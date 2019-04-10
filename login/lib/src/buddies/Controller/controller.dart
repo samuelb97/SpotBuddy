@@ -24,20 +24,7 @@ class Controller extends ControllerMVC {
   bool get isLoading => _isLoading;
   List<Buddy> _buddies = [];
 
-   Future NavigateToBuddiesPagetwo(
-    BuildContext context, 
-    analyticsController analControl,
-    userController user,
-    Buddy buddy) async {
-    return Navigator.push(
-        context, 
-        new MaterialPageRoute(
-        builder: (c) {
-          return BuddyDetailsPage(buddy, avatarTag: buddy.avatar);
-        },
-      ),
-      );
-}
+
 
 
   @override
@@ -54,12 +41,12 @@ class Controller extends ControllerMVC {
       _buddies = Buddy.allFromResponse(response.body);
     });
   }
-
+/*
   Widget _buildBuddyListTile(BuildContext context, int index) {
     var buddy = _buddies[index];
 
     return new ListTile(
-      onTap: () => _navigateToBuddyDetails(buddy, index),
+      onTap: () => _navigateToBuddyDetails(document),
       leading: new Hero(
         tag: index,
         child: new CircleAvatar( 
@@ -70,19 +57,15 @@ class Controller extends ControllerMVC {
       subtitle: new Text(buddy.email),
     );
   }
-
-  Future<void> _navigateToBuddyDetails(
-      Buddy buddy, Object avatarTag) 
+*/
+  Future _navigateToBuddyDetails(DocumentSnapshot document) 
       async {
     BuildContext context;
-    Buddy buddy; 
-    Object avatarTag;
-    Navigator.of(context).push(
-      new MaterialPageRoute(
-        builder: (c) {
-          return BuddyDetailsPage(buddy, avatarTag: avatarTag);
-        },
-      ),
+    return Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BuddyDetailsPage(document),
+        fullscreenDialog: true
+      )
     );
-  }
 }

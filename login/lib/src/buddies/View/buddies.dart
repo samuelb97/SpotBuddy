@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:login/src/buddies/View/details_page.dart';
 import 'package:login/src/buddies/Controller/controller.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
+import 'package:login/src/buddies/Model/item.dart'; 
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
@@ -69,6 +70,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
     );
   }
 */
+/*
   void _navigateToBuddyDetails(Buddy buddy, Object avatarTag) {
     Navigator.of(context).push(
       new MaterialPageRoute(
@@ -78,7 +80,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
       ),
     );
   }
-
+*/
 
 
 
@@ -101,7 +103,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
                   } else {
                     return ListView.builder(
                       padding: EdgeInsets.all(10.0),
-                      itemBuilder: (context, index) => buildBuddy(
+                      itemBuilder: (context, index) => buildItem(
                         context, 
                         snapshot.data.documents[index], 
                         widget.user,

@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:login/src/buddies/View/diagonally_cut_colored_image.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:meta/meta.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
-  BuddyDetailHeader(
-    this.buddy, 
-    {
-    @required this.avatarTag,
+  BuddyDetailHeader(this.document,{
+    Key key,
+    //this.document, 
   }
   );
 
-  final Buddy buddy;
-  final Object avatarTag;
+  final DocumentSnapshot document;
 
   Widget _buildDiagonalImageBackground(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -32,9 +32,9 @@ class BuddyDetailHeader extends StatelessWidget {
 
   Widget _buildAvatar() {
     return new Hero(
-      tag: avatarTag,
+      tag: "demohero",
       child: new CircleAvatar(
-        backgroundImage: new NetworkImage(buddy.avatar),
+        backgroundImage: NetworkImage('${document.data['photoUrl']}'),
         radius: 60.0,
       ),
     );
@@ -49,13 +49,13 @@ class BuddyDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Text('', style: followerStyle),
+          new Text('1', style: followerStyle),
           new Text(
-            '  ',
+            ' 2.. ',
             style: followerStyle.copyWith(
                 fontSize: 24.0, fontWeight: FontWeight.normal),
           ),
-          new Text('', style: followerStyle),
+          new Text('...3', style: followerStyle),
         ],
       ),
     );
