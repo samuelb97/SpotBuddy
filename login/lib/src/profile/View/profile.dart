@@ -81,6 +81,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 width: MediaQuery.of(context).size.width * .4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
+                  color: Colors.grey[400],
                 ),
                 child: GoogleMap(
                   myLocationEnabled: true,
@@ -91,16 +92,29 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 50.0),
-                child: RaisedButton(
-                  padding: EdgeInsets.symmetric(horizontal: 50.0),
-                  onPressed: () {
+                child: ButtonTheme( 
+              minWidth: 250,
+            child: RaisedButton(
+              color: Colors.green[800],
+              splashColor: Colors.green[300],
+              textTheme: ButtonTextTheme.primary,
+              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              elevation: 6,
+              shape: BeveledRectangleBorder(
+                side: BorderSide(
+                  width: 2.0, 
+                  color: Colors.deepPurple[800],
+                ), 
+                borderRadius: BorderRadius.circular(10), 
+              ),
+              onPressed: () {
                     widget.analControl.sendAnalytics('to_update_profile');
                     _con.NavigateToUpdateProfile(
                         context, widget.analControl, widget.user);
                   },
                   child: Text(Prompts.updateProfile),
-                ),
-              ),
+            ))
+              )
             ],
           ),
         ),

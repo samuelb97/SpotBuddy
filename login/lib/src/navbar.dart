@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:login/src/buddies/buddies.dart';
+import 'package:login/src/buddies/View/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';
 import 'package:login/src/messages/messages.dart';
 import 'package:login/src/settings/settings.dart';
@@ -64,7 +64,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             
             case Headers.messages:
               widget.analControl.sendAnalytics('nav_to_search');
-              return MessagePage(user: widget.user, analControl: widget.analControl);
+              return ProfilePage(user: widget.user, analControl: widget.analControl);
+              //return MessagePage(user: widget.user, analControl: widget.analControl);
               break;
 
             case Headers.findBuddies:

@@ -50,22 +50,51 @@ class _WelcomePageState extends StateMVC<WelcomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                RaisedButton(
-                  onPressed: () {
+                ButtonTheme(
+                  minWidth: 250,
+                  child: RaisedButton(
+                    color: Colors.green[800],
+                    splashColor: Colors.green[300],
+                    textTheme: ButtonTextTheme.primary,
+                    padding: EdgeInsets.all(20.0),
+                    elevation: 6,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                        width: 2.0,
+                        color: Colors.deepPurple[800],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
                     widget.thisAnalyticsController.sendAnalytics('login');
                     widget.thisAnalyticsController.currentScreen('welcome_page', 'WelcomePageOver');
                     Controller.NavigateToSignIn(context, widget.thisAnalyticsController);
                   },
                   child: Text(Prompts.login),
-                ),
-                RaisedButton(
-                  onPressed: () {
+                  )),
+              ButtonTheme(
+                  minWidth: 250,
+                  child: RaisedButton(
+                    color: Colors.green[800],
+                    splashColor: Colors.green[300],
+                    textTheme: ButtonTextTheme.primary,
+                    padding: EdgeInsets.all(20.0),
+                    elevation: 6,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                        width: 2.0,
+                        color: Colors.deepPurple[800],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
                     widget.thisAnalyticsController.sendAnalytics('sign_up');
                     widget.thisAnalyticsController.currentScreen('welcome_page', 'WelcomePageOver');
                     Controller.NavigateToSignUp(context, widget.thisAnalyticsController);
                   },
                   child: Text('     ' + Prompts.signup + '     '),
-                ),
+                  ))
+
               ],
             ),
           ),

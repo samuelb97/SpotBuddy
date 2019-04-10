@@ -48,7 +48,7 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                     labelText: widget.user.name
                   ),
                   maxLength: 32,
-                  validator: _con.validateName,
+                  //validator: _con.validateName,
                   onSaved: (input) => _con.set_name = input,
                 ),
                 TextFormField(
@@ -105,7 +105,19 @@ class _UpdateProfilePageState extends StateMVC<UpdateProfilePage> {
                 ),
                 SizedBox(height: 15.0),
                 RaisedButton(
-                  onPressed: () {
+              color: Colors.green[800],
+              splashColor: Colors.green[300],
+              textTheme: ButtonTextTheme.primary,
+              padding: EdgeInsets.symmetric(horizontal: 50.0),
+              elevation: 6,
+              shape: BeveledRectangleBorder(
+                side: BorderSide(
+                  width: 2.0, 
+                  color: Colors.deepPurple[800],
+                ), 
+                borderRadius: BorderRadius.circular(10), 
+              ),
+              onPressed: () {
                     widget.analControl.sendAnalytics('profileUpdate');
                     _con.update(widget.user);
                   },
