@@ -83,7 +83,8 @@ class Controller extends ControllerMVC {
           "occupation": "$occupation",
           "mobile": "$mobile",
           "username": "$name",
-          "photoUrl": null
+          "photoUrl": null,
+          "location": null
         });
         user.sendEmailVerification();
         Navigator.pushReplacement(

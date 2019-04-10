@@ -21,8 +21,8 @@ class userController{
   static String _mobile;
   static String _name;
   static String _occupation;
-  static var _latitude;
-  static var _longitude;
+  static double _latitude;
+  static double _longitude;
 
   set set_uid(String uid){
     _uid = uid;
@@ -34,6 +34,8 @@ class userController{
   String get gender => _gender;
   String get mobile => _mobile;
   String get occupation => _occupation;
+  double get latitude => _latitude;
+  double get longitude => _longitude;
   
 
   Future load_data_from_firebase() async {
@@ -46,6 +48,8 @@ class userController{
         _mobile = DocumentSnapshot.data['mobile'].toString();
         _name = DocumentSnapshot.data['name'].toString();
         _occupation = DocumentSnapshot.data['occupation'].toString();
+        _latitude = DocumentSnapshot.data['location'].getLatitude();
+        _longitude = DocumentSnapshot.data['location'].getLongitude();
       }
     );
   }
