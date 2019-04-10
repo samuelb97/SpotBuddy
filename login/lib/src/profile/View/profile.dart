@@ -78,6 +78,7 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 width: MediaQuery.of(context).size.width * .4,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
+                  color: Colors.grey[400],
                 ),
                 child: GoogleMap(
                   myLocationEnabled: true,
