@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +8,7 @@ import 'package:login/src/messages/msgController.dart';
 import 'package:login/src/messages/view/item.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
+import 'package:async/async.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
@@ -62,7 +64,6 @@ class _MessagePageState extends StateMVC<MessagePage> {
                 },
               ),
             ),
- 
             // Loading
             Positioned(
               child: msgController.isLoading

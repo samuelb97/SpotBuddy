@@ -21,7 +21,6 @@ class queryController{
     GeoFirePoint center = geo.point(latitude: user.latitude, longitude: user.longitude); //User's geolocation
     for(var interest in user.interests){
       var usersRef = users.where("interests", arrayContains: interest);
-      
     }
     var radius = 50.0;
     Stream<List<DocumentSnapshot>> stream = geo.collection(collectionRef: usersRef).within(center: center, radius: radius, field: 'location');

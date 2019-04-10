@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/prop-config.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:login/analtyicsController.dart';
@@ -56,15 +56,27 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
                 padding: EdgeInsets.only(top: 10.0),
                 child: Row(children: <Widget>[
-                  Hero(
-                    tag: "avatarTag",
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage("assets/dog.jpg"),
-                      radius: 50.0,
+                  Material(
+                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    clipBehavior: Clip.hardEdge,
+                    child: CachedNetworkImage(
+                      placeholder: (context, url) => Container(
+                            child: CircularProgressIndicator(
+                              strokeWidth: 1.0,
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                            ),
+                            width: 100.0,
+                            height: 100.0,
+                            padding: EdgeInsets.all(12.0),
+                          ),
+                      imageUrl: '${widget.user.photoUrl}',
+                      width: 80.0,
+                      height: 80.0,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(6.0),
+                    padding: EdgeInsets.all(16.0),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
