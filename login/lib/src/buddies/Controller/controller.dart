@@ -17,11 +17,10 @@ class Controller extends ControllerMVC {
     return _this;
   } 
   static Controller _this;
-
   Controller._();
-
   static Controller get con => _this;
-
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
   List<Buddy> _buddies = [];
 
   @override
