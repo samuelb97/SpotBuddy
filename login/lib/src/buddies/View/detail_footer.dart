@@ -4,9 +4,18 @@ import 'package:login/src/buddies/View/profilefeatures/portfolio_showcase.dart';
 import 'package:login/src/buddies/View/profilefeatures/skills_showcase.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class BuddyShowcase extends StatefulWidget {
-  BuddyShowcase(this.buddy);
-  final Buddy buddy;
+  BuddyShowcase(this.document,{
+    Key key,
+    //this.document, 
+  //  {
+  //  @required this.avatarTag,
+  //}
+  });
+ 
+  final DocumentSnapshot document;
 
   @override
   _BuddyShowcaseState createState() => new _BuddyShowcaseState();

@@ -62,7 +62,7 @@ class _MessagePageState extends StateMVC<MessagePage> {
                 },
               ),
             ),
-
+ 
             // Loading
             Positioned(
               child: msgController.isLoading

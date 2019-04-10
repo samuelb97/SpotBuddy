@@ -10,6 +10,7 @@ import 'package:firebase_analytics/observer.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:login/src/buddies/View/details_page.dart';
+import 'package:login/userController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -17,12 +18,14 @@ class Controller extends ControllerMVC {
     return _this;
   } 
   static Controller _this;
-
   Controller._();
-
   static Controller get con => _this;
-
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
   List<Buddy> _buddies = [];
+
+
+
 
   @override
   void initState() {
@@ -38,12 +41,12 @@ class Controller extends ControllerMVC {
       _buddies = Buddy.allFromResponse(response.body);
     });
   }
-
+/*
   Widget _buildBuddyListTile(BuildContext context, int index) {
     var buddy = _buddies[index];
 
     return new ListTile(
-      onTap: () => _navigateToBuddyDetails(buddy, index),
+      onTap: () => _navigateToBuddyDetails(document),
       leading: new Hero(
         tag: index,
         child: new CircleAvatar( 
@@ -54,19 +57,17 @@ class Controller extends ControllerMVC {
       subtitle: new Text(buddy.email),
     );
   }
+*/
+ 
 
-  void _navigateToBuddyDetails(
-      Buddy buddy, Object avatarTag) 
-      async {
-    BuildContext context;
-    Buddy buddy; 
-    Object avatarTag;
-    Navigator.of(context).push(
-      new MaterialPageRoute(
-        builder: (c) {
-          return BuddyDetailsPage(buddy, avatarTag: avatarTag);
-        },
-      ),
+  static void NavigateToBuddyDetails(DocumentSnapshot document,BuildContext context) async {
+    
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BuddyDetailsPage(document),
+        fullscreenDialog: true
+      )
     );
   }
 }
