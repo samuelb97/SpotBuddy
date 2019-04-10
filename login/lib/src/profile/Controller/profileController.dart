@@ -4,6 +4,7 @@ import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/src/profile/View/updateView.dart';
+import 'package:login/src/profile/View/editInterestsView.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
 import 'package:location/location.dart';
@@ -19,38 +20,45 @@ class Controller extends ControllerMVC {
 
   static Controller get con => _this;
 
-  static Future<void> updateLocation(BuildContext context, 
-    analyticsController analControl, userController user) async{
-      LocationData currentLocation;
+  static Future<void> updateLocation(BuildContext context,
+      analyticsController analControl, userController user) async {
+    LocationData currentLocation;
 
-      var location = new Location();
-      try {
-        currentLocation = await location.getLocation();
-      } catch (e) {
-        if (e.code == 'PERMISSION_DENIED') {
-          print(e.message);
-        } 
-        currentLocation = null;
+    var location = new Location();
+    try {
+      currentLocation = await location.getLocation();
+    } catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {
+        print(e.message);
       }
-      String uid = user.uid;
-      var geopoint = new GeoPoint(currentLocation.latitude, currentLocation.longitude);
-      Firestore.instance.collection("users").document("$uid").updateData({
-        "location": geopoint
-      });
+      currentLocation = null;
     }
+    String uid = user.uid;
+    var geopoint =
+        new GeoPoint(currentLocation.latitude, currentLocation.longitude);
+    Firestore.instance
+        .collection("users")
+        .document("$uid")
+        .updateData({"location": geopoint});
+  }
 
-  
-
-  Future NavigateToUpdateProfile(
-    BuildContext context, 
-    analyticsController analControl,
-    userController user) async {
+  Future NavigateToUpdateProfile(BuildContext context,
+      analyticsController analControl, userController user) async {
     return Navigator.push(
-        context, 
+        context,
         MaterialPageRoute(
-          builder: (context) => UpdateProfilePage(user: user, analControl: analControl),
-          fullscreenDialog: true
-        )
-      );
+            builder: (context) =>
+                UpdateProfilePage(user: user, analControl: analControl),
+            fullscreenDialog: true));
+  }
+
+  Future NavigateToEditInterests(BuildContext context,
+      analyticsController analControl, userController user) async {
+    return Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                EditInterestsPage(user: user, analControl: analControl),
+            fullscreenDialog: true));
   }
 }

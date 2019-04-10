@@ -22,9 +22,9 @@ class userController{
   static String _name;
   static String _occupation;
   static List _interests;
-  static var _latitude;
-  static var _longitude;
-
+  static double _latitude;
+  static double _longitude;
+ 
   set set_uid(String uid){
     _uid = uid;
   }
@@ -36,6 +36,10 @@ class userController{
   String get mobile => _mobile;
   String get occupation => _occupation;
   List get interests => _interests;
+  LocationData get location => _location;
+  double get latitude => _latitude;
+  double get longitude => longitude;
+  LatLng get latlng => LatLng(_latitude, _longitude);
   
 
   Future load_data_from_firebase() async {
@@ -49,7 +53,10 @@ class userController{
         _name = DocumentSnapshot.data['name'].toString();
         _occupation = DocumentSnapshot.data['occupation'].toString();
         _interests = DocumentSnapshot.data['interests'];
-        print('Interests After Load: ${_interests[0]}');
+        GeoPoint __location = DocumentSnapshot.data['location'];
+        _latitude = __location.latitude;
+        _longitude = __location.longitude;
+        print('Location After Load: ${_longitude} , $_latitude');
       }
     );
   }
@@ -59,7 +66,9 @@ class userController{
     try {
       _location = await _getLocation.getLocation();
       final lat = _location.latitude;
+      _latitude = lat;
       final lng = _location.longitude;
+      _longitude = lng;
       final center = LatLng(lat, lng);
       return center;
     } on Exception {

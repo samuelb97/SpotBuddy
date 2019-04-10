@@ -53,72 +53,78 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                margin: EdgeInsets.symmetric(horizontal: 30.0),
                 padding: EdgeInsets.only(top: 10.0),
-                child: Row(
-                  children: <Widget>[
-                    Hero(
-                      tag: "avatarTag",
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage("assets/dog.jpg"),
-                        radius: 50.0,
+                child: Row(children: <Widget>[
+                  Hero(
+                    tag: "avatarTag",
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage("assets/dog.jpg"),
+                      radius: 50.0,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(6.0),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        '${widget.user.name}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .title
+                            .merge(TextStyle(color: Colors.white)),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(horizontal: 30.0),
-                      padding: EdgeInsets.all(10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            '${widget.user.name}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .title
-                                .merge(TextStyle(color: Colors.white)),
-                            textAlign: TextAlign.center,
-                          ),
-                          // Padding(
-                          //   padding: EdgeInsets.all(2.0)
-                          // ),
-                          Container(
-                            height: 2,
-                            width: 100,
-                            color: Colors.green
-                          ),
-                          Text(
-                            'Age: ${widget.user.age}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .body1
-                                .merge(TextStyle(color: Colors.white)),
-                            // textAlign: TextAlign.left,
-                          ),
-                          Text(
-                            'Occupation: ${widget.user.occupation}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .body1
-                                .merge(TextStyle(color: Colors.white)),
-                            textAlign: TextAlign.right,
-                          ),
-                        ],
-                      )
-                    ),
-                  ]
-                ),
+                      Container(height: 1, width: 160, color: Colors.green),
+                      Padding(
+                        padding: EdgeInsets.all(4.0),
+                      ),
+                      Text(
+                        '${Userinfo.age}: ${widget.user.age}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .body1
+                            .merge(TextStyle(color: Colors.white)),
+                        // textAlign: TextAlign.left,
+                      ),
+                      Text(
+                        '${Userinfo.occupation}: ${widget.user.occupation}',
+                        style: Theme.of(context)
+                            .textTheme
+                            .body1
+                            .merge(TextStyle(color: Colors.white)),
+                        textAlign: TextAlign.right,
+                      ),
+                    ],
+                  )
+                ]),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
                 padding: EdgeInsets.all(10.0),
-                child: Text(
-                  'Interest: ${widget.user.interests.toString().replaceAll('[', '').replaceAll(']', '')}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .body1
-                      .merge(TextStyle(color: Colors.white)),
-                  textAlign: TextAlign.center,
-                ),
+                child: Column(children: <Widget>[
+                  Text(
+                    Userinfo.interests,
+                    style: Theme.of(context)
+                        .textTheme
+                        .body2
+                        .merge(TextStyle(color: Colors.white)),
+                  ),
+                  Container(height: 1, width: 120, color: Colors.green),
+                  Padding(
+                    padding: EdgeInsets.all(2.0),
+                  ),
+                  Text(
+                    '${widget.user.interests.toString().replaceAll('[', '').replaceAll(']', '')}',
+                    style: Theme.of(context)
+                        .textTheme
+                        .body1
+                        .merge(TextStyle(color: Colors.white)),
+                    textAlign: TextAlign.center,
+                  ),
+                ]),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 70.0),
@@ -130,35 +136,60 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                 ),
                 child: GoogleMap(
                   myLocationEnabled: true,
-                  initialCameraPosition: CameraPosition(
-                      target: LatLng(37.4219999, -122.0862462), zoom: 8),
+                  initialCameraPosition:
+                      CameraPosition(target: widget.user.latlng, zoom: 10),
                   onMapCreated: (GoogleMapController controller) {},
                 ),
               ),
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 50.0),
-                child: ButtonTheme( 
-              minWidth: 250,
-            child: RaisedButton(
-              color: Colors.green[800],
-              splashColor: Colors.green[300],
-              textTheme: ButtonTextTheme.primary,
-              padding: EdgeInsets.symmetric(horizontal: 50.0),
-              elevation: 6,
-              shape: BeveledRectangleBorder(
-                side: BorderSide(
-                  width: 2.0, 
-                  color: Colors.deepPurple[800],
-                ), 
-                borderRadius: BorderRadius.circular(10), 
+                child: ButtonTheme(
+                  minWidth: 250,
+                  child: RaisedButton(
+                    color: Colors.green[800],
+                    splashColor: Colors.green[300],
+                    textTheme: ButtonTextTheme.primary,
+                    padding: EdgeInsets.symmetric(horizontal: 50.0),
+                    elevation: 6,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                        width: 2.0,
+                        color: Colors.deepPurple[800],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
+                      widget.analControl.sendAnalytics('to_update_profile');
+                      _con.NavigateToUpdateProfile(context, widget.analControl, widget.user);
+                    },
+                    child: Text(Prompts.updateProfile),
+                  )
+                )
               ),
-              onPressed: () {
-                    widget.analControl.sendAnalytics('to_update_profile');
-                    _con.NavigateToUpdateProfile(
-                        context, widget.analControl, widget.user);
-                  },
-                  child: Text(Prompts.updateProfile),
-            ))
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 50.0),
+                child: ButtonTheme(
+                  minWidth: 250,
+                  child: RaisedButton(
+                    color: Colors.green[800],
+                    splashColor: Colors.green[300],
+                    textTheme: ButtonTextTheme.primary,
+                    padding: EdgeInsets.symmetric(horizontal: 50.0),
+                    elevation: 6,
+                    shape: BeveledRectangleBorder(
+                      side: BorderSide(
+                        width: 2.0,
+                        color: Colors.deepPurple[800],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    onPressed: () {
+                      widget.analControl.sendAnalytics('to_edit_interests');
+                      _con.NavigateToEditInterests(context, widget.analControl, widget.user);
+                    },
+                    child: Text(Prompts.editInterests),
+                  )
+                )
               )
             ],
           ),

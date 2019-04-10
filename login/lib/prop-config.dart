@@ -14,6 +14,8 @@ class Prompts{
   static const String age = 'Enter your age';
   static const String occupation = 'Enter your occupation';
   static const String mobileNumber = 'Enter your mobile number';
+  static const String editInterests = 'Edit Interests';
+  static const String newInterest = 'New Interest';
 }
 class Buttons{
   static const String moreinfo = 'more info';
@@ -49,6 +51,7 @@ class Userinfo{
   static const String mobileNumber = 'Mobile Number';
   static const String update = 'Update';
   static const String userid = 'Your Account ID';
+  static const String interests = 'Interests';
 }
 class Pattern{
   static const String integers = r'(^[0-9]*$)';
