@@ -4,14 +4,11 @@ import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
-import 'package:login/src/messages/chat/chat.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:intl/intl.dart';
-import 'package:image_picker/image_picker.dart'; 
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:login/src/buddies/Controller/controller.dart';
+import 'package:login/src/buddies/View/details_page.dart';
 
+Controller buddyController;
+String photo;
 Widget buildItem(
     BuildContext context, DocumentSnapshot document, userController user, analyticsController analControl) {
   if (document.documentID == user.uid) {
@@ -32,7 +29,7 @@ Widget buildItem(
                       height: 50.0,
                       padding: EdgeInsets.all(15.0),
                     ),
-                imageUrl: 'assets/dog.jpg',
+                imageUrl:'${document.data['photoUrl']}',
                 width: 50.0,
                 height: 50.0,
                 fit: BoxFit.cover,
@@ -54,7 +51,15 @@ Widget buildItem(
                     ),
                     Container(
                       child: Text(
-                        'About me: ${document['aboutMe'] ?? 'Not available'}',
+                        '${document['occupation']}',
+                        style: TextStyle(color: Colors.lightGreen),
+                      ),
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
+                    ),
+                    Container(
+                      child: Text(
+                        'Distance:   ',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
                       alignment: Alignment.centerLeft,
@@ -67,19 +72,11 @@ Widget buildItem(
             ),
           ],
         ),
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Chat(
-                        peerId: document.documentID,
-                        peerName: document['name'],
-                        peerAvatar: document['photoUrl'],
-                        analControl: analControl,
-                        user: user,
-                      ),
-                  fullscreenDialog: true));
-        },
+          //onPressed: () => _navigateToBuddyDetails(document),
+          onPressed: () {
+            Controller.NavigateToBuddyDetails(document, context);
+          },
+    
         color: Colors.grey[700],
         padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),
         shape:
@@ -88,4 +85,18 @@ Widget buildItem(
       margin: EdgeInsets.only(bottom: 10.0, left: 5.0, right: 5.0),
     );
   }
+}
+
+void _navigateToBuddyDetails(
+      DocumentSnapshot document) 
+      async {
+    BuildContext context;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => BuddyDetailsPage(document),
+        fullscreenDialog: true
+        
+      )
+    );
 }

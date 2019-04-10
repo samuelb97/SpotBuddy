@@ -1,5 +1,12 @@
+import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:meta/meta.dart';
+import 'package:login/analtyicsController.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:login/userController.dart';
+import 'package:login/src/buddies/Controller/controller.dart';
+import 'package:login/src/buddies/View/details_page.dart';
 
 class Buddy {
   Buddy({
@@ -45,3 +52,14 @@ class Buddy {
     return input.substring(0, 1).toUpperCase() + input.substring(1);
   }
 }
+/*
+void _navigateToBuddyDetails(Buddy buddy, Object avatarTag) {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+        builder: (c) {
+          return new BuddyDetailsPage(buddy, avatarTag: avatarTag);
+        },
+      ),
+    );
+}
+*/

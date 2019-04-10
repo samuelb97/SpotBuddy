@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BuddyDetailBody extends StatelessWidget {
-  BuddyDetailBody(this.buddy);
-  final Buddy buddy; 
+  BuddyDetailBody(this.document,{
+    Key key,
+  });
+  final DocumentSnapshot document;
 
   Widget _buildLocationInfo(TextTheme textTheme) {
     return new Row(
@@ -16,7 +19,7 @@ class BuddyDetailBody extends StatelessWidget {
         new Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: new Text(
-            buddy.location,
+            '   kilometers away',
             style: textTheme.subhead.copyWith(color: Colors.white),
           ),
         ),
@@ -34,7 +37,7 @@ class BuddyDetailBody extends StatelessWidget {
           color: Colors.white,
           size: 16.0,
         ),
-        radius: 16.0,
+        radius: 20.0,
       ),
     );
   }
@@ -48,23 +51,26 @@ class BuddyDetailBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         new Text(
-          buddy.name,
+          '${document['name']}',
           style: textTheme.headline.copyWith(color: Colors.white),
         ),
         new Padding(
           padding: const EdgeInsets.only(top: 4.0),
-          child: _buildLocationInfo(textTheme),
+          child: _buildLocationInfo(textTheme),     //make this distance away
         ),
-        new Padding(
-          padding: const EdgeInsets.only(top: 16.0),
-          child: new Text(
-            'This is a sample bio written by a handsome man...'
-                'Speaking of handsome men, how are we doing Lokesh? '
-                'lemme get uhhhhhh one more sentence in this bio',
-            style:
-                textTheme.body1.copyWith(color: Colors.white70, fontSize: 16.0),
-          ),
-        ),
+        new Text(
+            '${document['gender']}',
+            style: textTheme.headline.copyWith(color: Colors.white),
+            ),
+        new Text(
+            '${document['age']}',
+            style: textTheme.headline.copyWith(color: Colors.white),
+            ),
+        new Text(
+            '${document['occupation']}',
+            style: textTheme.headline.copyWith(color: Colors.white),
+            ),
+            /*
         new Padding(
           padding: const EdgeInsets.only(top: 16.0),
           child: new Row(
@@ -75,6 +81,7 @@ class BuddyDetailBody extends StatelessWidget {
             ],
           ),
         ),
+        */
       ],
     );
   }

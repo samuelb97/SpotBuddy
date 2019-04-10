@@ -6,17 +6,18 @@ import 'package:login/src/buddies/View/profilefeatures/articles_showcase.dart';
 import 'package:login/src/buddies/View/profilefeatures/portfolio_showcase.dart';
 import 'package:login/src/buddies/View/profilefeatures/skills_showcase.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:meta/meta.dart';
 
 class BuddyDetailsPage extends StatefulWidget {
-  BuddyDetailsPage(
-    this.buddy, {
-    @required this.avatarTag,
+  BuddyDetailsPage(this.document, {
+    Key key,
+     
   });
-
-  final Buddy buddy;
-  final Object avatarTag;
+ 
+  final DocumentSnapshot document;
+  //final Object avatarTag;
 
   @override
   _BuddyDetailsPageState createState() => new _BuddyDetailsPageState();
@@ -43,15 +44,12 @@ class _BuddyDetailsPageState extends State<BuddyDetailsPage> {
           child: new Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              new BuddyDetailHeader(
-                widget.buddy,
-                avatarTag: widget.avatarTag,
-              ),
+              new BuddyDetailHeader(widget.document),
               new Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: new BuddyDetailBody(widget.buddy),
+                child: new BuddyDetailBody(widget.document),
               ),
-              new BuddyShowcase(widget.buddy),
+              new BuddyShowcase(widget.document),
             ],
           ),
         ), 

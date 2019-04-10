@@ -64,8 +64,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             
             case Headers.messages:
               widget.analControl.sendAnalytics('nav_to_search');
-              return ProfilePage(user: widget.user, analControl: widget.analControl);
-              //return MessagePage(user: widget.user, analControl: widget.analControl);
+              //return ProfilePage(user: widget.user, analControl: widget.analControl);
+              return MessagePage(user: widget.user, analControl: widget.analControl);
               break;
 
             case Headers.findBuddies:
@@ -96,7 +96,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             activeColor: Colors.green,
           ),
           BottomNavyBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.message),
               title: Text(Headers.messages),
               activeColor: Colors.green,
           ),
