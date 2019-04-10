@@ -32,7 +32,6 @@ class Controller extends ControllerMVC {
 
   void onChange() async {
     _newInterest = _textController.text;
-    print("Text Changed: $_newInterest");
   }
   
   Future<void> addInterest(userController user) async {
@@ -43,7 +42,6 @@ class Controller extends ControllerMVC {
       Firestore.instance.collection("users")
         .document("${user.uid}")
         .updateData({"interests": FieldValue.arrayUnion(["$_newInterest"])});
-      print("Interests: $_interests");
     }
   }
 
