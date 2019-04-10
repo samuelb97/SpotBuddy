@@ -11,7 +11,6 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:login/src/buddies/Model/buddy.dart';
 
 
 class BuddiesPage extends StatefulWidget {  
@@ -32,6 +31,11 @@ class BuddiesPage extends StatefulWidget {
 }
 
 class _BuddiesPageState extends StateMVC<BuddiesPage> {
+  _BuddiesPageState() : super(Controller()) {
+    buddyController = Controller.con;
+  }
+  Controller buddyController;
+  
   List<Buddy> _buddies;
 
   @override
@@ -48,16 +52,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
       _buddies = Buddy.allFromResponse(response.body);
     });
   }
-
-  Future<void> _dbloadBuddys() async {
-    http.Response response =
-        await http.get('https://randomuser.me/api/?results=25');
-
-    setState(() {
-      _buddies = Buddy.allFromResponse(response.body);
-    });
-  }  
-
+/*
   Widget _buildBuddyListTile(BuildContext context, int index) {
     var buddy = _buddies[index];
 
@@ -73,7 +68,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
       subtitle: new Text(buddy.email),
     );
   }
-
+*/
   void _navigateToBuddyDetails(Buddy buddy, Object avatarTag) {
     Navigator.of(context).push(
       new MaterialPageRoute(
@@ -106,7 +101,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
                   } else {
                     return ListView.builder(
                       padding: EdgeInsets.all(10.0),
-                      itemBuilder: (context, index) => buildItem(
+                      itemBuilder: (context, index) => buildBuddy(
                         context, 
                         snapshot.data.documents[index], 
                         widget.user,
@@ -121,7 +116,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
 
             // Loading
             Positioned(
-              child: Controller.isLoading
+              child: buddyController.isLoading
                   ? Container(
                       child: Center(
                         child: CircularProgressIndicator(

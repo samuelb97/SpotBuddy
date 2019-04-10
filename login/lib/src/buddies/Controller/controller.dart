@@ -10,6 +10,7 @@ import 'package:firebase_analytics/observer.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:login/src/buddies/View/details_page.dart';
+import 'package:login/userController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -22,6 +23,22 @@ class Controller extends ControllerMVC {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   List<Buddy> _buddies = [];
+
+   Future NavigateToBuddiesPagetwo(
+    BuildContext context, 
+    analyticsController analControl,
+    userController user,
+    Buddy buddy) async {
+    return Navigator.push(
+        context, 
+        new MaterialPageRoute(
+        builder: (c) {
+          return BuddyDetailsPage(buddy, avatarTag: buddy.avatar);
+        },
+      ),
+      );
+}
+
 
   @override
   void initState() {
@@ -54,7 +71,7 @@ class Controller extends ControllerMVC {
     );
   }
 
-  void _navigateToBuddyDetails(
+  Future<void> _navigateToBuddyDetails(
       Buddy buddy, Object avatarTag) 
       async {
     BuildContext context;

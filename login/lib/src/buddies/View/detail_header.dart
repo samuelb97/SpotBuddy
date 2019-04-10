@@ -7,9 +7,11 @@ class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
   BuddyDetailHeader(
-    this.buddy, {
+    this.buddy, 
+    {
     @required this.avatarTag,
-  });
+  }
+  );
 
   final Buddy buddy;
   final Object avatarTag;

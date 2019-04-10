@@ -11,10 +11,12 @@ import 'package:meta/meta.dart';
 
 class BuddyDetailsPage extends StatefulWidget {
   BuddyDetailsPage(
-    this.buddy, {
+    this.buddy, 
+    {
     @required this.avatarTag,
-  });
-
+  }
+  );
+ 
   final Buddy buddy;
   final Object avatarTag;
 
@@ -45,7 +47,7 @@ class _BuddyDetailsPageState extends State<BuddyDetailsPage> {
             children: <Widget>[
               new BuddyDetailHeader(
                 widget.buddy,
-                avatarTag: widget.avatarTag,
+      //          avatarTag: widget.avatarTag,
               ),
               new Padding(
                 padding: const EdgeInsets.all(24.0),
