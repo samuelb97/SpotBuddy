@@ -52,7 +52,7 @@ class Userinfo{
 }
 class Pattern{
   static const String integers = r'(^[0-9]*$)';
-  static const String characters = r'(^[a-z]*$)';
+  static const String characters = r'(^[a-z A-Z]*$)';
 }
 class Requirements{
   static const String name = 'Name is Required';
