@@ -58,14 +58,16 @@ class Controller extends ControllerMVC {
     );
   }
 */
-  Future _navigateToBuddyDetails(DocumentSnapshot document) 
-      async {
-    BuildContext context;
-    return Navigator.push(
+ 
+
+  static void NavigateToBuddyDetails(DocumentSnapshot document,BuildContext context) async {
+    
+    Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => BuddyDetailsPage(document),
         fullscreenDialog: true
       )
     );
+  }
 }

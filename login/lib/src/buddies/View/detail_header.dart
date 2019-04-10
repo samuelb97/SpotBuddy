@@ -49,13 +49,13 @@ class BuddyDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          new Text('1', style: followerStyle),
+          new Text('', style: followerStyle),
           new Text(
-            ' 2.. ',
+            '  ',
             style: followerStyle.copyWith(
                 fontSize: 24.0, fontWeight: FontWeight.normal),
           ),
-          new Text('...3', style: followerStyle),
+          new Text('', style: followerStyle),
         ],
       ),
     );

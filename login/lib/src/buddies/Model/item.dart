@@ -4,8 +4,6 @@ import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
-import 'package:login/src/messages/chat/chat.dart';
-import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:login/src/buddies/Controller/controller.dart';
 import 'package:login/src/buddies/View/details_page.dart';
 
@@ -53,7 +51,7 @@ Widget buildItem(
                     ),
                     Container(
                       child: Text(
-                        'About me: ${document['age']}',
+                        'About me: ${document['aboutMe']}',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
                       alignment: Alignment.centerLeft,
@@ -66,8 +64,10 @@ Widget buildItem(
             ),
           ],
         ),
-          onPressed: () => buddyController._navigateToBuddyDetails(document),
-        
+          //onPressed: () => _navigateToBuddyDetails(document),
+          onPressed: () {
+            Controller.NavigateToBuddyDetails(document, context);
+          },
     
         color: Colors.grey[700],
         padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),
@@ -78,17 +78,17 @@ Widget buildItem(
     );
   }
 }
-/*
-Future _navigateToBuddyDetails(
+
+void _navigateToBuddyDetails(
       DocumentSnapshot document) 
       async {
     BuildContext context;
-    return Navigator.push(
+    Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => BuddyDetailsPage(document),
         fullscreenDialog: true
+        
       )
     );
 }
-*/
