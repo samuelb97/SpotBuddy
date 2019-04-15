@@ -13,17 +13,27 @@ class _SupportPageState extends StateMVC<SupportPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
     return Scaffold(
       body: Center(
         child: Container(
+          decoration: linearGradient,
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
-                padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 50.0),
                 child: 
                   Material(
                     borderRadius: BorderRadius.all(Radius.circular(40.0)),
@@ -36,9 +46,9 @@ class _SupportPageState extends StateMVC<SupportPage> {
                             ),
                             width: 100.0,
                             height: 100.0,
-                            padding: EdgeInsets.all(12.0),
+                            padding: EdgeInsets.all(40.0),
                           ),
-                      imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/A1upUhCRisL._CR0,0,3840,2880_._SL1000_.jpg',    //developers aka is
+                      imageUrl: 'https://djbooth.net/.image/t_share/MTUzNDg1OTk0OTcwOTgxNTc0/migos-culture-ii-one-listen-reviewjpg.jpg',    //developers aka is
                       width: 80.0,
                       height: 80.0,
                       fit: BoxFit.cover,
@@ -68,13 +78,8 @@ class _SupportPageState extends StateMVC<SupportPage> {
                         .merge(TextStyle(color: Colors.white)),
                     textAlign: TextAlign.center,
                   ),
-                  Text(
-                    Prompts.contact,
-                    style: Theme.of(context)
-                        .textTheme
-                        .body1
-                        .merge(TextStyle(color: Colors.white)),
-                    textAlign: TextAlign.center,
+                  Padding(
+                    padding: EdgeInsets.all(30.0)
                   ),
                   Text(
                     Prompts.dev1,
@@ -84,6 +89,9 @@ class _SupportPageState extends StateMVC<SupportPage> {
                         .merge(TextStyle(color: Colors.white)),
                     textAlign: TextAlign.center,
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(30.0)
+                  ),
                   Text(
                     Prompts.dev2,
                     style: Theme.of(context)
@@ -91,6 +99,9 @@ class _SupportPageState extends StateMVC<SupportPage> {
                         .body1
                         .merge(TextStyle(color: Colors.white)),
                     textAlign: TextAlign.center,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(30.0)
                   ),
                   Text(
                     Prompts.dev3,

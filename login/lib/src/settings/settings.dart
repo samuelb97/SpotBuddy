@@ -21,19 +21,47 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: Center(
+        child: Container(
+          decoration: linearGradient,
+          child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          RaisedButton(
+          ButtonTheme( 
+              minWidth: 120,
+            child: RaisedButton(
+              color: Colors.green[800],
+              splashColor: Colors.green[300],
+              textTheme: ButtonTextTheme.primary,
+              padding: EdgeInsets.all(20.0),
+              elevation: 6,
+              shape: BeveledRectangleBorder(
+                side: BorderSide(
+                  width: 2.0, 
+                  color: Colors.deepPurple[800],
+                ), 
+                borderRadius: BorderRadius.circular(10), 
+              ),
               onPressed: () {},
               child: Text(Headers.settings),
           ),
+          ),
           ButtonTheme( 
-              minWidth: 250,
+              minWidth: 120,
             child: RaisedButton(
               color: Colors.green[800],
               splashColor: Colors.green[300],
@@ -48,15 +76,17 @@ class _SettingsPageState extends State<SettingsPage> {
                 borderRadius: BorderRadius.circular(10), 
               ),
               onPressed: () { 
-                      Controller.navigateToSupport();
+                      Controller.navigateToSupport(context);
               },
               child: Text(Prompts.support),
           ),
           )
         ],
       ),
+        ),
+      ),
     );
   
 
-  
+  }
 }

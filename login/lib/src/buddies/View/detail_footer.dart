@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/src/buddies/View/profilefeatures/articles_showcase.dart';
-import 'package:login/src/buddies/View/profilefeatures/portfolio_showcase.dart';
-import 'package:login/src/buddies/View/profilefeatures/skills_showcase.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -34,11 +31,6 @@ class _BuddyShowcaseState extends State<BuddyShowcase>
       new Tab(text: 'Portfolio'),
       new Tab(text: 'Skills'),
       new Tab(text: 'Articles'),
-    ];
-    _pages = [
-      new PortfolioShowcase(),
-      new SkillsShowcase(),
-      new ArticlesShowcase(),
     ];
     _controller = new TabController(
       length: _tabs.length,

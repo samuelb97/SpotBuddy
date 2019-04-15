@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:login/src/buddies/View/diagonally_cut_colored_image.dart';
-import 'package:login/src/buddies/Model/buddy.dart';
-import 'package:meta/meta.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/userController.dart';
-import 'package:login/src/messages/chat/chat.dart';
 import 'package:login/src/buddies/View/interests.dart';
+import 'package:login/src/messages/view/item.dart';
+import 'package:login/analtyicsController.dart';
 
 class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
   BuddyDetailHeader(this.document,{Key key});
 
+  userController user;
+  analyticsController analControl;
   final DocumentSnapshot document;
-
   Widget _buildDiagonalImageBackground(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
@@ -88,9 +87,7 @@ class BuddyDetailHeader extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => InterestPage (
-                        
-                      ),
+                  builder: (context) => InterestPage (user: document.data['interests']),
                   fullscreenDialog: true));
         },
         child: new Text('INTERESTS'),
@@ -105,6 +102,7 @@ class BuddyDetailHeader extends StatelessWidget {
     BuildContext context, String text, {
     Color backgroundColor = Colors.transparent,
     Color textColor = Colors.white70,
+    
   }) {
     return new ClipRRect(
       borderRadius: new BorderRadius.circular(30.0),
@@ -112,18 +110,31 @@ class BuddyDetailHeader extends StatelessWidget {
         minWidth: 140.0,
         color: backgroundColor,
         textColor: textColor,
+        
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Chat(
-                        peerId: document.documentID,
-                        peerName: document['name'],
-                        peerAvatar: document['photoUrl'],
-                        //analControl: analControl,
-                        //user: user,
+          return ListView.builder(
+                      padding: EdgeInsets.all(10.0),
+                      itemBuilder: (context, index) => buildItem(
+                        context, 
+                        document, 
+                        user,
+                        analControl
                       ),
-                  fullscreenDialog: true));
+                    );
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) => Chat(
+          //               peerId: document.documentID,
+          //               peerName: document['name'],
+          //               peerAvatar: document['photoUrl'],
+          //               //analControl: analControl,
+          //               //user: user,
+          //             ),
+          //         fullscreenDialog: true));
+
+                  
+
         },
         child: new Text(text),
       ),

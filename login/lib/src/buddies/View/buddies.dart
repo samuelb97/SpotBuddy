@@ -38,7 +38,16 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
   Controller buddyController;
   
   List<Buddy> _buddies;
-
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   void initState() {
     super.initState();
@@ -61,6 +70,7 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
           children: <Widget>[
             // List
             Container(
+              decoration: linearGradient,
               child: StreamBuilder(
                 stream: Firestore.instance.collection('users').snapshots(),
                 builder: (context, snapshot) {
@@ -102,26 +112,4 @@ class _BuddiesPageState extends StateMVC<BuddiesPage> {
         ),
     );
   }
-
-
-
-/*
-  Widget build(BuildContext context) {
-    Widget content;
-
-    if (_buddies.isEmpty) {
-      content = new Center(
-        child: new CircularProgressIndicator(),
-      );
-    } else {
-      content = new ListView.builder(
-        itemCount: _buddies.length,
-        itemBuilder: _buildBuddyListTile,
-      );
-    }
-    return new Scaffold(
-      body: content,
-    );
-  }
-  */
 }
