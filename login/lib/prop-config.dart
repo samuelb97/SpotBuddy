@@ -16,6 +16,12 @@ class Prompts{
   static const String mobileNumber = 'Enter your mobile number';
   static const String editInterests = 'Edit Interests';
   static const String newInterest = 'New Interest';
+  static const String support = 'Support';
+  static const String meet = 'Meet your Developers!';
+  static const String contact = 'Contact us with any questions or concerns';
+  static const String dev1 = 'Bradley Sheehan \n(631) 413-3254 \nbxs388@miami.edu';
+  static const String dev2 = 'Samuel Boley \n(202) 997-8226 \nsab132@miami.edu';
+  static const String dev3 = 'Justin Moon \n(314) 484-9750 \njsm207@miami.edu';
 }
 class Buttons{
   static const String moreinfo = 'more info';
