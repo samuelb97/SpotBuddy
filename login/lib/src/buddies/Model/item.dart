@@ -9,9 +9,21 @@ import 'package:login/src/buddies/View/details_page.dart';
 
 Controller buddyController;
 String photo;
-Widget buildItem(
-    BuildContext context, DocumentSnapshot document, userController user, analyticsController analControl) {
-  if (document.documentID == user.uid) {
+Widget buildItem(BuildContext context, DocumentSnapshot document, 
+  userController user, analyticsController analControl) {
+
+  List targetInterests = document.data['interests'];
+  GeoPoint targetLocation = document.data['location'];
+  bool checksOut = false;
+
+  if ("""there is a similar interest """")
+    {
+      //for loops checking similar interest
+    }
+    if("""location""") checksOut = true;
+
+
+  if (!checksOut) {
     return Container();
   } else {
     return Container(
