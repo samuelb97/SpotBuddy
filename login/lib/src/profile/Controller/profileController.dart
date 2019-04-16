@@ -8,7 +8,6 @@ import 'package:login/src/profile/View/editInterestsView.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
 import 'package:location/location.dart';
-import 'package:login/queryController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -26,12 +25,9 @@ class Controller extends ControllerMVC {
     print("HERE");
     LocationData currentLocation;
     Stream<QuerySnapshot> stream;
-    queryController qc =queryController();
-    print('function called');
-    stream = qc.get_buddies_near(user);
 
-    stream.first;
-    
+    print('function called');
+
 
     var location = new Location();
     try {

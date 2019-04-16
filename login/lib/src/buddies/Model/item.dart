@@ -6,24 +6,46 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
 import 'package:login/src/buddies/Controller/controller.dart';
 import 'package:login/src/buddies/View/details_page.dart';
+import 'package:latlong/latlong.dart';
 
 Controller buddyController;
 String photo;
 Widget buildItem(BuildContext context, DocumentSnapshot document, 
   userController user, analyticsController analControl) {
 
+  final Distance distance = new Distance();
+  
   List targetInterests = document.data['interests'];
+  List userInterests = user.interests;
   GeoPoint targetLocation = document.data['location'];
   bool checksOut = false;
+  double radius = 50.0;
 
-  if ("""there is a similar interest """")
-    {
-      //for loops checking similar interest
+  print(targetInterests.length);
+  print(userInterests.length);
+
+  for(int i = 0; i < targetInterests.length; i++){
+    for(int j = 0; j < userInterests. length; j++){
+      if (targetInterests[i] == userInterests[j]){
+        //print("GOT HERE 1");
+        //print(targetInterests[i]);
+        //print(userInterests[j]);
+        final double km = distance.as(LengthUnit.Kilometer, new LatLng(user.latitude, user.longitude), new LatLng(targetLocation.latitude, targetLocation.longitude));
+        print(km);
+        if(km <= radius){ checksOut = true;
+          break;
+        }
+        else checksOut = false;
+        //print("GOT HERE 2");
+      }
     }
-    if("""location""") checksOut = true;
+    if(checksOut){
+      break;
+    }
+  }  
 
 
-  if (!checksOut) {
+  if (!checksOut || document.documentID == user.uid) {
     return Container();
   } else {
     return Container(
