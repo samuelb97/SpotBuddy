@@ -36,17 +36,10 @@ class ShowInterestsPage extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, position) {
               return ListTile(
-                title: Text('${items['position'])',
-              );
+                title: Text('$position'),
+              ); 
             },
           )
-          // child: Column(
-          //   // mainAxisAlignment: MainAxisAlignment.center,
-          //   crossAxisAlignment: CrossAxisAlignment.stretch,
-          //   children: <Widget>[
-              
-          // ]
-          //),
       ),
     );
   }

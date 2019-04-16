@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login/src/buddies/View/diagonally_cut_colored_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/userController.dart';
-import 'package:login/src/buddies/View/interests.dart';
-import 'package:login/src/messages/view/item.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/src/messages/chat/chat.dart';
 import 'package:login/src/buddies/View/showinterests.dart';
@@ -18,7 +16,7 @@ class BuddyDetailHeader extends StatelessWidget {
   final DocumentSnapshot document;
   Widget _buildDiagonalImageBackground(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    //var screenHeight = MediaQuery.of(context).size.height;
 
     return new DiagonallyCutColoredImage(
       new Image.asset(
