@@ -9,9 +9,11 @@ class ShowInterestsPage extends StatelessWidget {
       : super(key: key);
 
   final DocumentSnapshot document;
-  List<ListView> items = document.data['interests'];
+  
   @override
+  
   Widget build(BuildContext context) {
+    List <ListView>items = document.data['interests'];
     var linearGradient = const BoxDecoration(
       gradient: const LinearGradient(
         begin: FractionalOffset.centerRight,
@@ -34,7 +36,7 @@ class ShowInterestsPage extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, position) {
               return ListTile(
-                title: Text('${document[interests]}'),
+                title: Text('${items['position'])',
               );
             },
           )
