@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +8,7 @@ import 'package:login/src/messages/msgController.dart';
 import 'package:login/src/messages/view/item.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
+import 'package:async/async.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
@@ -30,7 +32,16 @@ class _MessagePageState extends StateMVC<MessagePage> {
     msgController = MsgController.con;
   }
   MsgController msgController;
-
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +49,7 @@ class _MessagePageState extends StateMVC<MessagePage> {
           children: <Widget>[
             // List
             Container(
+              decoration: linearGradient,
               child: StreamBuilder(
                 stream: Firestore.instance.collection('users').snapshots(),
                 builder: (context, snapshot) {
@@ -62,7 +74,6 @@ class _MessagePageState extends StateMVC<MessagePage> {
                 },
               ),
             ),
- 
             // Loading
             Positioned(
               child: msgController.isLoading

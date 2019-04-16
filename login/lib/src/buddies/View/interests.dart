@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:login/src/messages/msgController.dart';
 import 'package:login/userController.dart';
+import 'package:login/src/buddies/Controller/controller.dart';
 
 class InterestPage extends StatefulWidget {
-  InterestPage({Key key, this.analControl, @required this.user})
-      : super(key: key);
+  InterestPage({
+    Key key,
+    this.analControl,
+    @required this.user
+  }) : super(key: key);
 
   final userController user;
   final analyticsController analControl;
+
 
   @override
   State createState() => _InterestPageState();
 }
 
 class _InterestPageState extends StateMVC<InterestPage> {
+   _InterestPageState() : super(Controller()){
+    _con = Controller.con;
+    interests = _con.interests;
+  }
+  Controller _con;
+  List interests;
   
   @override
   Widget build(BuildContext context) {
+    _con.set_interests = widget.user.interests;
     return Scaffold(
       body: Stack(
           children: <Widget>[

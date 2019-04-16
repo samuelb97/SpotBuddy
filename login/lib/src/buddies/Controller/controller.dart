@@ -23,9 +23,16 @@ class Controller extends ControllerMVC {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
   List<Buddy> _buddies = [];
+  List _interests; 
+  static String _newInterest;
+  static TextEditingController _textController = TextEditingController();
+  set set_interests(List __interests){
+    _interests = __interests;
+  }
 
 
-
+  TextEditingController get textController => _textController;
+  List get interests => _interests;
 
   @override
   void initState() {
@@ -41,27 +48,8 @@ class Controller extends ControllerMVC {
       _buddies = Buddy.allFromResponse(response.body);
     });
   }
-/*
-  Widget _buildBuddyListTile(BuildContext context, int index) {
-    var buddy = _buddies[index];
-
-    return new ListTile(
-      onTap: () => _navigateToBuddyDetails(document),
-      leading: new Hero(
-        tag: index,
-        child: new CircleAvatar( 
-          backgroundImage: new NetworkImage(buddy.avatar),
-        ),
-      ),
-      title: new Text(buddy.name),
-      subtitle: new Text(buddy.email),
-    );
-  }
-*/
- 
 
   static void NavigateToBuddyDetails(DocumentSnapshot document,BuildContext context) async {
-    
     Navigator.push(
       context,
       MaterialPageRoute(
