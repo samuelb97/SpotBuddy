@@ -48,7 +48,7 @@ class _SupportPageState extends StateMVC<SupportPage> {
                             height: 100.0,
                             padding: EdgeInsets.all(40.0),
                           ),
-                      imageUrl: 'https://djbooth.net/.image/t_share/MTUzNDg1OTk0OTcwOTgxNTc0/migos-culture-ii-one-listen-reviewjpg.jpg',    //developers aka is
+                      imageUrl: 'https://pbs.twimg.com/media/DVz1ZUIW0AE89BR.jpg',    //developers aka us
                       width: 80.0,
                       height: 80.0,
                       fit: BoxFit.cover,

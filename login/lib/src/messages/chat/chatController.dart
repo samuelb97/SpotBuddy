@@ -14,7 +14,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:login/src/messages/chat/view/view.dart';
 import 'dart:async';
 import 'dart:io';
-
+ 
 class ChatController extends ControllerMVC {
   factory ChatController() {
     if (_this == null) _this = ChatController._();
