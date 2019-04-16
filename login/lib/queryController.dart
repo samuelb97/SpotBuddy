@@ -6,6 +6,7 @@ import 'package:login/userController.dart';
 class queryController{
   factory queryController(){
     if(_this == null) _this =queryController._();
+    print('query factory');
     return _this;
   }
   static queryController _this;
@@ -16,14 +17,18 @@ class queryController{
 
   static queryController get queryCon => _this;
 
-  Future get_buddies_near(userController user) async{
+  Stream<QuerySnapshot> get_buddies_near(userController user) {
     var users = Firestore.instance.collection('users');
     GeoFirePoint center = geo.point(latitude: user.latitude, longitude: user.longitude); //User's geolocation
-    for(var interest in user.interests){
-      var usersRef = users.where("interests", arrayContains: interest);
-    }
+    // for(var interest in user.interests){
+    //   var usersRef = users.where("interests", arrayContains: interest);
+    //   print
+    // }
+    var usersRef = users.where("interests", arrayContains: user.interests[0]).snapshots();
+    print('In get_buddies');
+    print('UserRef:  $usersRef');
     var radius = 50.0;
-    Stream<List<DocumentSnapshot>> stream = geo.collection(collectionRef: usersRef).within(center: center, radius: radius, field: 'location');
-    return stream;
+    //Stream<List<DocumentSnapshot>> stream = geo.collection(collectionRef: usersRef).within(center: center, radius: radius, field: 'location');
+    return usersRef;
   }
 }
