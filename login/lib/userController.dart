@@ -41,13 +41,13 @@ class userController{
   List get interests => _interests;
   LocationData get location => _location;
   double get latitude => _latitude;
-  double get longitude => longitude;
+  double get longitude => _longitude;
   LatLng get latlng => LatLng(_latitude, _longitude);
 
   
 
   Future load_data_from_firebase() async {
-    Firestore.instance.collection('users').document(_uid)
+    Firestore.instance.collection('users').document(_uid)k
       .get().then((DocumentSnapshot){
         print('Load Data From Firebase');
         print(DocumentSnapshot.data['name'].toString());
@@ -60,7 +60,7 @@ class userController{
         GeoPoint __location = DocumentSnapshot.data['location'];
         _latitude = __location.latitude;
         _longitude = __location.longitude;
-        print('Location After Load: ${_longitude} , $_latitude');
+        print('Location After Load: $_longitude , $_latitude');
       }
     );
   }
