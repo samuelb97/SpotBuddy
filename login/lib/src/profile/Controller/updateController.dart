@@ -47,6 +47,8 @@ class Controller extends ControllerMVC {
 
   static Controller get con => _this;
 
+  
+
   Future<void> update(userController user) async {
     switch (_genderBtnValue) {
       case 0:
