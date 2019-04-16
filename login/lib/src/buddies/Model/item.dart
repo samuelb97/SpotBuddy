@@ -16,11 +16,11 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
   GeoPoint targetLocation = document.data['location'];
   bool checksOut = false;
 
-  if ("""there is a similar interest """")
-    {
-      //for loops checking similar interest
-    }
-    if("""location""") checksOut = true;
+  // if ("""there is a similar interest """")
+  //   {
+  //     //for loops checking similar interest
+  //   }
+  //   if("""location""") checksOut = true;
 
 
   if (!checksOut) {
