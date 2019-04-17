@@ -53,10 +53,10 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 30.0),
-                padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 20.0),
                 child: Row(children: <Widget>[
                   Material(
-                    borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                    borderRadius: BorderRadius.all(Radius.circular(45.0)),
                     clipBehavior: Clip.hardEdge,
                     child: CachedNetworkImage(
                       placeholder: (context, url) => Container(
@@ -65,13 +65,13 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                               valueColor:
                                   AlwaysStoppedAnimation<Color>(Colors.green),
                             ),
-                            width: 100.0,
-                            height: 100.0,
+                            width: 90.0,
+                            height: 90.0,
                             padding: EdgeInsets.all(12.0),
                           ),
                       imageUrl: '${widget.user.photoUrl}',
-                      width: 80.0,
-                      height: 80.0,
+                      width: 90.0,
+                      height: 90.0,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -138,7 +138,13 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                   ),
                 ]),
               ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+              ),
               buildMap(context, widget.user.latitude, widget.user.longitude),
+              Padding(
+                padding: EdgeInsets.all(12.0),
+              ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 50.0),
                   child: ButtonTheme(
@@ -163,6 +169,9 @@ class _ProfilePageState extends StateMVC<ProfilePage> {
                         },
                         child: Text(Prompts.updateProfile),
                       ))),
+              Padding( 
+                padding: EdgeInsets.all(4.0),
+              ),
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 50.0),
                   child: ButtonTheme(
