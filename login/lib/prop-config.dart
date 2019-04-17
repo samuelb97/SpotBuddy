@@ -4,7 +4,7 @@ class Prompts{
   static const String updateDoc = 'Documented Update';
   static const String login = 'Log In';
   static const String signup = 'Sign Up';
-  static const String type_email = 'Please type and email';
+  static const String type_email = 'Please type an email';
   static const String email_verif = 'Email not Verified';
   static const String passwrd = 'Password';
   static const String passwrd_valid = 'Password must be longer than 6 characters';

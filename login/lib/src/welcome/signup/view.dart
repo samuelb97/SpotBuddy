@@ -18,7 +18,16 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
     _con = Controller.con;
   }
   Controller _con;
-
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   Widget build(BuildContext context) {
     widget.analControl.currentScreen('update_profile', 'updateProfileOver');
@@ -29,6 +38,7 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
+              //decoration: linearGradient,
                 margin: EdgeInsets.all(25.0),
                 child: Form(
                   key: _con.formkey,

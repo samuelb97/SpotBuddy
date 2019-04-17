@@ -19,7 +19,16 @@ class _LoginPageState extends StateMVC<LoginPage> {
     _con = Controller.con;
   }
   Controller _con;
-
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +37,7 @@ class _LoginPageState extends StateMVC<LoginPage> {
         backgroundColor: Colors.lightGreen,
       ),
       body: Container(
+        //decoration: linearGradient,
           margin: EdgeInsets.all(25.0),
       child: Form(
         key: _con.formkey,
