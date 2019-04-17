@@ -9,7 +9,7 @@ import 'package:login/src/buddies/View/showinterests.dart';
 class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
-  BuddyDetailHeader(this.document,{Key key});
+  BuddyDetailHeader(this.document, this.user, {Key key});
 
   userController user;
   analyticsController analControl;
@@ -78,30 +78,12 @@ class BuddyDetailHeader extends StatelessWidget {
             'INTERESTS',
             backgroundColor: Colors.blue[500],
           )
-      //     new DecoratedBox(
-      //       decoration: new BoxDecoration(
-      //         border: new Border.all(color: Colors.white30),
-      //         borderRadius: new BorderRadius.circular(30.0),
-      //       ),
-      //       child: new MaterialButton(
-      //   minWidth: 140.0,
-      //   color: Colors.deepPurple,
-      //   textColor: Colors.white,
-      //   onPressed: () {
-      //     Navigator.push(
-      //         context,
-      //         MaterialPageRoute(
-      //             builder: (context) => InterestPage (user: document.data['interests']),
-      //             fullscreenDialog: true));
-      //   },
-      //   child: new Text('INTERESTS'),
-      // )
-      //     ),
+      
         ],
       ),
     );
   }
-
+  
   Widget _createMessageButton(
     BuildContext context, String text, {
     Color backgroundColor = Colors.transparent,
@@ -110,20 +92,23 @@ class BuddyDetailHeader extends StatelessWidget {
   }) {
     return new ClipRRect(
       borderRadius: new BorderRadius.circular(30.0),
+      
       child: new MaterialButton(
         minWidth: 140.0,
         color: backgroundColor,
         textColor: textColor,
         onPressed: () {
+          print('${document}');
+          print('User: ${user.uid}');
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => Chat(
                         peerId: document.documentID,
-                        peerName: document['name'],
-                        peerAvatar: document['photoUrl'],
-                        //analControl: analControl,
-                        //user: user,
+                        peerName: document.data['name'],
+                        peerAvatar: document.data['photoUrl'],
+                        analControl: analControl,
+                        user: user,
                       ),
                   fullscreenDialog: true));
         },

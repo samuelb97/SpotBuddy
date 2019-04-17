@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import 'package:login/src/buddies/View/details_page.dart';
 import 'package:login/src/buddies/Controller/controller.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:login/src/buddies/Model/item.dart'; 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
-import 'package:login/src/settings/supportView.dart';
 import 'package:login/src/settings/controller.dart';
 
 class SettingsPage extends StatefulWidget {

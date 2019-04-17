@@ -3,8 +3,6 @@ import 'package:login/src/welcome/view.dart';
 import 'package:login/prop-config.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 
 void main() => runApp(MyApp());
   // This widget is the root of your application.

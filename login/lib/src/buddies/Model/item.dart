@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -132,7 +131,7 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
         ),
           //onPressed: () => _navigateToBuddyDetails(document),
           onPressed: () {
-            Controller.NavigateToBuddyDetails(document, context);
+            Controller.NavigateToBuddyDetails(document, user, context);
           },
     
         color: Colors.grey[700],
@@ -146,13 +145,13 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
 }
 
 void _navigateToBuddyDetails(
-      DocumentSnapshot document) 
+      DocumentSnapshot document, userController user) 
       async {
     BuildContext context;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BuddyDetailsPage(document),
+        builder: (context) => BuddyDetailsPage(document, user),
         fullscreenDialog: true
         
       )

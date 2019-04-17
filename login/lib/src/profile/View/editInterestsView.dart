@@ -4,7 +4,6 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/profile/Controller/editInterestsController.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class EditInterestsPage extends StatefulWidget {
 

@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/src/welcome/login/view.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/prop-config.dart';
-import 'package:login/userController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {

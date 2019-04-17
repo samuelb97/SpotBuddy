@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:login/analtyicsController.dart';
-import 'package:login/userController.dart';
 import 'package:login/src/welcome/signup/controller.dart';
 
 class SignUpPage extends StatefulWidget {

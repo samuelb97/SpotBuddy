@@ -3,8 +3,6 @@ import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/welcome/login/controller.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 
 class LoginPage extends StatefulWidget {
 
