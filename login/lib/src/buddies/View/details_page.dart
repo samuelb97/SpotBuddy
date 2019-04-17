@@ -42,7 +42,7 @@ class _BuddyDetailsPageState extends State<BuddyDetailsPage> {
               new BuddyDetailHeader(widget.document, widget.user),
               new Padding(
                 padding: const EdgeInsets.all(24.0),
-                child: new BuddyDetailBody(widget.document),
+                child: new BuddyDetailBody(widget.document, widget.user),
               ),
               new BuddyShowcase(widget.document),
             ],

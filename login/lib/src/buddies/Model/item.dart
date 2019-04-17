@@ -19,6 +19,9 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
   GeoPoint targetLocation = document.data['location'];
   bool checksOut = false;
   double radius = 50.0;
+  double km;
+  List commonInterests = [];
+  int iterate = 0;
 
   print(targetInterests.length);
   print(userInterests.length);
@@ -29,12 +32,16 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
         //print("GOT HERE 1");
         //print(targetInterests[i]);
         //print(userInterests[j]);
-        final double km = distance.as(LengthUnit.Kilometer, new LatLng(user.latitude, user.longitude), new LatLng(targetLocation.latitude, targetLocation.longitude));
+        commonInterests.insert(iterate, targetInterests[i]);
+        km = distance.as(LengthUnit.Kilometer, new LatLng(user.latitude, user.longitude), new LatLng(targetLocation.latitude, targetLocation.longitude));
         print(km);
         if(km <= radius){ checksOut = true;
-          break;
+          if(commonInterests.length > 1){
+            break;
+          }
         }
         else checksOut = false;
+        iterate++;
         //print("GOT HERE 2");
       }
     }
@@ -74,6 +81,7 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
               child: Container(
                 child: Column(
                   children: <Widget>[
+                    
                     Container(
                       child: Text(
                         '${document['name']}',
@@ -83,20 +91,36 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
                       margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                     ),
                     Container(
-                      child: Text(
-                        '${document['occupation']}',
+                      child: Row(
+                      children: <Widget>[ Icon(
+                      Icons.assignment,
+                      color: Colors.white,
+                      size: 16.0,
+                      ),  Text(
+                        'Interests: $commonInterests',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
+                      ]),
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                     ),
+                    
                     Container(
-                      child: Text(
-                        'Distance:   ',
+                    child: Row(
+                      children: <Widget>[ Icon(
+                      Icons.place,
+                      color: Colors.white,
+                      size: 16.0,
+                      ), 
+                      
+                      Text(
+                        '$km  kilometers away',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
+                      ]),
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                      
                     )
                   ],
                 ),
