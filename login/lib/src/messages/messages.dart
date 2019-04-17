@@ -1,20 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/messages/msgController.dart';
 import 'package:login/src/messages/view/item.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
-import 'package:async/async.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:intl/intl.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class MessagePage extends StatefulWidget {
   MessagePage({Key key, this.analControl, @required this.user})

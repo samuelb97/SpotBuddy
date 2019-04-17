@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';

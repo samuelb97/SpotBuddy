@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:meta/meta.dart';
-import 'package:login/analtyicsController.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:login/userController.dart';
-import 'package:login/src/buddies/Controller/controller.dart';
-import 'package:login/src/buddies/View/details_page.dart';
 
 class Buddy {
   Buddy({

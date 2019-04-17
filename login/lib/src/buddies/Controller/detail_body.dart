@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/src/buddies/Model/buddy.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BuddyDetailBody extends StatelessWidget {
