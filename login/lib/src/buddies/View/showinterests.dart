@@ -36,9 +36,9 @@ class ShowInterestsPage extends StatelessWidget {
             itemCount: items.length,
             itemBuilder: (context, position) {
               return Container(
-                color: Colors.blue,
+                color: Colors.lightGreen[300],
                 child: ListTile(
-                  title: Text('${position+1} : ${items[position]}', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)),
+                  title: Text('${position+1} : ${items[position]}', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)),
                 )
               ); 
             },

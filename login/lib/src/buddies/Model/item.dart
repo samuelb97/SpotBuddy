@@ -97,7 +97,7 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
                       color: Colors.white,
                       size: 16.0,
                       ),  Text(
-                        'Interests: $commonInterests',
+                        'Interests: ${commonInterests.toString().replaceAll('[', '').replaceAll(']', '')}',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
                       ]),

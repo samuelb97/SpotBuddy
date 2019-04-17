@@ -95,8 +95,8 @@ class BuddyDetailHeader extends StatelessWidget {
       
       child: new MaterialButton(
         minWidth: 140.0,
-        color: backgroundColor,
-        textColor: textColor,
+        color: Colors.green[600],
+        textColor: Colors.black,
         onPressed: () {
           print('${document}');
           print('User: ${user.uid}');
@@ -128,8 +128,8 @@ class BuddyDetailHeader extends StatelessWidget {
       borderRadius: new BorderRadius.circular(30.0),
       child: new MaterialButton(
         minWidth: 140.0,
-        color: backgroundColor,
-        textColor: textColor,
+        color: Colors.green[200],
+        textColor: Colors.black,
         onPressed: () {
           Navigator.push(
               context,
