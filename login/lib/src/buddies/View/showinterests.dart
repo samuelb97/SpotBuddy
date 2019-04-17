@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login/prop-config.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:login/userController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ShowInterestsPage extends StatelessWidget {
@@ -13,7 +11,7 @@ class ShowInterestsPage extends StatelessWidget {
   @override
   
   Widget build(BuildContext context) {
-    List <ListView>items = document.data['interests'];
+    List items = document.data['interests'];
     var linearGradient = const BoxDecoration(
       gradient: const LinearGradient(
         begin: FractionalOffset.centerRight,
@@ -27,16 +25,21 @@ class ShowInterestsPage extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text(Userinfo.interests),
+        title: Text('${document.data['name']}\'s ${Userinfo.interests}'),
         backgroundColor: Colors.lightGreen,
       ),
       body: Container (
+          
           decoration: linearGradient,
           child: ListView.builder(
+            
             itemCount: items.length,
             itemBuilder: (context, position) {
-              return ListTile(
-                title: Text('$position'),
+              return Container(
+                color: Colors.blue,
+                child: ListTile(
+                  title: Text('${position+1} : ${items[position]}', style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white)),
+                )
               ); 
             },
           )
