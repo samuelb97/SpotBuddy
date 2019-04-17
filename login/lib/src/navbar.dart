@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:login/src/buddies/View/buddies.dart';
 import 'package:login/src/profile/View/profile.dart';

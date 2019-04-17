@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/src/profile/View/updateView.dart';
 import 'package:login/src/profile/View/editInterestsView.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
-
 
 class Controller extends ControllerMVC {
   factory Controller() {

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:login/analtyicsController.dart';
 import 'package:login/src/buddies/Model/buddy.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:login/src/buddies/View/details_page.dart';
@@ -49,11 +44,11 @@ class Controller extends ControllerMVC {
     });
   }
 
-  static void NavigateToBuddyDetails(DocumentSnapshot document,BuildContext context) async {
+  static void NavigateToBuddyDetails(DocumentSnapshot document, userController user, BuildContext context) async {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BuddyDetailsPage(document),
+        builder: (context) => BuddyDetailsPage(document, user),
         fullscreenDialog: true
       )
     );

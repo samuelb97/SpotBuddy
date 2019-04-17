@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/welcome/controller.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:login/analtyicsController.dart';
 
 class WelcomePage extends StatefulWidget {

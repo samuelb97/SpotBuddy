@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/settings/supportView.dart';
 

@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:login/analtyicsController.dart';
-import 'package:login/userController.dart';
 import 'package:login/src/welcome/signup/controller.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -21,7 +18,16 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
     _con = Controller.con;
   }
   Controller _con;
-
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   Widget build(BuildContext context) {
     widget.analControl.currentScreen('update_profile', 'updateProfileOver');
@@ -32,6 +38,7 @@ class _SignUpPageState extends StateMVC<SignUpPage> {
         ),
         body: SingleChildScrollView(
             child: Container(
+              //decoration: linearGradient,
                 margin: EdgeInsets.all(25.0),
                 child: Form(
                   key: _con.formkey,

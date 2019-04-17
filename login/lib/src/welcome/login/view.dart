@@ -3,8 +3,6 @@ import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/welcome/login/controller.dart';
 import 'package:login/analtyicsController.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -21,7 +19,16 @@ class _LoginPageState extends StateMVC<LoginPage> {
     _con = Controller.con;
   }
   Controller _con;
-
+  var linearGradient = const BoxDecoration(
+      gradient: const LinearGradient(
+        begin: FractionalOffset.centerRight,
+        end: FractionalOffset.bottomLeft,
+        colors: <Color>[
+          const Color(0xFF413070),
+          const Color(0xFF2B264A),
+        ],
+      ),
+    );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +37,7 @@ class _LoginPageState extends StateMVC<LoginPage> {
         backgroundColor: Colors.lightGreen,
       ),
       body: Container(
+        //decoration: linearGradient,
           margin: EdgeInsets.all(25.0),
       child: Form(
         key: _con.formkey,

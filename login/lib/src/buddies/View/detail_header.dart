@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:login/src/buddies/View/diagonally_cut_colored_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/userController.dart';
-import 'package:login/src/buddies/View/interests.dart';
-import 'package:login/src/messages/view/item.dart';
 import 'package:login/analtyicsController.dart';
+import 'package:login/src/messages/chat/chat.dart';
+import 'package:login/src/buddies/View/showinterests.dart';
 
 class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
-  BuddyDetailHeader(this.document,{Key key});
+  BuddyDetailHeader(this.document, this.user, {Key key});
 
   userController user;
   analyticsController analControl;
   final DocumentSnapshot document;
   Widget _buildDiagonalImageBackground(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    var screenHeight = MediaQuery.of(context).size.height;
+    //var screenHeight = MediaQuery.of(context).size.height;
 
     return new DiagonallyCutColoredImage(
       new Image.asset(
@@ -70,35 +70,21 @@ class BuddyDetailHeader extends StatelessWidget {
       child: new Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          _createPillButton(context,
+          _createMessageButton(context,
             'MESSAGE',
             backgroundColor: Colors.green[500],
           ),
-          new DecoratedBox(
-            decoration: new BoxDecoration(
-              border: new Border.all(color: Colors.white30),
-              borderRadius: new BorderRadius.circular(30.0),
-            ),
-            child: new MaterialButton(
-        minWidth: 140.0,
-        color: Colors.deepPurple,
-        textColor: Colors.white,
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => InterestPage (user: document.data['interests']),
-                  fullscreenDialog: true));
-        },
-        child: new Text('INTERESTS'),
-      )
-          ),
+          _createInterestButton(context,
+            'INTERESTS',
+            backgroundColor: Colors.blue[500],
+          )
+      
         ],
       ),
     );
   }
-
-  Widget _createPillButton(
+  
+  Widget _createMessageButton(
     BuildContext context, String text, {
     Color backgroundColor = Colors.transparent,
     Color textColor = Colors.white70,
@@ -106,35 +92,52 @@ class BuddyDetailHeader extends StatelessWidget {
   }) {
     return new ClipRRect(
       borderRadius: new BorderRadius.circular(30.0),
+      
       child: new MaterialButton(
         minWidth: 140.0,
         color: backgroundColor,
         textColor: textColor,
-        
         onPressed: () {
-          return ListView.builder(
-                      padding: EdgeInsets.all(10.0),
-                      itemBuilder: (context, index) => buildItem(
-                        context, 
-                        document, 
-                        user,
-                        analControl
+          print('${document}');
+          print('User: ${user.uid}');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Chat(
+                        peerId: document.documentID,
+                        peerName: document.data['name'],
+                        peerAvatar: document.data['photoUrl'],
+                        analControl: analControl,
+                        user: user,
                       ),
-                    );
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //         builder: (context) => Chat(
-          //               peerId: document.documentID,
-          //               peerName: document['name'],
-          //               peerAvatar: document['photoUrl'],
-          //               //analControl: analControl,
-          //               //user: user,
-          //             ),
-          //         fullscreenDialog: true));
+                  fullscreenDialog: true));
+        },
+        child: new Text(text),
+      ),
+    );
+  }
 
-                  
-
+  Widget _createInterestButton(
+    BuildContext context, String text, {
+    Color backgroundColor = Colors.transparent,
+    Color textColor = Colors.white70,
+    
+  }) {
+    
+    return new ClipRRect(
+      borderRadius: new BorderRadius.circular(30.0),
+      child: new MaterialButton(
+        minWidth: 140.0,
+        color: backgroundColor,
+        textColor: textColor,
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ShowInterestsPage(
+                        document: document
+                      ),
+                  fullscreenDialog: true));
         },
         child: new Text(text),
       ),

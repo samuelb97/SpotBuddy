@@ -1,20 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:login/prop-config.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:login/userController.dart';
 import 'package:login/src/buddies/Controller/controller.dart';
 import 'package:login/src/buddies/View/details_page.dart';
+import 'package:latlong/latlong.dart';
 
 Controller buddyController;
 String photo;
 Widget buildItem(BuildContext context, DocumentSnapshot document, 
   userController user, analyticsController analControl) {
 
+  final Distance distance = new Distance();
+  
+  List targetInterests = document.data['interests'];
+  List userInterests = user.interests;
+  GeoPoint targetLocation = document.data['location'];
+  bool checksOut = false;
+  double radius = 50.0;
+  double km;
+  List commonInterests = [];
+  int iterate = 0;
+
+  print(targetInterests.length);
+  print(userInterests.length);
+
+  for(int i = 0; i < targetInterests.length; i++){
+    for(int j = 0; j < userInterests. length; j++){
+      if (targetInterests[i] == userInterests[j]){
+        //print("GOT HERE 1");
+        //print(targetInterests[i]);
+        //print(userInterests[j]);
+        commonInterests.insert(iterate, targetInterests[i]);
+        km = distance.as(LengthUnit.Kilometer, new LatLng(user.latitude, user.longitude), new LatLng(targetLocation.latitude, targetLocation.longitude));
+        print(km);
+        if(km <= radius){ checksOut = true;
+          if(commonInterests.length > 1){
+            break;
+          }
+        }
+        else checksOut = false;
+        iterate++;
+        //print("GOT HERE 2");
+      }
+    }
+    if(checksOut){
+      break;
+    }
+  }  
 
 
-  if (document.documentID == user.uid) {
+  if (!checksOut || document.documentID == user.uid) {
     return Container();
   } else {
     return Container(
@@ -44,6 +81,7 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
               child: Container(
                 child: Column(
                   children: <Widget>[
+                    
                     Container(
                       child: Text(
                         '${document['name']}',
@@ -53,20 +91,36 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
                       margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                     ),
                     Container(
-                      child: Text(
-                        '${document['occupation']}',
+                      child: Row(
+                      children: <Widget>[ Icon(
+                      Icons.assignment,
+                      color: Colors.white,
+                      size: 16.0,
+                      ),  Text(
+                        'Interests: $commonInterests',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
+                      ]),
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                     ),
+                    
                     Container(
-                      child: Text(
-                        'Distance:   ',
+                    child: Row(
+                      children: <Widget>[ Icon(
+                      Icons.place,
+                      color: Colors.white,
+                      size: 16.0,
+                      ), 
+                      
+                      Text(
+                        '$km  kilometers away',
                         style: TextStyle(color: Colors.lightGreen),
                       ),
+                      ]),
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                      
                     )
                   ],
                 ),
@@ -77,7 +131,7 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
         ),
           //onPressed: () => _navigateToBuddyDetails(document),
           onPressed: () {
-            Controller.NavigateToBuddyDetails(document, context);
+            Controller.NavigateToBuddyDetails(document, user, context);
           },
     
         color: Colors.grey[700],
@@ -91,13 +145,13 @@ Widget buildItem(BuildContext context, DocumentSnapshot document,
 }
 
 void _navigateToBuddyDetails(
-      DocumentSnapshot document) 
+      DocumentSnapshot document, userController user) 
       async {
     BuildContext context;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BuddyDetailsPage(document),
+        builder: (context) => BuddyDetailsPage(document, user),
         fullscreenDialog: true
         
       )

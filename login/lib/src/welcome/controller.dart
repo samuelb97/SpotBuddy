@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:login/src/welcome/login/view.dart';
 import 'package:login/src/welcome/signup/view.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:login/analtyicsController.dart';
 
 

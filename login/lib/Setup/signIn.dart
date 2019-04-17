@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/Pages/home.dart';
 
@@ -20,7 +19,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Form(
         key: _formkey,
-        //TODO: implement key
         child: Column(
           children: <Widget>[
             TextFormField(
@@ -73,7 +71,6 @@ class _LoginPageState extends State<LoginPage> {
             builder: (context) => Home()
           )
         );
-          //TODO: Navigate to home
       }
       catch(e){
         print(e.message);
