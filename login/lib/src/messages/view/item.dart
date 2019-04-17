@@ -17,7 +17,10 @@ Widget buildItem (BuildContext context, DocumentSnapshot document,
     userController user, analyticsController analControl) {
 
   String groupChatId;
-  bool exists;
+
+  if(!document.exists) {
+    return Container();
+  }
 
   if (user.uid.hashCode <= document.documentID.hashCode) {
     groupChatId = '${user.uid}-${document.documentID}';

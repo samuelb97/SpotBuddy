@@ -12,18 +12,9 @@ String photo;
 Widget buildItem(BuildContext context, DocumentSnapshot document, 
   userController user, analyticsController analControl) {
 
-  List targetInterests = document.data['interests'];
-  GeoPoint targetLocation = document.data['location'];
-  bool checksOut = false;
-
-  if ("""there is a similar interest """")
-    {
-      //for loops checking similar interest
-    }
-    if("""location""") checksOut = true;
 
 
-  if (!checksOut) {
+  if (document.documentID == user.uid) {
     return Container();
   } else {
     return Container(

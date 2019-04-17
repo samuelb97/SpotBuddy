@@ -7,8 +7,7 @@ import 'package:login/src/profile/View/updateView.dart';
 import 'package:login/src/profile/View/editInterestsView.dart';
 import 'package:login/analtyicsController.dart';
 import 'package:login/userController.dart';
-import 'package:location/location.dart';
-import 'package:login/queryController.dart';
+
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -20,38 +19,6 @@ class Controller extends ControllerMVC {
   Controller._();
 
   static Controller get con => _this;
-
-  static Future<void> updateLocation(BuildContext context,
-      analyticsController analControl, userController user) async {
-    print("HERE");
-    LocationData currentLocation;
-    Stream<QuerySnapshot> stream;
-    queryController qc =queryController();
-    print('function called');
-    stream = qc.get_buddies_near(user);
-
-    stream.first;
-    
-
-    var location = new Location();
-    try {
-      currentLocation = await location.getLocation();
-      
-    } catch (e) {
-      if (e.code == 'PERMISSION_DENIED') {
-        print(e.message);
-      }
-      currentLocation = null;
-    }
-    String uid = user.uid;
-    var geopoint =
-        new GeoPoint(currentLocation.latitude, currentLocation.longitude);
-    Firestore.instance
-        .collection("users")
-        .document("$uid")
-        .updateData({"location": geopoint});
-    
-  }
 
   Future NavigateToUpdateProfile(BuildContext context,
       analyticsController analControl, userController user) async {

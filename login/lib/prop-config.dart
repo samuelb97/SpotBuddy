@@ -58,6 +58,7 @@ class Userinfo{
   static const String update = 'Update';
   static const String userid = 'Your Account ID';
   static const String interests = 'Interests';
+  static const String updateProfilePic = "Update Profile Picture";
 }
 class Pattern{
   static const String integers = r'(^[0-9]*$)';

@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:login/prop-config.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:login/userController.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'dart:async';
+import 'dart:io';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -16,6 +20,10 @@ class Controller extends ControllerMVC {
 
   static String name, age, gender, occupation, mobile;
   static int _genderBtnValue = 0;
+
+  bool _isLoading;
+  File _imageFile;
+  String _imageUrl;
 
   GlobalKey<FormState> get formkey => _formkey;
 
@@ -123,5 +131,43 @@ class Controller extends ControllerMVC {
       return Requirements.mobile_valid_2;
     }
     return null;
+  }
+
+  Future getImage(userController user) async {
+    _imageFile = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    if (_imageFile != null) {
+      setState(() {
+        _isLoading = true;
+      });
+      uploadFile(user);
+    }
+  }
+
+  Future uploadFile(userController user) async {
+    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    StorageReference reference = FirebaseStorage.instance.ref().child(fileName);
+    StorageUploadTask uploadTask = reference.putFile(_imageFile);
+    StorageTaskSnapshot storageTaskSnapshot = await uploadTask.onComplete;
+    storageTaskSnapshot.ref.getDownloadURL().then((downloadUrl) {
+      _imageUrl = downloadUrl;
+      setState(() {
+        _isLoading = false;
+        onUpdatePic(_imageUrl, user);
+      });
+    }, onError: (err) {
+      setState(() {
+        _isLoading = false;
+      });
+      Fluttertoast.showToast(msg: 'This file is not an image');
+    });
+  }
+
+  void onUpdatePic(String imageUrl, userController user) {
+    Firestore.instance
+        .collection("users")
+        .document("${user.uid}")
+        .updateData({"photoUrl": imageUrl});
+    Fluttertoast.showToast(msg: 'Profile Picture Updated');
   }
 }

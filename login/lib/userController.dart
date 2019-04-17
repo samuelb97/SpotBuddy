@@ -50,7 +50,7 @@ class userController{
   
 
   Future load_data_from_firebase() async {
-    Firestore.instance.collection('users').document(_uid)k
+    Firestore.instance.collection('users').document(_uid)
       .get().then((DocumentSnapshot){
         print('Load Data From Firebase');
         print(DocumentSnapshot.data['name'].toString());
@@ -83,5 +83,28 @@ class userController{
       _location = null;
       return null;
     }
+  }
+
+  Future updateLocation() async {
+
+    LocationData currentLocation;
+
+    var location = new Location();
+    try {
+      currentLocation = await location.getLocation();
+      
+    } catch (e) {
+      if (e.code == 'PERMISSION_DENIED') {
+        print(e.message);
+      }
+      currentLocation = null;
+    }
+    var geopoint =
+        new GeoPoint(currentLocation.latitude, currentLocation.longitude);
+    Firestore.instance
+        .collection("users")
+        .document("$_uid")
+        .updateData({"location": geopoint});
+    
   }
 }
