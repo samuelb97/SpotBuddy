@@ -9,7 +9,7 @@ import 'package:login/src/buddies/View/showinterests.dart';
 class BuddyDetailHeader extends StatelessWidget {
   static const BACKGROUND_IMAGE = 'images/profile_header_background.png';
 
-  BuddyDetailHeader(this.document,{Key key});
+  BuddyDetailHeader(this.document, this.user, {Key key});
 
   userController user;
   analyticsController analControl;
@@ -98,12 +98,13 @@ class BuddyDetailHeader extends StatelessWidget {
         color: backgroundColor,
         textColor: textColor,
         onPressed: () {
-          //print('${document.documentID}');
+          print('${document}');
+          print('User: ${user.uid}');
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => Chat(
-                        peerId: '${document.documentID}',
+                        peerId: document.documentID,
                         peerName: document.data['name'],
                         peerAvatar: document.data['photoUrl'],
                         analControl: analControl,

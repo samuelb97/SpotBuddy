@@ -5,6 +5,7 @@ import 'package:login/src/buddies/Model/buddy.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:login/src/buddies/View/details_page.dart';
+import 'package:login/userController.dart';
 
 class Controller extends ControllerMVC {
   factory Controller() {
@@ -43,11 +44,11 @@ class Controller extends ControllerMVC {
     });
   }
 
-  static void NavigateToBuddyDetails(DocumentSnapshot document,BuildContext context) async {
+  static void NavigateToBuddyDetails(DocumentSnapshot document, userController user, BuildContext context) async {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => BuddyDetailsPage(document),
+        builder: (context) => BuddyDetailsPage(document, user),
         fullscreenDialog: true
       )
     );
