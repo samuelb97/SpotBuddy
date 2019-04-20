@@ -1,5 +1,5 @@
 import 'package:location/location.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
@@ -45,7 +45,7 @@ class userController{
   LocationData get location => _location;
   double get latitude => _latitude;
   double get longitude => _longitude;
-  LatLng get latlng => LatLng(_latitude, _longitude);
+  // LatLng get latlng => LatLng(_latitude, _longitude);
 
   
 
@@ -69,21 +69,21 @@ class userController{
     );
   }
 
-  Future<LatLng> getUserLocation() async {
-    final _getLocation = Location();
-    try {
-      _location = await _getLocation.getLocation();
-      final lat = _location.latitude;
-      _latitude = lat;
-      final lng = _location.longitude;
-      _longitude = lng;
-      final center = LatLng(lat, lng);
-      return center;
-    } on Exception {
-      _location = null;
-      return null;
-    }
-  }
+  // Future<GeoPoint> getUserLocation() async {
+  //   final _getLocation = Location();
+  //   try {
+  //     _location = await _getLocation.getLocation();
+  //     final lat = _location.latitude;
+  //     _latitude = lat;
+  //     final lng = _location.longitude;
+  //     _longitude = lng;
+  //     final center = GeoPoint(lat, lng);
+  //     return center;
+  //   } on Exception {
+  //     _location = null;
+  //     return null;
+  //   }
+  // }
 
   Future updateLocation() async {
 
