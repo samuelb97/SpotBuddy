@@ -32,6 +32,10 @@ class userController{
     _uid = uid;
   }
 
+  set interests(List i){
+    _interests = i;
+  }
+
   String get uid => _uid;
   String get name => _name;
   String get age => _age;
@@ -50,7 +54,7 @@ class userController{
   
 
   Future load_data_from_firebase() async {
-    Firestore.instance.collection('users').document(_uid)
+    await Firestore.instance.collection('users').document(_uid)
       .get().then((DocumentSnapshot){
         print('Load Data From Firebase');
         print(DocumentSnapshot.data['name'].toString());

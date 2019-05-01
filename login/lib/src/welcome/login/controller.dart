@@ -47,7 +47,7 @@ class Controller extends ControllerMVC {
           userController _user = userController();
           print('\n\nUserID: ${user.uid}\n\n');
           _user.set_uid = user.uid;
-          _user.load_data_from_firebase();
+          await _user.load_data_from_firebase();
           _user.updateLocation();
           Navigator.push(
               context,

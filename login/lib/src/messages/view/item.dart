@@ -26,9 +26,13 @@ Widget buildItem (BuildContext context, DocumentSnapshot document,
         stream: Firestore.instance.collection('messages').document(groupChatId)
           .collection(groupChatId).snapshots(),
         builder: (context, snapshot) {
-          if(snapshot.data.documents.toString() == "[]") {
+          if(!snapshot.hasData) {
             return Container();
-          } else {
+          } 
+          else if(snapshot.data.documents.toString() == "[]"){
+            return Container();
+          }
+          else {
              return FlatButton(
               child: Row(
                 children: <Widget>[

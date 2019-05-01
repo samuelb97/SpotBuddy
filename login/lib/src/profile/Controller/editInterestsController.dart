@@ -38,7 +38,8 @@ class Controller extends ControllerMVC {
       List temp = List.from(_interests);
       temp.add(_newInterest);
       _interests = temp;
-      Firestore.instance.collection("users")
+      user.interests = _interests;
+      await Firestore.instance.collection("users")
         .document("${user.uid}")
         .updateData({"interests": FieldValue.arrayUnion(["$_newInterest"])});
     }
@@ -49,18 +50,9 @@ class Controller extends ControllerMVC {
     List temp = List.from(_interests);
     temp.remove(interest);
     _interests = temp;
-    Firestore.instance.collection("users")
+    user.interests = _interests;
+    await Firestore.instance.collection("users")
         .document("${user.uid}")
         .updateData({"interests": FieldValue.arrayRemove(["$interest"])});
-  }
-
-  String validateInterest(String value) {
-    RegExp regExp = new RegExp(Pattern.characters);
-    if (value.length == 0) {
-      return Requirements.name;
-    } else if (!regExp.hasMatch(value)) {
-      return Requirements.range;
-    }
-    return null;
   }
 }

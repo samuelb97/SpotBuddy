@@ -17,17 +17,17 @@ class EditInterestsPage extends StatefulWidget {
   final analyticsController analControl;
 
   @override
-  _EditInterestsPageState createState() => _EditInterestsPageState();
+  _EditInterestsPageState createState() => _EditInterestsPageState(user);
 }
 
 class _EditInterestsPageState extends StateMVC<EditInterestsPage> {
-  _EditInterestsPageState() : super(Controller()){
+  _EditInterestsPageState(userController user) : super(Controller()){
     _con = Controller.con;
     _con.setTextListener();
-    interests = _con.interests;
+    interests = user.interests;
   }
   Controller _con;
-  List interests;
+  List interests = ["...", "..."];
   
   @override
   Widget build(BuildContext context) {
